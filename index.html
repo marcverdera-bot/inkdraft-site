@@ -102,16 +102,19 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 .problem blockquote span { display: block; margin-top: 0.4rem; color: var(--dim); }
 .problem .wrap { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); align-items: center; column-gap: clamp(2rem, 5vw, 4.5rem); }
 .problem .pq { display: grid; gap: 1.6rem; align-content: center; min-width: 0; }
-.dm { justify-self: end; width: 100%; max-width: 22rem; background: var(--coal); border: 1px solid var(--line); border-radius: 20px; padding: 0.9rem 0.9rem 0.8rem; display: grid; gap: 0.5rem; box-shadow: 0 40px 70px -35px #000; transform: rotate(1.5deg); }
-.dm-head { display: flex; align-items: center; gap: 0.6rem; padding: 0 0.2rem 0.7rem; margin-bottom: 0.2rem; border-bottom: 1px solid var(--line); font-size: 0.92rem; line-height: 1.2; }
+.dm { justify-self: end; width: 100%; max-width: 25rem; background: var(--coal); border: 1px solid var(--line); border-radius: 20px; padding: 0.85rem 0.9rem 0.75rem; display: grid; gap: 0.45rem; box-shadow: 0 40px 70px -35px #000; transform: rotate(1.5deg); }
+.dm-head { display: flex; align-items: center; gap: 0.6rem; padding: 0 0.2rem 0.6rem; margin-bottom: 0.1rem; border-bottom: 1px solid var(--line); font-size: 0.92rem; line-height: 1.2; }
 .dm-head small { display: block; color: var(--dim); font-size: 0.74rem; }
 .dm-av { width: 2.1rem; height: 2.1rem; border-radius: 50%; background: #34302B; display: grid; place-items: center; font: 600 0.85rem/1 var(--serif); color: var(--bone); flex: none; }
 .dm .b { max-width: 82%; padding: 0.5rem 0.75rem; border-radius: 16px; font-size: 0.9rem; line-height: 1.35; }
 .dm .in { justify-self: start; background: #27241F; border-bottom-left-radius: 5px; }
 .dm .out { justify-self: end; background: var(--bone); color: var(--ink); border-bottom-right-radius: 5px; }
-.dm .sk { padding: 0.28rem; }
-.dm .sk img { display: block; width: 6.2rem; height: 4.4rem; object-fit: cover; border-radius: 12px; background: var(--paper); }
-.dm .sk span { display: block; padding: 0.25rem 0.35rem 0.05rem; font-size: 0.7rem; color: var(--ink-dim); }
+.dm .sk { padding: 0.45rem 0.45rem 0.4rem; max-width: 92%; }
+.dm .sk-t { display: block; padding: 0 0.3rem 0.4rem; font-size: 0.86rem; }
+.dm .sk-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.3rem; }
+.dm .sk figure { margin: 0; }
+.dm .sk img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; background: var(--paper); }
+.dm .sk figcaption { padding: 0.2rem 0.2rem 0; font-size: 0.68rem; color: var(--ink-dim); }
 .dm-seen { justify-self: start; font-size: 0.72rem; color: var(--dim); padding-left: 0.3rem; }
 @media (max-width: 900px) { .problem .wrap { grid-template-columns: minmax(0, 1fr); } .dm { justify-self: center; transform: none; } }
 
@@ -296,7 +299,7 @@ footer .brand img { width: 3rem; height: 3rem; }
   <blockquote>“A wolf with a moon.” You spend the afternoon sketching, three versions over DM… <span>and not one hour paid.</span></blockquote>
   <p style="color: var(--dim); max-width: 36rem">Inkdraft handles the part nobody pays for: the idea and the first sketch. The time you save goes back to the machine.</p>
   </div>
-  <div class="dm" role="img" aria-label="Direct message thread: the client asks for changes and the artist sends three sketches"><div class="dm-head"><span class="dm-av">L</span><div>Laura<small>Direct message</small></div></div><div class="b in">Hi! I want a wolf with a moon, on my forearm.</div><div class="b out sk"><img src="/img/lobo-ref.jpg" alt="" style="object-position: 50% 18%"><span>sketch_v1.jpg</span></div><div class="b in">Love it, but can the moon be bigger?</div><div class="b out sk"><img src="/img/lobo-ref.jpg" alt="" style="object-position: 50% 62%"><span>sketch_v2.jpg</span></div><div class="b in">Hmm… what if the wolf faces the other way?</div><div class="b out sk"><img src="/img/lobo-ref.jpg" alt="" style="object-position: 50% 92%"><span>sketch_v3.jpg</span></div><div class="b in">Let me think about it.</div><span class="dm-seen">Seen · 11:47 pm</span></div>
+  <div class="dm" role="img" aria-label="Direct message thread: the artist sends three sketches and the client keeps asking for changes"><div class="dm-head"><span class="dm-av">L</span><div>Laura<small>Direct message</small></div></div><div class="b in">Hi! I want a wolf with a moon, on my forearm.</div><div class="b out sk"><span class="sk-t">Here are three options:</span><div class="sk-row"><figure><img src="/img/lobo-ref.jpg" alt="" style="object-position: 50% 18%"><figcaption>v1</figcaption></figure><figure><img src="/img/lobo-ref.jpg" alt="" style="object-position: 50% 62%"><figcaption>v2</figcaption></figure><figure><img src="/img/lobo-ref.jpg" alt="" style="object-position: 50% 92%"><figcaption>v3</figcaption></figure></div></div><div class="b in">Let me think about it.</div><span class="dm-seen">Seen · 11:47 pm</span></div>
 </div></section>
 
 <section><div class="wrap">
