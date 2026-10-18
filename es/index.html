@@ -388,5 +388,31 @@ document.getElementById("copy-mail").addEventListener("click", async (e) => {
 <script>
 document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', () => { try { localStorage.setItem('lang', a.dataset.lang); } catch (e) {} }));
 </script>
+<script>
+(function () {
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ease = function (t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    var id = a.getAttribute('href');
+    var el = id === '#top' ? document.documentElement : document.getElementById(id.slice(1));
+    if (!el) return;
+    e.preventDefault();
+    var start = window.scrollY, target = id === '#top' ? 0 : el.getBoundingClientRect().top + start - 16;
+    var dist = target - start, dur = Math.min(800, 450 + Math.abs(dist) * 0.06);
+    if (reduce || Math.abs(dist) < 2) { window.scrollTo(0, target); }
+    else {
+      var t0 = performance.now();
+      (function step(now) {
+        var p = Math.min(1, (now - t0) / dur);
+        window.scrollTo(0, start + dist * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      })(t0);
+    }
+    if (history.pushState) history.pushState(null, '', id);
+  });
+})();
+</script>
 </body>
 </html>
