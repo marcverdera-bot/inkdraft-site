@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inkdraft · From client brief to stencil, in minutes</title>
+<meta name="description" content="Inkdraft turns your client's request into ideas, drawn concepts and a single-weight stencil ready for Procreate. Blackwork and fineline. 50 founder seats at €19 a month, for life.">
+<meta property="og:title" content="Inkdraft · From client brief to stencil, in minutes">
+<meta property="og:description" content="Tattoo design for tattoo artists. 50 founder seats at €19 a month, for life.">
+<meta property="og:image" content="https://inkdraft.tattoo/img/og.jpg">
+<meta property="og:url" content="https://inkdraft.tattoo/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Cinzel:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap">
+<style>
+/* Layout: cartel de convención blackwork. Negro de fotocopia con grano, láminas en positivo sobre papel con bordes fundidos al negro, sol de rayos tras la pieza central. Gótica (Pirata One) solo en la marca y en los nombres de estilo; versales romanas para titulares y rótulos; serif de libro para leer. Monocromo, un solo tema oscuro por decisión. */
+:root {
+  color-scheme: dark;
+  --black: #0A0A0A;
+  --coal: #131312;
+  --bone: #ECE7DC;
+  --dim: #B4AFA5;
+  --line: #2F2D2A;
+  --gothic: "Pirata One", "Old English Text MT", Georgia, serif;
+  --paper: #EFEAE0;
+  --ink: #161412;
+  --ink-dim: #5E5850;
+  --rule: #D3CCBF;
+  --caps: "Cinzel", "Trajan Pro", Georgia, serif;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.93 0 0 0 0 0.91 0 0 0 0 0.86 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.22'/></svg>");
+}
+* { box-sizing: border-box; }
+body { background: var(--grain), radial-gradient(ellipse at 50% 20%, #1A1918 0%, var(--black) 65%) fixed, var(--black); color: var(--bone); font: 400 1.0625rem/1.65 var(--serif); }
+.wrap { max-width: 70rem; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { margin: 0; text-wrap: balance; font-weight: 600; }
+h1, h2 { font-family: var(--caps); letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.15; }
+h2 { font-size: clamp(1.5rem, 3.4vw, 2.2rem); }
+h3 { font: 600 1.15rem/1.35 var(--serif); }
+p { margin: 0; }
+a { color: inherit; }
+.label { font: 700 0.85rem/1.3 var(--caps); letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); }
+.gothic { font-family: var(--gothic); font-weight: 400; letter-spacing: 0; text-transform: none; }
+:focus-visible { outline: 1px solid var(--bone); outline-offset: 3px; }
+
+.preview { border-bottom: 1px solid var(--line); font: 600 0.72rem/1.4 var(--caps); letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
+.preview .wrap { padding-block: 0.5rem; }
+
+nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.1rem; }
+.brand { display: inline-flex; align-items: center; gap: 0.35rem; font: 400 1.9rem/1 var(--gothic); text-decoration: none; }
+.brand img { width: 2.3rem; height: 2.3rem; border-radius: 50%; margin-right: 0.3rem; }
+.btn { display: inline-flex; align-items: center; padding: 0.85rem 1.3rem; background: var(--bone); color: var(--black); font: 700 0.8rem/1 var(--caps); letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--bone); cursor: pointer; }
+.btn.line { background: transparent; color: var(--bone); }
+.btn:hover { filter: brightness(0.92); }
+
+/* Hero: cartel centrado */
+.hero .wrap { display: grid; justify-items: center; text-align: center; gap: 1.2rem; padding-block: clamp(1.5rem, 5vw, 3rem) clamp(3rem, 7vw, 5rem); }
+.wordmark { font: 400 clamp(4rem, 13vw, 9rem)/0.9 var(--gothic); }
+.burst { position: relative; width: min(36rem, 100%); aspect-ratio: 1; display: grid; place-items: center; isolation: isolate;
+  background: radial-gradient(ellipse 27% 45% at 50% 52%, var(--paper) 0%, var(--paper) 72%, transparent 100%), radial-gradient(circle at 50% 48%, rgba(236, 231, 220, 0.2) 0%, transparent 48%); }
+.burst::before { content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background: repeating-conic-gradient(from 3deg, var(--bone) 0deg 0.9deg, transparent 0.9deg 5.2deg);
+  -webkit-mask: radial-gradient(circle, transparent 26%, #000 30%, #000 44%, transparent 71%); mask: radial-gradient(circle, transparent 26%, #000 30%, #000 44%, transparent 71%); opacity: 0.85; }
+.burst::after { content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, var(--bone) 0deg 0.5deg, transparent 0.5deg 11deg);
+  -webkit-mask: radial-gradient(circle, transparent 28%, #000 32%, transparent 64%); mask: radial-gradient(circle, transparent 28%, #000 32%, transparent 64%); opacity: 0.5; }
+.burst .sheet { position: relative; z-index: 1; width: 36%; aspect-ratio: 561 / 1128; }
+.burst .sheet img { width: 100%; height: 100%; display: block; }
+.hero h1 { font-size: clamp(1.4rem, 3.6vw, 2.3rem); max-width: 30ch; }
+.hero .lede { color: var(--dim); max-width: 36rem; font-size: 1.1rem; }
+.hero .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 0.6rem; }
+.hero .seats { font: 700 0.85rem/1.3 var(--caps); letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); }
+
+section { border-top: 1px solid var(--line); }
+section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2.4rem; }
+.head { display: grid; gap: 0.8rem; max-width: 44rem; }
+.head p { color: var(--dim); }
+.rule { display: flex; align-items: center; gap: 0.8rem; color: var(--dim); font-size: 0.8rem; }
+.rule::before, .rule::after { content: ""; height: 1px; flex: 0 0 3rem; background: var(--line); }
+
+/* Problema */
+.problem blockquote { margin: 0; max-width: 52rem; font: 400 clamp(2.1rem, 5.4vw, 3.8rem)/1.08 var(--gothic); text-wrap: balance; }
+.problem blockquote span { display: block; margin-top: 0.4rem; color: var(--dim); }
+
+/* Pasos: lista numerada; la captura de la app solo acompaña */
+.steps2 { list-style: none; margin: 0; padding: 0; display: grid; }
+.steps2 li { display: grid; grid-template-columns: 3.6rem minmax(0, 1fr) minmax(0, 20rem); gap: 1rem 2.5rem; align-items: center; padding-block: 1.5rem; border-top: 1px solid var(--line); }
+.steps2 li:last-child { border-bottom: 1px solid var(--line); }
+.steps2 .n { width: 3.2rem; height: 3.2rem; border: 1px solid var(--bone); border-radius: 50%; display: grid; place-items: center; font: 600 1rem/1 var(--caps); letter-spacing: 0.04em; }
+.steps2 .st { display: grid; gap: 0.35rem; min-width: 0; }
+.steps2 .st .label { font-size: 0.74rem; }
+.steps2 h3 { font-size: 1.4rem; }
+.steps2 p { color: var(--dim); max-width: 32rem; }
+.steps2 .shot { width: 100%; height: auto; display: block; border-radius: 5px; box-shadow: 0 24px 48px -24px #000, 0 0 0 1px rgba(236, 231, 220, 0.08); }
+@media (max-width: 760px) {
+  .steps2 li { grid-template-columns: 3.2rem minmax(0, 1fr); align-items: start; }
+  .steps2 .shot { grid-column: 2; max-width: 24rem; }
+}
+/* (estilos de las pantallas ficticias: se usan para generar las capturas paso-N.png) */
+.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(3rem, 8vw, 5.5rem); }
+.row { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(1.5rem, 5vw, 4.5rem); align-items: center; }
+.row:nth-child(even) .txt { order: 2; }
+.txt { display: grid; gap: 0.7rem; align-content: start; min-width: 0; }
+.txt .n { font: 600 clamp(2.4rem, 5vw, 3.4rem)/1 var(--caps); letter-spacing: 0.08em; padding-bottom: 0.6rem; border-bottom: 1px solid var(--line); }
+.txt h3 { font-size: 1.45rem; }
+.txt p { color: var(--dim); max-width: 26rem; }
+.win { background: color-mix(in srgb, var(--paper) 96%, transparent); color: var(--ink); border-radius: 6px; overflow: hidden; min-width: 0; box-shadow: 0 40px 80px -30px #000, 0 0 0 1px rgba(236, 231, 220, 0.08); font-size: 0.95rem; }
+.bar { display: flex; align-items: center; gap: 0.4rem; padding: 0.55rem 0.85rem; border-bottom: 1px solid var(--rule); color: var(--ink-dim); font-size: 0.82rem; }
+.bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--rule); }
+.bar span { margin-left: 0.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar b { margin-left: auto; font: 400 1.05rem/1 var(--gothic); color: var(--ink); }
+.wbody { padding: clamp(0.9rem, 2.5vw, 1.4rem); display: grid; gap: 0.9rem; }
+.whead { display: flex; justify-content: space-between; align-items: baseline; gap: 0.4rem 1rem; flex-wrap: wrap; }
+.whead h4 { margin: 0; font: 600 1.05rem/1.3 var(--serif); }
+.whead small { color: var(--ink-dim); font-size: 0.85rem; }
+.wlab { font: 700 0.68rem/1 var(--caps); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); }
+.box { border: 1px solid var(--rule); background: #F7F4EE; padding: 0.6rem 0.75rem; border-radius: 3px; }
+.box.big { min-height: 5.2rem; font-style: italic; }
+.box .caret { display: inline-block; width: 1px; height: 1em; background: var(--ink); vertical-align: -0.15em; margin-left: 2px; }
+.fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; }
+.fields > div { display: grid; gap: 0.35rem; min-width: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.chip { padding: 0.25rem 0.6rem; border: 1px solid var(--rule); border-radius: 99px; font-size: 0.85rem; color: var(--ink-dim); }
+.chip.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.wbtns { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.wbtn { padding: 0.55rem 0.9rem; border-radius: 3px; background: var(--ink); color: var(--paper); font: 700 0.7rem/1 var(--caps); letter-spacing: 0.12em; text-transform: uppercase; }
+.wbtn.o { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.ideas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+.idea { border: 1px solid var(--rule); background: #F7F4EE; padding: 0.75rem; border-radius: 3px; display: grid; gap: 0.25rem; align-content: start; }
+.idea.sel { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.idea strong { font-size: 0.98rem; }
+.idea span { font-size: 0.85rem; color: var(--ink-dim); line-height: 1.4; }
+.thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.6rem; }
+.thumb { aspect-ratio: 2 / 3; border: 1px solid var(--rule); background: #fff; position: relative; overflow: hidden; border-radius: 3px; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb.sel { outline: 2px solid var(--ink); outline-offset: 2px; }
+.thumb em { position: absolute; left: 0.35rem; top: 0.35rem; font: 700 0.6rem/1 var(--caps); letter-spacing: 0.1em; text-transform: uppercase; font-style: normal; background: var(--ink); color: var(--paper); padding: 0.25rem 0.35rem; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+.pane { aspect-ratio: 3 / 4; border: 1px solid var(--rule); background: #fff; position: relative; overflow: hidden; border-radius: 3px; }
+.pane img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pane .stencil-ink { position: absolute; inset: 0; opacity: 1; background: #3B2C8C; -webkit-mask-size: cover; mask-size: cover; }
+.pane-cap { display: flex; justify-content: space-between; margin-top: 0.35rem; font-size: 0.82rem; color: var(--ink-dim); }
+.ok { font-size: 0.85rem; color: #2E6B47; }
+.ok::before { content: "✓ "; }
+.skin { position: relative; aspect-ratio: 4 / 3; border-radius: 3px; overflow: hidden; display: grid; place-items: center;
+  background: var(--grain), linear-gradient(90deg, #8E5F45 0%, #C99A7B 16%, #E3BB9D 42%, #E8C3A6 55%, #D3A383 80%, #8A5B41 100%); }
+.skin::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 40% at 45% 30%, rgba(255, 240, 225, 0.28), transparent 70%); pointer-events: none; }
+.skin img { position: absolute; left: 50%; top: 6%; height: 88%; width: auto; max-width: none; transform: translateX(-50%) rotate(-4deg); mix-blend-mode: multiply; filter: contrast(1.15) sepia(0.15); opacity: 0.9; }
+.skin .tag { position: absolute; right: 0.6rem; bottom: 0.6rem; font: 700 0.62rem/1 var(--caps); letter-spacing: 0.12em; text-transform: uppercase; background: rgba(22, 20, 18, 0.75); color: var(--paper); padding: 0.3rem 0.45rem; }
+.slider { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: var(--ink-dim); }
+.slider .track { flex: 1; height: 3px; background: var(--rule); position: relative; }
+.slider .track::after { content: ""; position: absolute; left: 0; width: 60%; height: 100%; background: var(--ink); }
+.slider .track::before { content: ""; position: absolute; left: 60%; top: 50%; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); transform: translate(-50%, -50%); }
+
+/* Blackwork: galería principal */
+.style-name { font: 400 clamp(3rem, 8vw, 5rem)/0.9 var(--gothic); text-transform: none; letter-spacing: 0; }
+.style-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 0.75rem 2rem; }
+.style-top p { color: var(--dim); max-width: 30rem; }
+.grid-black { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.card { display: grid; gap: 0.6rem; min-width: 0; }
+.card .frame { position: relative; background: var(--paper); aspect-ratio: 3 / 4; overflow: hidden; -webkit-mask: radial-gradient(ellipse 72% 68% at 50% 50%, #000 62%, transparent 100%); mask: radial-gradient(ellipse 72% 68% at 50% 50%, #000 62%, transparent 100%); }
+.card .frame > * { position: absolute; inset: 0; transition: opacity 0.35s ease; }
+.card .frame img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+.stencil-ink { width: 100%; height: 100%; background: var(--ink); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; -webkit-mask-size: contain; mask-size: contain; opacity: 0; }
+.m-lobo { -webkit-mask-image: url("img/lobo-stencil-mask.png"); mask-image: url("img/lobo-stencil-mask.png"); }
+.m-serpiente { -webkit-mask-image: url("img/serpiente-stencil-mask.png"); mask-image: url("img/serpiente-stencil-mask.png"); }
+.m-rosa { -webkit-mask-image: url("img/rosa-stencil-mask.png"); mask-image: url("img/rosa-stencil-mask.png"); }
+.card.show-stencil .stencil-ink { opacity: 1; } .card.show-stencil img { opacity: 0; }
+.card-row { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; }
+.cap { font: 400 0.92rem/1.3 var(--serif); letter-spacing: 0; color: var(--dim); min-width: 0; }
+.toggle { font: 700 0.76rem/1 var(--caps); letter-spacing: 0.16em; text-transform: uppercase; background: transparent; color: var(--bone); border: 1px solid var(--bone); padding: 0.5rem 0.7rem; cursor: pointer; white-space: nowrap; }
+
+/* También */
+.also { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.also article { border: 1px solid var(--line); background: var(--coal); display: grid; grid-template-rows: auto 1fr; }
+.also .img { aspect-ratio: 16 / 10; overflow: hidden; background: var(--paper); -webkit-mask: linear-gradient(180deg, #000 70%, transparent 100%); mask: linear-gradient(180deg, #000 70%, transparent 100%); }
+.also img { width: 100%; height: 100%; object-fit: cover; display: block; mix-blend-mode: multiply; }
+.also .body { padding: 1.2rem; display: grid; gap: 0.4rem; align-content: start; }
+.also .gothic { font-size: 2.2rem; line-height: 1; }
+.also p { color: var(--dim); font-size: 0.95rem; }
+.also .placeholder { display: grid; place-items: center; font: 600 0.75rem/1.6 var(--caps); letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); text-align: center; padding: 1rem; background: repeating-linear-gradient(135deg, var(--black) 0 8px, var(--coal) 8px 16px); }
+
+/* No hace + para quién */
+.two .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 5rem); }
+.two .col { display: grid; gap: 0.9rem; align-content: start; }
+.two p { color: var(--dim); }
+.who { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.8rem; }
+.who li { padding-left: 1.4rem; position: relative; }
+.who li::before { content: "†"; position: absolute; left: 0; color: var(--dim); }
+
+/* Precios */
+.plans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.plan { border: 1px solid var(--line); background: var(--coal); padding: 1.4rem; display: grid; gap: 0.5rem; align-content: start; }
+.plan .price { font: 600 2rem/1 var(--caps); font-variant-numeric: tabular-nums; color: var(--bone); }
+.plan .price small { font: 400 0.85rem/1 var(--serif); color: var(--dim); }
+.plan p { font-size: 0.93rem; color: var(--dim); }
+.founder { background: var(--bone); color: var(--black); display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 2rem; padding: clamp(1.6rem, 4vw, 2.8rem); align-items: center; }
+.founder .label { color: #4A4640; }
+.founder h2 { margin-top: 0.4rem; }
+.founder h2 .gothic { font-size: 1.5em; letter-spacing: 0; }
+.founder p { max-width: 32rem; margin-top: 0.8rem; }
+.seat { display: grid; gap: 0.9rem; justify-items: start; }
+.seat .big { font: 600 2.6rem/1 var(--caps); font-variant-numeric: tabular-nums; }
+.seat .big small { font: 400 0.95rem/1 var(--serif); }
+.mail { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.mail code { font: 500 0.95rem/1 var(--serif); user-select: all; padding: 0.65rem 0.8rem; border: 1px solid var(--black); }
+.copy { font: 700 0.72rem/1 var(--caps); letter-spacing: 0.16em; text-transform: uppercase; padding: 0.72rem 0.9rem; background: var(--black); color: var(--bone); border: 0; cursor: pointer; }
+.todo { border-bottom: 1px dashed var(--bone); color: var(--bone); }
+
+/* FAQ */
+.faq { display: grid; max-width: 46rem; }
+.faq details { border-bottom: 1px solid var(--line); padding-block: 1.1rem; }
+.faq summary { cursor: pointer; font: 500 1.12rem/1.4 var(--serif); list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--caps); color: var(--dim); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { color: var(--dim); margin-top: 0.5rem; }
+
+footer .wrap { padding-block: 2.5rem 3rem; display: grid; justify-items: center; gap: 0.6rem; text-align: center; border-top: 1px solid var(--line); }
+footer .brand { font-size: 2.4rem; }
+footer p { font: 400 0.95rem/1.6 var(--serif); color: var(--dim); }
+footer .brand img { width: 3rem; height: 3rem; }
+
+
+@media (max-width: 900px) {
+  .two .wrap, .founder { grid-template-columns: minmax(0, 1fr); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .plans, .also { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .row { grid-template-columns: minmax(0, 1fr); }
+  .row:nth-child(even) .txt { order: 0; }
+}
+@media (max-width: 560px) {
+  .grid-black, .plans, .also { grid-template-columns: minmax(0, 1fr); }
+  nav .btn { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .card .frame > * { transition: none; } }
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#top">Inkdraft</a>
+  <a class="btn line" href="#founder">Claim your seat</a>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <p class="label">Tattoo design for tattoo artists</p>
+  <p class="wordmark" aria-hidden="true">Inkdraft</p>
+  <div class="burst"><div class="sheet"><img src="img/bombilla.png" alt="Engraved Victorian light bulb with a drop of ink hanging from the filament and acanthus scrolls at the base"></div></div>
+  <h1>From client brief to stencil, in minutes</h1>
+  <p class="lede">Inkdraft turns what your client asks for into ideas, drawn concepts and a stencil ready for Procreate. You choose. You finish it.</p>
+  <div class="cta">
+    <a class="btn" href="#founder">Claim a founder seat</a>
+    <a class="btn line" href="#blackwork">See the designs</a>
+  </div>
+  <p class="seats">50 seats · €19 a month, for life</p>
+</div></header>
+
+<section class="problem"><div class="wrap">
+  <p class="label">The problem</p>
+  <blockquote>“A wolf with a moon.” You spend the afternoon sketching, three versions over DM… <span>and not one hour paid.</span></blockquote>
+  <p style="color: var(--dim); max-width: 36rem">Inkdraft handles the part nobody pays for: the idea and the first sketch. The time you save goes back to the machine.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head"><p class="label">How it works</p><h2>Five steps. You decide at every one.</h2></div>
+  <ol class="steps2">
+    <li><span class="n">I</span><div class="st"><span class="label">Step 1 · Brief</span><h3>Describe the request</h3><p>Write it the way your client said it: subject, placement and size. No brief? Hit Surprise me and explore.</p></div><img class="shot" src="img/step-1.png" alt="Brief screen: client request, placement, size and style" loading="lazy"></li>
+    <li><span class="n">II</span><div class="st"><span class="label">Step 2 · Ideas</span><h3>Pick the idea</h3><p>Four ideas with a twist, in words. Exploring ideas is free: ask for four more as often as you like.</p></div><img class="shot" src="img/step-2.png" alt="Ideas screen: four written ideas, one selected" loading="lazy"></li>
+    <li><span class="n">III</span><div class="st"><span class="label">Step 3 · Concepts</span><h3>Pick the concept</h3><p>Four drawings of the chosen idea, in your style. None of them right? Ask for four more.</p></div><img class="shot" src="img/step-3.png" alt="Concepts screen: four drawings of the wolf pocket watch" loading="lazy"></li>
+    <li><span class="n">IV</span><div class="st"><span class="label">Step 4 · Stencil</span><h3>Take the stencil</h3><p>Clean, single-weight linework, true to the concept. Shading and style are yours to add in Procreate.</p></div><img class="shot" src="img/step-4.png" alt="Stencil screen: concept and stencil side by side" loading="lazy"></li>
+    <li><span class="n">V</span><div class="st"><span class="label">Step 5 · On skin</span><h3>Show your client</h3><p>Place the design on skin, adjust the size and send the preview before the appointment.</p></div><img class="shot" src="img/step-5.png" alt="Preview screen: the wolf pocket watch on a forearm" loading="lazy"></li>
+  </ol>
+</div></section>
+
+<section id="blackwork"><div class="wrap">
+  <div class="style-top">
+    <h2 class="style-name">Blackwork</h2>
+    <p>Antique engraving linework. Creatures fused with objects, anchored by solid black. Tap to see the stencil.</p>
+  </div>
+  <div class="grid-black">
+    <div class="card" id="card-lobo">
+      <div class="frame"><img src="img/lobo-ref.jpg" alt="Wolf pocket watch with a skull, blackwork"><div class="stencil-ink m-lobo" role="img" aria-label="Wolf pocket watch stencil"></div></div>
+      <div class="card-row"><span class="cap">Wolf watch · forearm 12 cm</span><button class="toggle" type="button" id="t-lobo">See stencil</button></div>
+    </div>
+    <div class="card" id="card-serpiente">
+      <div class="frame"><img src="img/serpiente-ref.jpg" alt="Dagger whose handle is a viper, blackwork"><div class="stencil-ink m-serpiente" role="img" aria-label="Serpent dagger stencil"></div></div>
+      <div class="card-row"><span class="cap">Serpent dagger · calf 15 cm</span><button class="toggle" type="button" id="t-serpiente">See stencil</button></div>
+    </div>
+    <div class="card" id="card-rosa">
+      <div class="frame"><img src="img/rosa-ref.jpg" alt="Rose with a keyhole at its heart, blackwork"><div class="stencil-ink m-rosa" role="img" aria-label="Keyhole rose stencil"></div></div>
+      <div class="card-row"><span class="cap">Keyhole rose · wrist 7 cm</span><button class="toggle" type="button" id="t-rosa">See stencil</button></div>
+    </div>
+  </div>
+  <div class="head" style="margin-top: 1rem"><p class="label">Also</p></div>
+  <div class="also">
+    <article><div class="img"><img src="img/gato-luna.jpg" alt="Crescent moon with a sleeping cat inside, fineline"></div><div class="body"><h3 class="gothic">Fineline</h3><p>Small, delicate pieces: exact lettering, butterflies, moons, matching tattoos.</p></div></article>
+    <article><div class="img"><img src="img/mariposas.jpg" alt="Three butterflies on a curve, fineline" style="object-position: 50% 35%"></div><div class="body"><h3 class="gothic">Matching</h3><p>Two or three pieces that complete each other, for couples, siblings or friends.</p></div></article>
+    <article><div class="img placeholder">Upload 5–10 of your designs</div><div class="body"><h3 class="gothic">Your style</h3><p>In beta. Inkdraft suggests ideas in your own linework.</p></div></article>
+  </div>
+</div></section>
+
+<section class="two"><div class="wrap">
+  <div class="col">
+    <p class="label">What Inkdraft doesn't do</p>
+    <h2>The tattoo is yours</h2>
+    <p>It doesn't tattoo for you. It doesn't decide for you. It doesn't make designs for clients to take to another studio. Inkdraft is your studio assistant: it gives you the starting point.</p>
+  </div>
+  <div class="col">
+    <p class="label">Who it's for</p>
+    <ul class="who">
+      <li>Artists starting out who want strong designs from day one.</li>
+      <li>Experienced artists whose drawing time eats their week.</li>
+      <li>Studios with a steady flow of requests that need to reply fast.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+  <div class="head"><p class="label">Pricing</p><h2>Pay per finished design</h2><p>A design is the idea, the drawn concept, the stencil and the on-skin preview. Exploring ideas is free.</p></div>
+  <div class="plans">
+    <div class="plan"><p class="label">Trial</p><p class="price">€0</p><p>3 designs, no card.</p></div>
+    <div class="plan"><p class="label">Starter</p><p class="price">€19 <small>/mo</small></p><p>10 designs a month.</p></div>
+    <div class="plan"><p class="label">Pro</p><p class="price">€39 <small>/mo</small></p><p>30 designs a month.</p></div>
+    <div class="plan"><p class="label">Studio</p><p class="price">€99 <small>/mo</small></p><p>100 designs a month, up to 5 artists.</p></div>
+  </div>
+  <div class="founder" id="founder">
+    <div>
+      <p class="label">Pre-sale · 50 seats</p>
+      <h2><span class="gothic">Founder</span> seat</h2>
+      <p>Everything in Pro, 30 designs a month, at €19 for life. You get into the beta before anyone else and help shape what we build. Until then, we draw designs by hand for your real client requests.</p>
+    </div>
+    <div class="seat">
+      <p class="big">€19 <small>/mo, for life</small></p>
+      <p style="margin:0">Booking opens in a few days. To get on the list now:</p>
+      <div class="mail"><code id="mail">hello@inkdraft.tattoo</code><button class="copy" type="button" id="copy-mail">Copy</button></div>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head"><p class="label">FAQ</p><h2>What people ask</h2></div>
+  <div class="faq">
+    <details><summary>Do I own the designs?</summary><p>Yes. What you generate is yours to tattoo, post and sell.</p></details>
+    <details><summary>Is it AI?</summary><p>Yes, for generating ideas and concepts. The design judgement (composition, anatomy, what works on skin) comes from us. The finish comes from you.</p></details>
+    <details><summary>Can I tattoo straight from it?</summary><p>The stencil is ready for Procreate. We always recommend your own final pass: size, placement and style are your call.</p></details>
+    <details><summary>When can I start using it?</summary><p>Founders get into the beta in early December 2026. Until then, we send you hand-drawn designs for your real client requests.</p></details>
+    <details><summary>Can I cancel?</summary><p>Any time. If you cancel a founder seat, you lose the lifetime price.</p></details>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <a class="brand" href="#top">Inkdraft</a>
+  <p>hello@inkdraft.tattoo · @inkdraft.tattoo</p>
+</div></footer>
+
+<script>
+for (const k of ["lobo", "serpiente", "rosa"]) {
+  const card = document.getElementById("card-" + k), btn = document.getElementById("t-" + k);
+  btn.addEventListener("click", () => {
+    const on = card.classList.toggle("show-stencil");
+    btn.textContent = on ? "See concept" : "See stencil";
+  });
+}
+document.getElementById("copy-mail").addEventListener("click", async (e) => {
+  const b = e.currentTarget;
+  try { await navigator.clipboard.writeText("hello@inkdraft.tattoo"); b.textContent = "Copied"; }
+  catch { const r = document.createRange(); r.selectNodeContents(document.getElementById("mail")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Select and copy"; }
+  setTimeout(() => (b.textContent = "Copy"), 2000);
+});
+</script>
+
+</body>
+</html>
