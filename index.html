@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>
+(function () { try { if (localStorage.getItem('lang')) return; } catch (e) {}
+  var l = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+  if (/^(es|ca|gl|eu)\b/i.test(l)) location.replace('/es/'); })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Inkdraft · From client brief to stencil, in minutes</title>
 <meta name="description" content="Inkdraft turns your client's request into ideas, drawn concepts and a single-weight stencil ready for Procreate. Blackwork and fineline. 50 founder seats at €19 a month, for life.">
@@ -10,12 +15,21 @@
 <meta property="og:image" content="https://inkdraft.tattoo/img/og.jpg">
 <meta property="og:url" content="https://inkdraft.tattoo/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="img/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="alternate" hreflang="en" href="https://inkdraft.tattoo/">
+<link rel="alternate" hreflang="es" href="https://inkdraft.tattoo/es/">
+<link rel="alternate" hreflang="x-default" href="https://inkdraft.tattoo/">
+<link rel="icon" href="/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Cinzel:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap">
 <style>
+
+.lang { display: flex; align-items: center; gap: 0.15rem; font: 700 0.78rem/1 var(--caps); letter-spacing: 0.14em; }
+.lang a { padding: 0.55rem 0.5rem; color: var(--dim); text-decoration: none; }
+.lang a[aria-current="page"] { color: var(--bone); text-decoration: underline; text-underline-offset: 0.35em; }
+.navr { display: flex; align-items: center; gap: 0.9rem; }
+@media (max-width: 560px) { .lang a { padding: 0.55rem 0.4rem; } }
 /* Layout: cartel de convención blackwork. Negro de fotocopia con grano, láminas en positivo sobre papel con bordes fundidos al negro, sol de rayos tras la pieza central. Gótica (Pirata One) solo en la marca y en los nombres de estilo; versales romanas para titulares y rótulos; serif de libro para leer. Monocromo, un solo tema oscuro por decisión. */
 :root {
   color-scheme: dark;
@@ -165,9 +179,9 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 .card .frame > * { position: absolute; inset: 0; transition: opacity 0.35s ease; }
 .card .frame img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
 .stencil-ink { width: 100%; height: 100%; background: var(--ink); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; -webkit-mask-size: contain; mask-size: contain; opacity: 0; }
-.m-lobo { -webkit-mask-image: url("img/lobo-stencil-mask.png"); mask-image: url("img/lobo-stencil-mask.png"); }
-.m-serpiente { -webkit-mask-image: url("img/serpiente-stencil-mask.png"); mask-image: url("img/serpiente-stencil-mask.png"); }
-.m-rosa { -webkit-mask-image: url("img/rosa-stencil-mask.png"); mask-image: url("img/rosa-stencil-mask.png"); }
+.m-lobo { -webkit-mask-image: url("/img/lobo-stencil-mask.png"); mask-image: url("/img/lobo-stencil-mask.png"); }
+.m-serpiente { -webkit-mask-image: url("/img/serpiente-stencil-mask.png"); mask-image: url("/img/serpiente-stencil-mask.png"); }
+.m-rosa { -webkit-mask-image: url("/img/rosa-stencil-mask.png"); mask-image: url("/img/rosa-stencil-mask.png"); }
 .card.show-stencil .stencil-ink { opacity: 1; } .card.show-stencil img { opacity: 0; }
 .card-row { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; }
 .cap { font: 400 0.92rem/1.3 var(--serif); letter-spacing: 0; color: var(--dim); min-width: 0; }
@@ -243,13 +257,13 @@ footer .brand img { width: 3rem; height: 3rem; }
 <body>
 <nav><div class="wrap">
   <a class="brand" href="#top">Inkdraft</a>
-  <a class="btn line" href="#founder">Claim your seat</a>
+  <div class="navr"><nav class="lang" aria-label="Language"><a href="/" hreflang="en" lang="en" data-lang="en" aria-current="page">EN</a><span aria-hidden="true">·</span><a href="/es/" hreflang="es" lang="es" data-lang="es">ES</a></nav><a class="btn line" href="#founder">Claim your seat</a></div>
 </div></nav>
 
 <header class="hero" id="top"><div class="wrap">
   <p class="label">Tattoo design for tattoo artists</p>
   <p class="wordmark" aria-hidden="true">Inkdraft</p>
-  <div class="burst"><div class="sheet"><img src="img/bombilla.png" alt="Engraved Victorian light bulb with a drop of ink hanging from the filament and acanthus scrolls at the base"></div></div>
+  <div class="burst"><div class="sheet"><img src="/img/bombilla.png" alt="Engraved Victorian light bulb with a drop of ink hanging from the filament and acanthus scrolls at the base"></div></div>
   <h1>From client brief to stencil, in minutes</h1>
   <p class="lede">Inkdraft turns what your client asks for into ideas, drawn concepts and a stencil ready for Procreate. You choose. You finish it.</p>
   <div class="cta">
@@ -268,11 +282,11 @@ footer .brand img { width: 3rem; height: 3rem; }
 <section><div class="wrap">
   <div class="head"><p class="label">How it works</p><h2>Five steps. You decide at every one.</h2></div>
   <ol class="steps2">
-    <li><span class="n">I</span><div class="st"><span class="label">Step 1 · Brief</span><h3>Describe the request</h3><p>Write it the way your client said it: subject, placement and size. No brief? Hit Surprise me and explore.</p></div><img class="shot" src="img/step-1.png" alt="Brief screen: client request, placement, size and style" loading="lazy"></li>
-    <li><span class="n">II</span><div class="st"><span class="label">Step 2 · Ideas</span><h3>Pick the idea</h3><p>Four ideas with a twist, in words. Exploring ideas is free: ask for four more as often as you like.</p></div><img class="shot" src="img/step-2.png" alt="Ideas screen: four written ideas, one selected" loading="lazy"></li>
-    <li><span class="n">III</span><div class="st"><span class="label">Step 3 · Concepts</span><h3>Pick the concept</h3><p>Four drawings of the chosen idea, in your style. None of them right? Ask for four more.</p></div><img class="shot" src="img/step-3.png" alt="Concepts screen: four drawings of the wolf pocket watch" loading="lazy"></li>
-    <li><span class="n">IV</span><div class="st"><span class="label">Step 4 · Stencil</span><h3>Take the stencil</h3><p>Clean, single-weight linework, true to the concept. Shading and style are yours to add in Procreate.</p></div><img class="shot" src="img/step-4.png" alt="Stencil screen: concept and stencil side by side" loading="lazy"></li>
-    <li><span class="n">V</span><div class="st"><span class="label">Step 5 · On skin</span><h3>Show your client</h3><p>Place the design on skin, adjust the size and send the preview before the appointment.</p></div><img class="shot" src="img/step-5.png" alt="Preview screen: the wolf pocket watch on a forearm" loading="lazy"></li>
+    <li><span class="n">I</span><div class="st"><span class="label">Step 1 · Brief</span><h3>Describe the request</h3><p>Write it the way your client said it: subject, placement and size. No brief? Hit Surprise me and explore.</p></div><img class="shot" src="/img/step-1.png" alt="Brief screen: client request, placement, size and style" loading="lazy"></li>
+    <li><span class="n">II</span><div class="st"><span class="label">Step 2 · Ideas</span><h3>Pick the idea</h3><p>Four ideas with a twist, in words. Exploring ideas is free: ask for four more as often as you like.</p></div><img class="shot" src="/img/step-2.png" alt="Ideas screen: four written ideas, one selected" loading="lazy"></li>
+    <li><span class="n">III</span><div class="st"><span class="label">Step 3 · Concepts</span><h3>Pick the concept</h3><p>Four drawings of the chosen idea, in your style. None of them right? Ask for four more.</p></div><img class="shot" src="/img/step-3.png" alt="Concepts screen: four drawings of the wolf pocket watch" loading="lazy"></li>
+    <li><span class="n">IV</span><div class="st"><span class="label">Step 4 · Stencil</span><h3>Take the stencil</h3><p>Clean, single-weight linework, true to the concept. Shading and style are yours to add in Procreate.</p></div><img class="shot" src="/img/step-4.png" alt="Stencil screen: concept and stencil side by side" loading="lazy"></li>
+    <li><span class="n">V</span><div class="st"><span class="label">Step 5 · On skin</span><h3>Show your client</h3><p>Place the design on skin, adjust the size and send the preview before the appointment.</p></div><img class="shot" src="/img/step-5.png" alt="Preview screen: the wolf pocket watch on a forearm" loading="lazy"></li>
   </ol>
 </div></section>
 
@@ -283,22 +297,22 @@ footer .brand img { width: 3rem; height: 3rem; }
   </div>
   <div class="grid-black">
     <div class="card" id="card-lobo">
-      <div class="frame"><img src="img/lobo-ref.jpg" alt="Wolf pocket watch with a skull, blackwork"><div class="stencil-ink m-lobo" role="img" aria-label="Wolf pocket watch stencil"></div></div>
+      <div class="frame"><img src="/img/lobo-ref.jpg" alt="Wolf pocket watch with a skull, blackwork"><div class="stencil-ink m-lobo" role="img" aria-label="Wolf pocket watch stencil"></div></div>
       <div class="card-row"><span class="cap">Wolf watch · forearm 12 cm</span><button class="toggle" type="button" id="t-lobo">See stencil</button></div>
     </div>
     <div class="card" id="card-serpiente">
-      <div class="frame"><img src="img/serpiente-ref.jpg" alt="Dagger whose handle is a viper, blackwork"><div class="stencil-ink m-serpiente" role="img" aria-label="Serpent dagger stencil"></div></div>
+      <div class="frame"><img src="/img/serpiente-ref.jpg" alt="Dagger whose handle is a viper, blackwork"><div class="stencil-ink m-serpiente" role="img" aria-label="Serpent dagger stencil"></div></div>
       <div class="card-row"><span class="cap">Serpent dagger · calf 15 cm</span><button class="toggle" type="button" id="t-serpiente">See stencil</button></div>
     </div>
     <div class="card" id="card-rosa">
-      <div class="frame"><img src="img/rosa-ref.jpg" alt="Rose with a keyhole at its heart, blackwork"><div class="stencil-ink m-rosa" role="img" aria-label="Keyhole rose stencil"></div></div>
+      <div class="frame"><img src="/img/rosa-ref.jpg" alt="Rose with a keyhole at its heart, blackwork"><div class="stencil-ink m-rosa" role="img" aria-label="Keyhole rose stencil"></div></div>
       <div class="card-row"><span class="cap">Keyhole rose · wrist 7 cm</span><button class="toggle" type="button" id="t-rosa">See stencil</button></div>
     </div>
   </div>
   <div class="head" style="margin-top: 1rem"><p class="label">Also</p></div>
   <div class="also">
-    <article><div class="img"><img src="img/gato-luna.jpg" alt="Crescent moon with a sleeping cat inside, fineline"></div><div class="body"><h3 class="gothic">Fineline</h3><p>Small, delicate pieces: exact lettering, butterflies, moons, matching tattoos.</p></div></article>
-    <article><div class="img"><img src="img/mariposas.jpg" alt="Three butterflies on a curve, fineline" style="object-position: 50% 35%"></div><div class="body"><h3 class="gothic">Matching</h3><p>Two or three pieces that complete each other, for couples, siblings or friends.</p></div></article>
+    <article><div class="img"><img src="/img/gato-luna.jpg" alt="Crescent moon with a sleeping cat inside, fineline"></div><div class="body"><h3 class="gothic">Fineline</h3><p>Small, delicate pieces: exact lettering, butterflies, moons, matching tattoos.</p></div></article>
+    <article><div class="img"><img src="/img/mariposas.jpg" alt="Three butterflies on a curve, fineline" style="object-position: 50% 35%"></div><div class="body"><h3 class="gothic">Matching</h3><p>Two or three pieces that complete each other, for couples, siblings or friends.</p></div></article>
     <article><div class="img placeholder">Upload 5–10 of your designs</div><div class="body"><h3 class="gothic">Your style</h3><p>In beta. Inkdraft suggests ideas in your own linework.</p></div></article>
   </div>
 </div></section>
@@ -373,5 +387,8 @@ document.getElementById("copy-mail").addEventListener("click", async (e) => {
 });
 </script>
 
+<script>
+document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', () => { try { localStorage.setItem('lang', a.dataset.lang); } catch (e) {} }));
+</script>
 </body>
 </html>
