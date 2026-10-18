@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <script>
-(function () { try { if (localStorage.getItem('lang')) return; } catch (e) {}
+(function () { try { localStorage.removeItem('lang'); if (sessionStorage.getItem('lang')) return; } catch (e) {}
   var l = (navigator.languages && navigator.languages[0]) || navigator.language || '';
   if (/^(es|ca|gl|eu)\b/i.test(l)) location.replace('/es/'); })();
 </script>
@@ -390,7 +390,7 @@ document.getElementById("copy-mail").addEventListener("click", async (e) => {
 </script>
 
 <script>
-document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', () => { try { localStorage.setItem('lang', a.dataset.lang); } catch (e) {} }));
+document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', () => { try { sessionStorage.setItem('lang', a.dataset.lang); } catch (e) {} }));
 </script>
 <script>
 (function () {
