@@ -1,0 +1,33 @@
+# Inkdraft
+
+> Inkdraft is an AI tattoo design tool for tattoo artists. It turns a client's brief into four written ideas, four drawn concepts and a clean single-weight stencil ready for Procreate, plus an on-skin preview to show the client. The artist always finishes the tattoo: Inkdraft handles the unpaid part, the idea and the first sketch.
+
+- Website: https://www.inkdraft.tattoo/ (English) · https://www.inkdraft.tattoo/es/ (Spanish)
+- Contact: hello@inkdraft.tattoo
+- Status: pre-sale. 50 founder seats at €19/month for life. Founders get beta access in early December 2026.
+
+## How it works
+1. Brief: describe the client's request (subject, placement, size) or use "Surprise me".
+2. Ideas: four written ideas with a twist. Exploring ideas is free.
+3. Concepts: four drawings of the chosen idea in the selected style.
+4. Stencil: single-weight linework, true to the concept, no shading. Exports to Procreate and PNG.
+5. On skin: preview the design on the body and send it to the client.
+
+## Styles
+- Blackwork: antique engraving linework, creatures fused with objects, solid black anchor.
+- Fineline: small, delicate pieces, exact lettering, matching tattoos.
+- Your style (beta): ideas based on 5 to 10 of the artist's own designs.
+
+## Pricing (EUR, monthly)
+- Trial: €0, 3 designs, no card.
+- Starter: €19, 10 designs.
+- Pro: €39, 30 designs.
+- Studio: €99, 100 designs, up to 5 artists.
+- Founder seat (pre-sale, 50 seats): Pro plan at €19/month for life.
+A design = idea + drawn concept + stencil + on-skin preview.
+
+## Who it's for
+Tattoo artists starting out, experienced artists whose drawing time eats their week, and studios with a steady flow of requests.
+
+## Ownership
+Artists own what they generate: free to tattoo, post and sell.
