@@ -239,9 +239,32 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 .seat { display: grid; gap: 0.9rem; justify-items: start; }
 .seat .big { font: 600 2.6rem/1 var(--caps); font-variant-numeric: tabular-nums; }
 .seat .big small { font: 400 0.95rem/1 var(--serif); }
-.mail { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
-.mail code { font: 500 0.95rem/1 var(--serif); user-select: all; padding: 0.65rem 0.8rem; border: 1px solid var(--black); }
-.copy { font: 700 0.72rem/1 var(--caps); letter-spacing: 0.16em; text-transform: uppercase; padding: 0.72rem 0.9rem; background: var(--black); color: var(--bone); border: 0; cursor: pointer; }
+/* Formulario de plaza de fundador: tinta sobre papel */
+.join, .done { display: grid; gap: 0.85rem; width: 100%; max-width: 26rem; }
+.join .f { display: grid; gap: 0.35rem; margin: 0; padding: 0; border: 0; min-width: 0; }
+.join .f > span, .join legend { font: 700 0.72rem/1.2 var(--caps); letter-spacing: 0.16em; text-transform: uppercase; color: #4A4640; padding: 0; }
+.join em { font: 400 0.85rem/1 var(--serif); font-style: italic; letter-spacing: 0; text-transform: none; color: #6A645B; margin-left: 0.3rem; }
+.join input[type=email], .join input[type=text] { width: 100%; font: 400 1rem/1.3 var(--serif); color: var(--black); background: #F7F4EE; border: 1px solid var(--black); border-radius: 0; padding: 0.7rem 0.8rem; min-height: 44px; }
+.join input::placeholder { color: #8A847A; }
+.join input:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
+.join input[aria-invalid=true] { border-color: #8C1D18; box-shadow: inset 0 0 0 1px #8C1D18; }
+.join legend { margin-bottom: 0.35rem; }
+.opts { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.opts label { position: relative; cursor: pointer; }
+.opts input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.opts span { display: inline-flex; align-items: center; min-height: 40px; padding: 0.45rem 0.85rem; border: 1px solid var(--black); font: 400 0.95rem/1 var(--serif); }
+.opts input:checked + span { background: var(--black); color: var(--bone); }
+.opts input:focus-visible + span { outline: 2px solid var(--black); outline-offset: 2px; }
+.trap { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.send { justify-self: start; font: 700 0.8rem/1 var(--caps); letter-spacing: 0.18em; text-transform: uppercase; padding: 0.95rem 1.3rem; min-height: 44px; background: var(--black); color: var(--bone); border: 1px solid var(--black); cursor: pointer; }
+.send:hover { filter: brightness(1.25); }
+.send:disabled { opacity: 0.6; cursor: progress; }
+.msg { margin: 0; font-size: 0.95rem; }
+.msg:empty { display: none; }
+.msg.err { color: #8C1D18; }
+.msg a { color: inherit; }
+.done .ok-t { margin: 0; font: 400 2.2rem/1 var(--gothic); }
+.done:focus { outline: none; }
 .todo { border-bottom: 1px dashed var(--bone); color: var(--bone); }
 
 /* FAQ */
@@ -383,8 +406,23 @@ footer .brand img { width: 3rem; height: 3rem; }
     </div>
     <div class="seat">
       <p class="big">€19 <small>/mo, for life</small></p>
-      <p style="margin:0">Booking opens in a few days. To get on the list now:</p>
-      <div class="mail"><code id="mail">hello@inkdraft.tattoo</code><button class="copy" type="button" id="copy-mail">Copy</button></div>
+      <form class="join" id="join" novalidate>
+        <p style="margin:0">Leave your email and we’ll hold your seat.</p>
+        <label class="f"><span>Email</span><input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@email.com"></label>
+        <label class="f"><span>Instagram <em>optional</em></span><input type="text" name="instagram" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="@yourstudio"></label>
+        <fieldset class="f"><legend>Style <em>optional</em></legend><div class="opts">
+          <label><input type="radio" name="style" value="blackwork"><span>Blackwork</span></label>
+          <label><input type="radio" name="style" value="fineline"><span>Fineline</span></label>
+          <label><input type="radio" name="style" value="otro"><span>Other</span></label>
+        </div></fieldset>
+        <label class="trap" aria-hidden="true">Web <input type="text" name="web" tabindex="-1" autocomplete="off"></label>
+        <button class="send" type="submit">Claim my seat</button>
+        <p class="msg" role="status" aria-live="polite"></p>
+      </form>
+      <div class="done" id="join-done" tabindex="-1" hidden>
+        <p class="ok-t">Seat requested.</p>
+        <p style="margin:0">We’ve sent an email to <strong id="join-mail"></strong>. We’ll write soon with the next steps.</p>
+      </div>
     </div>
   </div>
 </div></section>
@@ -417,11 +455,25 @@ for (const k of ["lobo", "serpiente", "rosa"]) {
     btn.textContent = on ? "See concept" : "See stencil";
   });
 }
-document.getElementById("copy-mail").addEventListener("click", async (e) => {
-  const b = e.currentTarget;
-  try { await navigator.clipboard.writeText("hello@inkdraft.tattoo"); b.textContent = "Copied"; }
-  catch { const r = document.createRange(); r.selectNodeContents(document.getElementById("mail")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Select and copy"; }
-  setTimeout(() => (b.textContent = "Copy"), 2000);
+const join = document.getElementById("join");
+const t0 = Date.now();
+join.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const f = join.elements, msg = join.querySelector(".msg"), btn = join.querySelector(".send");
+  const email = f.email.value.trim();
+  msg.className = "msg"; msg.textContent = ""; f.email.removeAttribute("aria-invalid");
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { f.email.setAttribute("aria-invalid", "true"); msg.className = "msg err"; msg.textContent = "Check the email: something’s missing."; f.email.focus(); return; }
+  btn.disabled = true; btn.textContent = "Sending…";
+  try {
+    const r = await fetch("/api/fundador", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email, instagram: f.instagram.value, style: f.style.value, web: f.web.value, lang: "en", t: Date.now() - t0 }) });
+    if (!r.ok) throw new Error(String(r.status));
+    document.getElementById("join-mail").textContent = email;
+    join.hidden = true;
+    const done = document.getElementById("join-done"); done.hidden = false; done.focus();
+  } catch {
+    msg.className = "msg err"; msg.innerHTML = 'Couldn’t send it. Try again or write to <a href="mailto:hello@inkdraft.tattoo">hello@inkdraft.tattoo</a>.';
+    btn.disabled = false; btn.textContent = "Claim my seat";
+  }
 });
 </script>
 
