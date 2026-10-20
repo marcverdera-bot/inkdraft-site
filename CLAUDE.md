@@ -18,3 +18,12 @@ Basta con que funcione guardar o avisar para dar la solicitud por recibida. Anti
 Variables en Vercel (proyecto de la landing): `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` (las mismas que la app), `RESEND_API_KEY` (clave de Resend "Landing Inkdraft", solo envío) y `NOTIFY_EMAIL` (dónde llegan los avisos).
 
 Las solicitudes se ven en Supabase → Table Editor → `founder_requests`. Para dar acceso a la app a un fundador: añadir su email a `ALLOWED_EMAILS` en el proyecto de la app en Vercel y volver a publicar.
+
+## Flujo real en la landing (20 oct 2026)
+"Cómo funciona" y los ejemplos de Blackwork enseñan resultados reales de la app, sin retocar (solo redimensionados a webp), en vez de las pantallas inventadas de antes (`paso-N.png` / `step-N.png`, borradas).
+- Encargo de ejemplo: "escarabajo con fusion a rosa", antebrazo 15 cm, de la biblioteca de Marc. Paso a paso: ficha del encargo (HTML) → 4 referencias (`img/esc-concepto-1..4.webp`, elegida la 2, "Élitros de pétalos") → 3 variaciones (`esc-var-cercana/media/atrevida.webp`, elegida la cercana) → diseño + stencil (`esc-stencil.webp`) → en la piel (`esc-piel.webp`).
+- En la piel: el antebrazo es una foto generada con IA (Figma, GPT Image; fichero "Inkdraft · landing (antebrazo IA)" en los borradores de Marc), con la variación colocada encima y pasada por `/api/skin` de la app real. El pie de foto lo dice. Nunca fotos de clientes sin permiso.
+- Ejemplos de Blackwork: crisantemo con 誕生 (`cri-concepto.webp` ↔ `cri-stencil.webp`) y el escarabajo; el botón alterna diseño y stencil.
+- Enlace discreto "Entrar" / "Log in" en la cabecera hacia https://app.inkdraft.tattoo, para quien ya tiene acceso. Nada de demo abierta: cada uso cuesta y la app es solo para invitados.
+- Para cambiar el ejemplo: bajar las imágenes de la biblioteca, convertirlas a webp (~480 px las miniaturas, ~800 px las grandes) y mantener los mismos nombres en las dos páginas.
+- Pendiente: vídeo corto (20-40 s) grabado de la app, cuando Marc tenga un encargo bonito grabado.
