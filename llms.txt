@@ -1,6 +1,6 @@
 # Inkdraft
 
-> Inkdraft is an AI tattoo design tool for tattoo artists. It turns a client's brief into four drawn concepts, variations of the chosen one and a clean single-weight stencil ready for Procreate, plus an on-skin preview to show the client. The artist always finishes the tattoo: Inkdraft handles the unpaid part, the idea and the first sketch.
+> Inkdraft is an AI tattoo design tool for tattoo artists. It turns a client's brief into four drawn concepts, variations of the chosen one and a clean single-weight stencil ready for Procreate, plus an on-skin preview to show the client, in blackwork, traditional or fine line. It is built for artists who are starting out or still finding their style: a help to learn to think a design through, not a house style. The artist always chooses, reworks and finishes the tattoo.
 
 - Website: https://www.inkdraft.tattoo/ (English) · https://www.inkdraft.tattoo/es/ (Spanish)
 - Contact: hello@inkdraft.tattoo
@@ -14,8 +14,10 @@
 5. On skin: upload a photo of the placement, position the design and get a realistic preview for the client.
 
 ## Styles
-- Blackwork (available): antique engraving linework, creatures fused with objects, solid black anchor.
-- In progress: fineline and traditional. Founders can ask for other styles.
+- Blackwork: antique engraving linework, creatures fused with objects, solid black anchor.
+- Traditional: classic color flash, bold clean outline, smooth black shading, short palette of red, yellow and green. The stencil also traces the border of every color.
+- Fine line: single-needle line, botanical truth, plenty of bare skin. Lettering is not drawn yet: the design leaves room for it and the artist sets real type in Procreate.
+- The same brief can be drawn in all three styles. Founders can ask for other styles.
 
 ## Pricing (EUR, monthly)
 - Trial: €0, 3 designs, no card.
@@ -26,7 +28,7 @@
 A design = idea + drawn concept + stencil + on-skin preview.
 
 ## Who it's for
-Tattoo artists starting out, experienced artists whose drawing time eats their week, and studios with a steady flow of requests.
+Tattoo artists starting out who want to learn to build concepts faster, artists with some years in who want to try other styles, and studios training apprentices. Not meant for top artists who already have their own style and process.
 
 ## Ownership
 Artists own what they generate: free to tattoo, post and sell.
