@@ -1,12 +1,16 @@
 // Solicitud de plaza de fundador: la guarda en Supabase (tabla founder_requests), avisa a Marc
 // y confirma al tatuador, las dos cosas por Resend. Basta con que una de las dos vías funcione
 // (guardar o avisar) para dar la solicitud por recibida.
-// Variables en Vercel: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, RESEND_API_KEY, NOTIFY_EMAIL.
+// Variables en Vercel: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, RESEND_API_KEY.
 
 // Una sola dirección para todo: los emails salen de hello@ y las respuestas vuelven a hello@,
 // que DreamHost reenvía al Gmail de Marc (allí responde con "Enviar como" hello@).
 const FROM = "Inkdraft <hello@inkdraft.tattoo>";
 const REPLY_TO = "hello@inkdraft.tattoo";
+// El aviso va a hello@ (no al Gmail directo): así Gmail responde como hello@ y no enseña el Gmail de Marc.
+const NOTIFY = "hello@inkdraft.tattoo";
+// Y sale de otra dirección: si saliera de hello@, Gmail lo tomaría por propio y respondería a hello@, no al tatuador.
+const NOTIFY_FROM = "Inkdraft avisos <avisos@inkdraft.tattoo>";
 const STYLES = ["blackwork", "fineline", "otro"];
 
 const TEXT = {
@@ -39,7 +43,7 @@ async function send(mail) {
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { authorization: `Bearer ${key}`, "content-type": "application/json" },
-    body: JSON.stringify({ from: FROM, ...mail }),
+    body: JSON.stringify({ from: FROM, ...mail }), // mail.from, si viene, manda
   });
   if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
 }
@@ -61,19 +65,17 @@ module.exports = async (req, res) => {
   const lang = b.lang === "en" ? "en" : "es";
 
   const row = { email, instagram: instagram || null, style: style || null, lang };
-  const notify = process.env.NOTIFY_EMAIL;
   const igLink = instagram ? `https://www.instagram.com/${instagram.slice(1)}/` : "";
 
   const [saved, warned] = await Promise.allSettled([
     save(row),
-    notify
-      ? send({
-          to: notify,
-          reply_to: email,
-          subject: `Plaza de fundador: ${instagram || email}`,
-          text: `Nueva solicitud de plaza de fundador.\n\nEmail: ${email}\nInstagram: ${instagram ? `${instagram} (${igLink})` : "—"}\nEstilo: ${style || "—"}\nIdioma de la web: ${lang}\n\nResponde a este email para escribirle directamente.`,
-        })
-      : Promise.reject(new Error("NOTIFY_EMAIL sin configurar")),
+    send({
+      from: NOTIFY_FROM,
+      to: NOTIFY,
+      reply_to: email,
+      subject: `Plaza de fundador: ${instagram || email}`,
+      text: `Nueva solicitud de plaza de fundador.\n\nEmail: ${email}\nInstagram: ${instagram ? `${instagram} (${igLink})` : "—"}\nEstilo: ${style || "—"}\nIdioma de la web: ${lang}\n\nResponde a este email para escribirle directamente.`,
+    }),
   ]);
   if (saved.status === "rejected") console.error("fundador: no se guardó", saved.reason);
   if (warned.status === "rejected") console.error("fundador: no se avisó", warned.reason);
