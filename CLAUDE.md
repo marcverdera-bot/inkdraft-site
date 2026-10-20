@@ -28,3 +28,9 @@ Las solicitudes se ven en Supabase → Table Editor → `founder_requests`. Para
 - Para cambiar el ejemplo: bajar las imágenes de la biblioteca, convertirlas a webp (~480 px las miniaturas, ~800 px las grandes) y mantener los mismos nombres en las dos páginas.
 - El problema (mensaje directo con Laura) cuenta el mismo encargo a mano: martes, tres bocetos (conceptos 1, 3 y 4); jueves, un cuarto (concepto 2), y sigue sin decidirse. El chat va en dos columnas (martes | jueves) para que la sección quede apaisada y compensada con el texto en escritorio; en el móvil, una columna. Ya no queda nada del lobo.
 - Vídeo o demo: no por ahora (decisión de Marc, 20 oct).
+
+## Estilos (20 oct 2026)
+- El botón del principio dice "Ver estilos" / "See the styles" y baja a #blackwork.
+- Hoy solo existe Blackwork (con los dos ejemplos reales). Debajo, la fila "En la mesa de dibujo" / "On the drawing table": Fineline y Tradicional "En desarrollo", sin imágenes inventadas (trama rayada + gota), y "¿Otro estilo?", que lleva al formulario de fundador.
+- "Tu estilo" (beta) y "A juego" están fuera: no se van a hacer como estilo (decisión de Marc). Quitados también de las preguntas, los metadatos y `llms.txt`. Imágenes `gato-luna.jpg` y `mariposas.jpg` borradas.
+- El formulario de fundador sigue con Blackwork / Fineline / Otro. Para añadir "Tradicional" hay que cambiarlo en tres sitios a la vez: el formulario de las dos páginas, `STYLES` en `api/fundador.js` y el `check` de la columna `style` en Supabase (`supabase/founder_requests.sql`, a mano en el SQL Editor).
