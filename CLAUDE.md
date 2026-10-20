@@ -26,4 +26,5 @@ Las solicitudes se ven en Supabase → Table Editor → `founder_requests`. Para
 - Ejemplos de Blackwork: crisantemo con 誕生 (`cri-concepto.webp` ↔ `cri-stencil.webp`) y el escarabajo; el botón alterna diseño y stencil.
 - Enlace discreto "Entrar" / "Log in" en la cabecera hacia https://app.inkdraft.tattoo, para quien ya tiene acceso. Nada de demo abierta: cada uso cuesta y la app es solo para invitados.
 - Para cambiar el ejemplo: bajar las imágenes de la biblioteca, convertirlas a webp (~480 px las miniaturas, ~800 px las grandes) y mantener los mismos nombres en las dos páginas.
-- Pendiente: vídeo corto (20-40 s) grabado de la app, cuando Marc tenga un encargo bonito grabado.
+- El problema (mensaje directo con Laura) cuenta el mismo encargo a mano: martes, tres bocetos (conceptos 1, 3 y 4); jueves, un cuarto (concepto 2), y sigue sin decidirse. El chat va en dos columnas (martes | jueves) para que la sección quede apaisada y compensada con el texto en escritorio; en el móvil, una columna. Ya no queda nada del lobo.
+- Vídeo o demo: no por ahora (decisión de Marc, 20 oct).
