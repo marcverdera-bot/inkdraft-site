@@ -3,7 +3,9 @@
 // (guardar o avisar) para dar la solicitud por recibida.
 // Variables en Vercel: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, RESEND_API_KEY, NOTIFY_EMAIL.
 
-const FROM = "Inkdraft <plazas@inkdraft.tattoo>";
+// Una sola dirección para todo: los emails salen de hello@ y las respuestas vuelven a hello@,
+// que DreamHost reenvía al Gmail de Marc (allí responde con "Enviar como" hello@).
+const FROM = "Inkdraft <hello@inkdraft.tattoo>";
 const REPLY_TO = "hello@inkdraft.tattoo";
 const STYLES = ["blackwork", "fineline", "otro"];
 
