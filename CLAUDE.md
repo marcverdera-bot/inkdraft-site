@@ -7,6 +7,8 @@ Web pública de Inkdraft: https://www.inkdraft.tattoo (inglés en `/`, castellan
 - `CLAUDE.md` y `supabase/` no se publican (`.vercelignore`).
 
 ## Plaza de fundador (19 oct 2026)
+**Oferta vigente (decidida por Marc el 20 oct):** 50 plazas, plan Pro (30 diseños/mes, normalmente 39 €) a 19 €/mes para siempre; si cancela, pierde el precio. Se valoró "19 € el primer año y luego 29 €" y se descartó: con ~0,25 $ por diseño, un fundador al tope cuesta ~7 € y deja ~8 € netos; solo hay pérdida si la API sube más del doble, y el tope de 30 diseños limita el riesgo. Sale en el hero, el bloque de fundador, las FAQ (texto y JSON-LD), `llms.txt` y la confirmación de `api/fundador.js`: si cambia, cambiarlo en todos.
+
 El tatuador pide plaza con un formulario en la sección de fundador (email obligatorio; Instagram y estilo opcionales), sin mandar un email. Lo recibe `api/fundador.js` (función de Vercel), que:
 1. guarda la solicitud en la tabla `founder_requests` del proyecto `inkdraft` de Supabase (SQL en `supabase/founder_requests.sql`; solo el servidor accede);
 2. avisa a Marc por Resend (asunto "Plaza de fundador: @instagram"; responder al aviso escribe al tatuador);
