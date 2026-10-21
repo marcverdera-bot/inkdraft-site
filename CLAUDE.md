@@ -29,9 +29,11 @@ Las solicitudes se ven en Supabase → Table Editor → `founder_requests`. Para
 - El problema (mensaje directo con Laura) cuenta el mismo encargo a mano: martes, tres bocetos (conceptos 1, 3 y 4); jueves, un cuarto (concepto 2), y sigue sin decidirse. El chat va en dos columnas (martes | jueves) para que la sección quede apaisada y compensada con el texto en escritorio; en el móvil, una columna. Ya no queda nada del lobo.
 - Vídeo o demo: no por ahora (decisión de Marc, 20 oct).
 
-## Estilos (20 oct 2026)
-- El botón del principio dice "Ver estilos" / "See the styles" y baja a #blackwork.
-- Hoy solo existe Blackwork (con los dos ejemplos reales). Debajo, la fila "En la mesa de dibujo" / "On the drawing table": Fineline y Tradicional "En desarrollo", sin imágenes inventadas (trama rayada + gota), y "¿Otro estilo?", que lleva al formulario de fundador.
+## Tres estilos (21 oct 2026)
+- El mensaje no cambia (Marc, 22 oct): "Del encargo al stencil, en minutos". Los tres estilos sirven para llegar a más tatuadores y que cada uno pueda coger más trabajos y tipos de cliente. NUNCA presentar un mismo encargo en tres estilos como si se le ofreciera al cliente: el cliente elige al tatuador por su estilo y llega con el estilo claro.
+- El botón del principio ("Ver estilos" / "See the styles") baja a #blackwork. Una sección por estilo con dos ejemplos y su stencil: Blackwork (crisantemo, escarabajo), Tradicional (`trad-1/2`: pantera y rosa; daga, corazón y rosario) y Fineline (`fine-1/2`: margarita y nenúfar; ramita de olivo). Todas las imágenes salen de la app sin retocar (banco del 21 oct). Al final, "¿Otro estilo?" → formulario de fundador. El botón de stencil vale para cualquier `.card`.
+- SEO (22 oct): descripción (meta, Open Graph, Twitter y JSON-LD) = propuesta de valor + los tres estilos, menos de 160 caracteres; `featureList` en la ficha SoftwareApplication; el texto de cada estilo nombra lo que se busca ("tatuaje tradicional americano", "tatuaje fineline"); `sitemap.xml` con fecha y las imágenes de ejemplo (image sitemap). Si cambian los ejemplos, actualizar también el sitemap.
+- Antes (20 oct) solo había Blackwork y una fila "En la mesa de dibujo" con Fineline y Tradicional "En desarrollo"; sustituida.
 - "Tu estilo" (beta) y "A juego" están fuera: no se van a hacer como estilo (decisión de Marc). Quitados también de las preguntas, los metadatos y `llms.txt`. Imágenes `gato-luna.jpg` y `mariposas.jpg` borradas.
 - El formulario de fundador sigue con Blackwork / Fineline / Otro. Para añadir "Tradicional" hay que cambiarlo en tres sitios a la vez: el formulario de las dos páginas, `STYLES` en `api/fundador.js` y el `check` de la columna `style` en Supabase (`supabase/founder_requests.sql`, a mano en el SQL Editor).
 
