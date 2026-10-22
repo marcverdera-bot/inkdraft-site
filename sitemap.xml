@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.inkdraft.tattoo/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.inkdraft.tattoo/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.inkdraft.tattoo/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.inkdraft.tattoo/"/>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/cri-concepto.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/cri-stencil.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/esc-var-cercana.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/esc-stencil.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.inkdraft.tattoo/img/bw-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.inkdraft.tattoo/img/bw-1-stencil.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.inkdraft.tattoo/img/bw-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.inkdraft.tattoo/img/bw-2-stencil.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/trad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/trad-1-stencil.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/trad-2.webp</image:loc></image:image>
@@ -25,12 +25,12 @@
   </url>
   <url>
     <loc>https://www.inkdraft.tattoo/es/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.inkdraft.tattoo/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.inkdraft.tattoo/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.inkdraft.tattoo/"/>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/cri-concepto.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/esc-var-cercana.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.inkdraft.tattoo/img/bw-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.inkdraft.tattoo/img/bw-2.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/trad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/trad-2.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/neo-1.webp</image:loc></image:image>

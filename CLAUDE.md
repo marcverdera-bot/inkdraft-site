@@ -42,7 +42,8 @@ Una sola dirección pública: `hello@inkdraft.tattoo`. Los dos emails del formul
 
 
 ## Tradicional nuevo y Neotradicional (23 oct 2026)
-- Tradicional pasa a tradicional moderno (la app se reescribió el 23 oct): `trad-1/2` son ahora mujer en la rosa (antebrazo 15 cm) y pantera con rosa (antebrazo 15 cm). Texto: contorno limpio, sombra negra suave, color cálido (bermellón, mostaza, verde azulado).
+- Tradicional pasa a tradicional moderno (la app se reescribió el 23 oct): `trad-1/2` son ahora mujer en la rosa (antebrazo 15 cm) y pantera con rosa (antebrazo 15 cm; sustituida después por el barco, ver abajo). Texto: contorno limpio, sombra negra suave, color cálido (bermellón, mostaza, verde azulado).
 - Sección nueva Neotradicional (`#neotradicional` / `#neo-traditional`, entre Tradicional y Fineline): `neo-1/2`, mujer en rombo con colgante (antebrazo 16 cm) y lobo con cuarzo y hojas (brazo 16 cm). Ahora son cuatro estilos en la descripción, `featureList`, FAQ (texto y JSON-LD), `llms.txt` y `sitemap.xml`.
 - Imágenes generadas en producción con la cuenta de Marc (`/api/concepts`, `/api/references`, `/api/stencil`), sin retocar, pasadas a webp de 800 px. De reserva quedaron cabeza de tigre (Tradicional; su stencil perdía las rayas) y búho con joya (Neotradicional).
 - El formulario de fundador sigue con Blackwork / Fineline / Otro (ver arriba para añadir estilos).
+- Ejemplos elegidos por Marc de su biblioteca (23 oct): Blackwork `bw-1` polilla con calavera (antebrazo 15 cm) y `bw-2` corazón anatómico con bisturí (brazo 18 cm); Tradicional `trad-2` barco en medallón con ancla (brazo 15 cm). Stencils hechos con `/api/stencil`. `cri-*` borradas; las `esc-*` siguen en "Cómo funciona".
