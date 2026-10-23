@@ -394,21 +394,18 @@ footer .brand img { width: 3rem; height: 3rem; }
 .style .grid-black { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.7rem, 1.6vw, 1rem); }
 .style .card-row { flex-wrap: wrap; gap: 0.45rem 0.75rem; }
 .style .cap { font-size: 0.8rem; }
-.styles .also.one { margin-top: 0; max-width: 34rem; }
-.styles .also.one article { grid-template-rows: none; grid-template-columns: 5.5rem minmax(0, 1fr); }
-.styles .also.one .wip { aspect-ratio: auto; width: auto; height: auto; -webkit-mask: none; mask: none; }
-.styles .also.one .body { padding: 1rem 1.2rem; }
-.styles .also.one .gothic { font-size: 1.8rem; }
 @media (max-width: 900px) { .styles-grid { grid-template-columns: minmax(0, 1fr); } }
-/* Los otros estilos, en pequeño: ficha con miniatura a la izquierda y texto a la derecha, dos por fila en el ordenador y una en el móvil */
-.styles-more { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem clamp(1.6rem, 4vw, 3.5rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line); }
-.style-mini { display: grid; grid-template-columns: clamp(6.5rem, 12vw, 8.5rem) minmax(0, 1fr); grid-template-rows: auto auto 1fr; column-gap: 1.1rem; row-gap: 0.25rem; align-items: start; min-width: 0; scroll-margin-top: 1rem; }
-.style-mini .frame { grid-row: 1 / -1; position: relative; background: var(--paper); aspect-ratio: 1; overflow: hidden; -webkit-mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 66%, transparent 100%); mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 66%, transparent 100%); }
+/* Los otros estilos, en pequeño: una fila de cinco (cuatro estilos con su nombre y "Pide tu estilo") en el ordenador */
+.styles-more { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.4rem clamp(0.8rem, 2vw, 1.4rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line); }
+.style-mini { display: grid; gap: 0.5rem; align-content: start; min-width: 0; scroll-margin-top: 1rem; }
+.style-mini .frame { position: relative; background: var(--paper); aspect-ratio: 1; overflow: hidden; -webkit-mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 66%, transparent 100%); mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 66%, transparent 100%); }
 .style-mini .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
-.style-mini .style-name { font-size: clamp(1.7rem, 2.6vw, 2.1rem); }
-.style-mini p { color: var(--dim); font-size: 0.88rem; line-height: 1.45; }
-.style-mini .cap { font-size: 0.76rem; }
-@media (max-width: 640px) { .styles-more { grid-template-columns: minmax(0, 1fr); } }
+.style-mini .style-name { font-size: clamp(1.5rem, 2.3vw, 2rem); }
+.style-ask { aspect-ratio: 1; display: grid; place-items: center; padding: 1rem; border: 1px dashed #4A4640; background: repeating-linear-gradient(135deg, var(--black) 0 8px, var(--coal) 8px 16px); color: var(--bone); text-decoration: none; text-align: center; font: expanded 700 0.72rem/1.4 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; transition: border-color 0.2s; }
+.style-ask:hover { border-color: var(--bone); }
+.style-ask span { display: block; font: 400 2.4rem/1 var(--gothic); letter-spacing: 0; margin-bottom: 0.3rem; }
+@media (max-width: 900px) { .styles-more { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .styles-more { grid-template-columns: repeat(2, minmax(0, 1fr)); } .style-ask { aspect-ratio: auto; grid-column: 1 / -1; padding: 1.2rem; } }
 @media (prefers-reduced-motion: reduce) { .card .frame img { transition: none; } }
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
@@ -489,13 +486,11 @@ footer .brand img { width: 3rem; height: 3rem; }
   </article>
   </div>
   <div class="styles-more">
-    <article class="style-mini" id="tradicional"><div class="frame"><img src="/img/trad-1.webp" alt="Perfil de mujer de ojos cerrados envuelto por los pétalos de una rosa roja, tradicional moderno a color" width="800" height="800" loading="lazy"></div><h2 class="style-name">Tradicional</h2><p>Tatuaje tradicional moderno: contorno limpio, sombra negra suave y color cálido.</p><span class="cap">Mujer en la rosa · antebrazo 15 cm</span></article>
-    <article class="style-mini" id="fineline"><div class="frame"><img src="/img/fine-1.webp" alt="Ramito de margarita y nenúfar atado con un lazo, línea fina" width="800" height="800" loading="lazy"></div><h2 class="style-name">Fineline</h2><p>Tatuaje fineline: línea fina de una aguja, verdad botánica y piel libre.</p><span class="cap">Flores de nacimiento · costillas 12 cm</span></article>
-    <article class="style-mini" id="ornamental"><div class="frame"><img src="/img/orn-1.webp" alt="Signo folk de volutas en espejo con una cruz arriba, un rombo en el centro y dos hojas abajo, en línea negra de un solo grosor" width="800" height="800" loading="lazy"></div><h2 class="style-name">Ornamental</h2><p>Tatuaje ornamental: signos folk de bordado en negro, todos con el mismo grosor de línea.</p><span class="cap">Volutas en flor · antebrazo 12 cm</span></article>
-    <article class="style-mini" id="vintage-stamp"><div class="frame"><img src="/img/stamp-1.webp" alt="Rosa maciza en negro con tallo y hojas dentro de un óvalo festoneado de doble línea, estilo sello antiguo" width="800" height="800" loading="lazy"></div><h2 class="style-name">Vintage Stamp</h2><p>Tatuaje estilo sello antiguo: marco de doble línea y una flor maciza en negro.</p><span class="cap">Rosa en óvalo · antebrazo 8 cm</span></article>
-  </div>
-  <div class="also one">
-    <article><div class="img wip" aria-hidden="true"><span>?</span></div><div class="body"><h3 class="gothic">¿Otro estilo?</h3><p>Dinos cuál quieres después. Lo que piden los fundadores va primero.</p><a class="more" href="#fundador">Pide tu estilo</a></div></article>
+    <article class="style-mini" id="tradicional"><div class="frame"><img src="/img/trad-1.webp" alt="Perfil de mujer de ojos cerrados envuelto por los pétalos de una rosa roja, tradicional moderno a color" width="800" height="800" loading="lazy"></div><h2 class="style-name">Tradicional</h2></article>
+    <article class="style-mini" id="fineline"><div class="frame"><img src="/img/fine-2.webp" alt="Ramita de olivo con dos aceitunas, línea fina" width="800" height="800" loading="lazy"></div><h2 class="style-name">Fineline</h2></article>
+    <article class="style-mini" id="ornamental"><div class="frame"><img src="/img/orn-1.webp" alt="Signo folk en forma de árbol: tres pares de ramas con volutas, tres puntos arriba y dos hojas abajo, en línea negra de un solo grosor" width="800" height="800" loading="lazy"></div><h2 class="style-name">Ornamental</h2></article>
+    <article class="style-mini" id="vintage-stamp"><div class="frame"><img src="/img/stamp-1.webp" alt="Tulipán macizo en negro con dos hojas dentro de un arco de ventana de doble línea, estilo sello antiguo" width="800" height="800" loading="lazy"></div><h2 class="style-name">Vintage Stamp</h2></article>
+    <a class="style-ask" href="#fundador"><span>+</span>Pide tu estilo</a>
   </div>
 </div></section>
 
