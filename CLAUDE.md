@@ -77,5 +77,5 @@ Una sola dirección pública: `hello@inkdraft.tattoo`. Los dos emails del formul
 - Descripción (meta) "…fineline y más"; FAQ y JSON-LD con los seis; `llms.txt` y `sitemap.xml` al día. Ornamental y Vintage Stamp están publicados en la app para todos desde el 23 oct.
 
 ## Barra fija e idioma al pie (23 oct 2026, Marc)
-- La barra principal (`body > nav`) queda fija arriba al bajar (sticky, fondo oscuro translúcido con desenfoque y línea inferior). Los enlaces internos dejan sitio para ella (`scroll-padding-top` y el desplazamiento suave resta su alto).
+- La barra principal (`body > nav`) queda fija arriba al bajar (sticky, con el mismo fondo que la página para que no se vea franja sobre el hero; la línea inferior solo aparece al bajar, clase `scrolled`). Los enlaces internos dejan sitio para ella (`scroll-padding-top` y el desplazamiento suave resta su alto).
 - EN · ES ya no está en la barra, solo en el pie: el navegador abre la página en su idioma (script del principio de `index.html`).

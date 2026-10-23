@@ -68,7 +68,9 @@ a { color: inherit; }
 .preview .wrap { padding-block: 0.5rem; }
 
 /* Barra principal fija arriba al bajar; el idioma está en el pie (el navegador ya abre la página en su idioma) */
-body > nav { position: sticky; top: 0; z-index: 50; background: rgba(10, 10, 10, 0.82); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+/* Mismo fondo que la página (gradiente fijo + grano), así no se ve una franja sobre el hero; la línea de abajo solo aparece al bajar */
+body > nav { position: sticky; top: 0; z-index: 50; background: var(--grain), radial-gradient(ellipse at 50% 20%, #1A1918 0%, var(--black) 65%) fixed, var(--black); border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+body > nav.scrolled { border-bottom-color: var(--line); }
 html { scroll-padding-top: 5rem; }
 footer .lang { margin-top: 0.4rem; }
 nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.1rem; }
@@ -718,6 +720,9 @@ join.addEventListener("submit", async (e) => {
     sync();
   });
 })();
+</script>
+<script>
+(function () { var n = document.querySelector('body > nav'); if (!n) return; var f = function () { n.classList.toggle('scrolled', window.scrollY > 8); }; window.addEventListener('scroll', f, { passive: true }); f(); })();
 </script>
 <script>
 document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', () => { try { sessionStorage.setItem('lang', a.dataset.lang); } catch (e) {} }));
