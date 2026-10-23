@@ -130,23 +130,34 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 @media (max-width: 560px) { .dm-rounds { grid-template-columns: minmax(0, 1fr); } .dm-rounds .r + .r { border-left: 0; padding-left: 0; } }
 
 
-/* Pasos: un encargo real hecho con la app, de punta a punta. Las imágenes son resultados sin retocar. */
-.steps2 { list-style: none; margin: 0; padding: 0; display: grid; }
-.steps2 li { display: grid; grid-template-columns: 3.6rem minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 1.2rem 2.5rem; align-items: center; padding-block: clamp(1.6rem, 4vw, 2.6rem); border-top: 1px solid var(--line); }
-.steps2 li:last-child { border-bottom: 1px solid var(--line); }
-.steps2 .n { width: 3.2rem; height: 3.2rem; border: 1px solid var(--bone); border-radius: 50%; display: grid; place-items: center; font: expanded 600 0.88rem/1 var(--caps); letter-spacing: 0.04em; }
-.steps2 .st { display: grid; gap: 0.35rem; min-width: 0; }
-.steps2 .st .label { font-size: 0.74rem; }
-.steps2 h3 { font-size: 1.4rem; }
-.steps2 p { color: var(--dim); max-width: 30rem; }
+/* Cómo funciona: carrusel, un paso por diapositiva. Un encargo real hecho con la app; las imágenes son resultados sin retocar. */
 .real { color: var(--dim); font-style: italic; }
+.how { display: grid; gap: 1.2rem; }
+.slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; outline-offset: -1px; }
+.slides::-webkit-scrollbar { display: none; }
+.slide { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 1.6rem clamp(2rem, 5vw, 4.5rem); align-items: center; padding: 0.6rem 0.4rem 1.6rem; }
+.slide .st { display: grid; gap: 0.6rem; align-content: center; min-width: 0; }
+.slide .n { width: 3.2rem; height: 3.2rem; margin-bottom: 0.4rem; border: 1px solid var(--bone); border-radius: 50%; display: grid; place-items: center; font: expanded 600 0.88rem/1 var(--caps); letter-spacing: 0.04em; }
+.slide .st .label { font-size: 0.74rem; }
+.slide h3 { font-size: clamp(1.4rem, 2.6vw, 1.85rem); line-height: 1.2; }
+.slide .st p { color: var(--dim); max-width: 27rem; }
+.how-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.dots { display: flex; flex-wrap: wrap; gap: 0.2rem; }
+.dots button { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0 0.6rem; background: none; border: 0; color: var(--dim); font: expanded 700 0.69rem/1 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; }
+.dots button::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 1px solid currentColor; flex: none; }
+.dots button:hover, .dots button[aria-current="step"] { color: var(--bone); }
+.dots button[aria-current="step"]::before { background: currentColor; }
+.arrows { display: flex; gap: 0.6rem; flex: none; }
+.arrows button { width: 2.9rem; height: 2.9rem; border-radius: 50%; border: 1px solid var(--bone); background: transparent; color: var(--bone); display: grid; place-items: center; cursor: pointer; padding: 0; }
+.arrows button:hover { background: var(--bone); color: var(--black); }
+.arrows button:disabled { opacity: 0.25; cursor: default; background: transparent; color: var(--bone); }
+.arrows svg { width: 1.1rem; height: 1.1rem; }
 /* Lámina: resultados de la app sobre papel */
 .plate { min-width: 0; display: grid; gap: 0.6rem; }
 .plate .g { display: grid; gap: 0.6rem; }
 .plate .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.plate .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .plate .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.plate figure { margin: 0; display: grid; gap: 0.4rem; min-width: 0; }
+.plate figure { margin: 0; display: grid; gap: 0.4rem; min-width: 0; align-content: start; }
 .plate .pp { position: relative; background: var(--paper); aspect-ratio: 1; border-radius: 3px; overflow: hidden; box-shadow: 0 24px 48px -28px #000; }
 .plate .pp img { display: block; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
 .plate figcaption { font: 400 0.84rem/1.3 var(--text); color: var(--dim); }
@@ -155,18 +166,31 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 .plate .pick figcaption::before { content: "✓ "; }
 .plate small { font: 400 0.84rem/1.4 var(--text); color: var(--dim); font-style: italic; }
 .ticket { background: var(--paper); color: var(--ink); border-radius: 3px; padding: clamp(1.1rem, 3vw, 1.6rem); display: grid; gap: 1rem; max-width: 28rem; box-shadow: 0 24px 48px -28px #000; }
-.steps2 .ticket .q { color: var(--ink); font: italic 400 clamp(1.25rem, 2.6vw, 1.6rem)/1.3 var(--text); }
+.ticket .q { color: var(--ink); font: italic 400 clamp(1.25rem, 2.6vw, 1.6rem)/1.3 var(--text); }
 .ticket dl { margin: 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 0.25rem 1.6rem; }
 .ticket dt { font: expanded 700 0.62rem/1.2 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-dim); }
 .ticket dd { margin: 0; font-size: 1rem; grid-row: 2; }
-.skinshot { justify-self: start; width: min(100%, 20rem); }
+.ticket .att { padding-top: 0.8rem; border-top: 1px solid var(--rule); font-size: 0.9rem; color: var(--ink-dim); }
+.ask { display: flex; align-items: center; gap: 1rem; }
+.ask figure { flex: 0 0 5.5rem; }
+.ask .say { background: var(--bone); color: var(--ink); border-radius: 16px; border-bottom-left-radius: 5px; padding: 0.6rem 0.9rem; font: italic 400 1.05rem/1.35 var(--text); max-width: 22rem; }
+.skinshot { justify-self: start; width: min(100%, 15rem); }
 .skinshot .pp { aspect-ratio: 2 / 3; background: #000; }
 .skinshot .pp img { mix-blend-mode: normal; }
+@media (max-width: 900px) {
+  .slide { grid-template-columns: minmax(0, 1fr); align-items: start; padding-top: 0.2rem; }
+  .slide .st { grid-template-columns: auto minmax(0, 1fr); column-gap: 1rem; align-items: center; }
+  .slide .n { grid-row: span 2; margin: 0; width: 2.8rem; height: 2.8rem; }
+  .slide .st p { grid-column: 1 / -1; max-width: 36rem; }
+}
 @media (max-width: 760px) {
-  .steps2 li { grid-template-columns: 3.2rem minmax(0, 1fr); align-items: start; }
-  .steps2 .plate { grid-column: 1 / -1; }
   .plate .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .skinshot { justify-self: center; width: min(100%, 18rem); }
+  .skinshot { justify-self: center; width: min(100%, 14rem); }
+}
+@media (max-width: 960px) {
+  .dots { gap: 0; }
+  .dots .dl { display: none; }
+  .dots button { padding: 0 0.55rem; }
 }
 /* Blackwork: galería principal */
 .style-name { font: 400 clamp(3rem, 8vw, 5rem)/0.9 var(--gothic); text-transform: none; letter-spacing: 0; }
@@ -287,7 +311,7 @@ footer .brand img { width: 3rem; height: 3rem; }
 <meta name="twitter:title" content="Inkdraft · AI tattoo design tool for tattoo artists, from brief to stencil">
 <meta name="twitter:description" content="From client brief to stencil, in minutes: AI tattoo design for artists, in blackwork, traditional, neo-traditional and fine line. Stencil for Procreate.">
 <meta name="twitter:image" content="https://www.inkdraft.tattoo/img/og.jpg">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.inkdraft.tattoo/#org", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "logo": "https://www.inkdraft.tattoo/img/apple-touch-icon.png", "email": "hello@inkdraft.tattoo", "sameAs": ["https://www.instagram.com/inkdraft.tattoo/"]}, {"@type": "WebSite", "@id": "https://www.inkdraft.tattoo/#website", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "inLanguage": ["en", "es"], "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}}, {"@type": "SoftwareApplication", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "inLanguage": "en", "applicationCategory": "DesignApplication", "operatingSystem": "Web", "featureList": ["Four drawn concepts from the client's brief", "Variations of the chosen concept", "Single-weight stencil at real size for Procreate", "On-skin preview", "Blackwork, traditional, neo-traditional and fine line styles"], "description": "From client brief to stencil, in minutes: AI tattoo design for artists, in blackwork, traditional, neo-traditional and fine line. Stencil for Procreate.", "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}, "image": "https://www.inkdraft.tattoo/img/og.jpg", "offers": [{"@type": "Offer", "name": "Trial", "price": "0", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Starter", "price": "19", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Studio", "price": "99", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Founder seat", "price": "19", "priceCurrency": "EUR", "availability": "https://schema.org/PreOrder"}]}, {"@type": "FAQPage", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "What is Inkdraft?", "acceptedAnswer": {"@type": "Answer", "text": "Inkdraft is an AI tattoo design tool for tattoo artists. It turns your client's brief into four drawn concepts, variations of the one you pick and a single-weight stencil ready for Procreate, with an on-skin preview."}}, {"@type": "Question", "name": "Which tattoo styles does it support?", "acceptedAnswer": {"@type": "Answer", "text": "Four: blackwork (antique engraving and solid black), traditional (modern color flash), neo-traditional (illustration with jewels and earthy color) and fine line. Want another one? Tell us when you claim your founder seat."}}, {"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Free trial with 3 designs, no card. Starter, €19 a month (10 designs); Pro, €39 a month (30 designs); Studio, €99 a month (100 designs, up to 5 artists). The 50 founder seats get the Pro plan at €19 a month for life."}}, {"@type": "Question", "name": "Does it work with Procreate?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The stencil exports ready to open in Procreate and as a PNG, so you can add shading and style your way."}}, {"@type": "Question", "name": "Do I own the designs?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. What you generate is yours to tattoo, post and sell."}}, {"@type": "Question", "name": "Is it AI?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for generating ideas and concepts. The design judgement (composition, anatomy, what works on skin) comes from us. The finish comes from you."}}, {"@type": "Question", "name": "Can I tattoo straight from it?", "acceptedAnswer": {"@type": "Answer", "text": "The stencil is ready for Procreate. We always recommend your own final pass: size, placement and style are your call."}}, {"@type": "Question", "name": "When can I start using it?", "acceptedAnswer": {"@type": "Answer", "text": "Founders get into the beta in early December 2026. Until then, we send you hand-drawn designs for your real client requests."}}, {"@type": "Question", "name": "Can I cancel?", "acceptedAnswer": {"@type": "Answer", "text": "Any time. If you cancel a founder seat, you lose the lifetime price."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.inkdraft.tattoo/#org", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "logo": "https://www.inkdraft.tattoo/img/apple-touch-icon.png", "email": "hello@inkdraft.tattoo", "sameAs": ["https://www.instagram.com/inkdraft.tattoo/"]}, {"@type": "WebSite", "@id": "https://www.inkdraft.tattoo/#website", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "inLanguage": ["en", "es"], "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}}, {"@type": "SoftwareApplication", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "inLanguage": "en", "applicationCategory": "DesignApplication", "operatingSystem": "Web", "featureList": ["Four drawn concepts from the client's brief", "Refine the chosen concept in your own words: four more concepts", "Single-weight stencil at real size for Procreate", "On-skin preview", "Blackwork, traditional, neo-traditional and fine line styles"], "description": "From client brief to stencil, in minutes: AI tattoo design for artists, in blackwork, traditional, neo-traditional and fine line. Stencil for Procreate.", "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}, "image": "https://www.inkdraft.tattoo/img/og.jpg", "offers": [{"@type": "Offer", "name": "Trial", "price": "0", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Starter", "price": "19", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Studio", "price": "99", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Founder seat", "price": "19", "priceCurrency": "EUR", "availability": "https://schema.org/PreOrder"}]}, {"@type": "FAQPage", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "What is Inkdraft?", "acceptedAnswer": {"@type": "Answer", "text": "Inkdraft is an AI tattoo design tool for tattoo artists. It turns your client's brief into four drawn concepts, four more from the one you pick and a single-weight stencil ready for Procreate, with an on-skin preview."}}, {"@type": "Question", "name": "Which tattoo styles does it support?", "acceptedAnswer": {"@type": "Answer", "text": "Four: blackwork (antique engraving and solid black), traditional (modern color flash), neo-traditional (illustration with jewels and earthy color) and fine line. Want another one? Tell us when you claim your founder seat."}}, {"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Free trial with 3 designs, no card. Starter, €19 a month (10 designs); Pro, €39 a month (30 designs); Studio, €99 a month (100 designs, up to 5 artists). The 50 founder seats get the Pro plan at €19 a month for life."}}, {"@type": "Question", "name": "Does it work with Procreate?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The stencil exports ready to open in Procreate and as a PNG, so you can add shading and style your way."}}, {"@type": "Question", "name": "Do I own the designs?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. What you generate is yours to tattoo, post and sell."}}, {"@type": "Question", "name": "Is it AI?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for generating ideas and concepts. The design judgement (composition, anatomy, what works on skin) comes from us. The finish comes from you."}}, {"@type": "Question", "name": "Can I tattoo straight from it?", "acceptedAnswer": {"@type": "Answer", "text": "The stencil is ready for Procreate. We always recommend your own final pass: size, placement and style are your call."}}, {"@type": "Question", "name": "When can I start using it?", "acceptedAnswer": {"@type": "Answer", "text": "Founders get into the beta in early December 2026. Until then, we send you hand-drawn designs for your real client requests."}}, {"@type": "Question", "name": "Can I cancel?", "acceptedAnswer": {"@type": "Answer", "text": "Any time. If you cancel a founder seat, you lose the lifetime price."}}]}]}</script>
 </head>
 <body>
 <nav><div class="wrap">
@@ -318,19 +342,22 @@ footer .brand img { width: 3rem; height: 3rem; }
 </div></section>
 
 <section><div class="wrap">
-  <div class="head"><p class="label">How it works</p><h2>Five steps. You decide at every one.</h2><p class="real">A real brief, made with Inkdraft from start to finish. Every image comes straight out of the app, untouched.</p></div>
-  <ol class="steps2">
-    <li><span class="n">1</span><div class="st"><span class="label">Step 1 · Brief</span><h3>Describe the request</h3><p>Write it the way your client said it: subject, placement and size. If they sent reference photos, add them: Inkdraft reads them as taste and never copies them.</p></div>
-      <div class="plate"><div class="ticket"><p class="q">“moth with skull”</p><dl><dt>Placement</dt><dd>Forearm</dd><dt>Size</dt><dd>15 cm</dd><dt>Style</dt><dd>Blackwork</dd></dl></div><small>Typed in a hurry, just like a real brief.</small></div></li>
-    <li><span class="n">2</span><div class="st"><span class="label">Step 2 · Concepts</span><h3>Pick by eye</h3><p>Four different concepts, each one drawn. You choose by looking, not by reading descriptions. None of them right? Ask for another round.</p></div>
-      <div class="plate"><div class="g g4"><figure class="pick"><div class="pp"><img src="/img/pol-concepto-1.webp" alt="Death's-head hawkmoth seen from the front, a skull on its thorax and black-edged wings" width="480" height="480" loading="lazy"></div><figcaption>Death's-head hawkmoth</figcaption></figure><figure><div class="pp"><img src="/img/pol-concepto-2.webp" alt="The hawkmoth resting on a lit, dripping candle" width="480" height="480" loading="lazy"></div><figcaption>Moth and candle</figcaption></figure><figure><div class="pp"><img src="/img/pol-concepto-3.webp" alt="The hawkmoth over a black eclipse with a crown of rays" width="480" height="480" loading="lazy"></div><figcaption>Eclipse moth</figcaption></figure><figure><div class="pp"><img src="/img/pol-concepto-4.webp" alt="The hawkmoth with wings made of quartz crystals" width="480" height="480" loading="lazy"></div><figcaption>Crystal wings</figcaption></figure></div></div></li>
-    <li><span class="n">3</span><div class="st"><span class="label">Step 3 · Variations</span><h3>Refine it</h3><p>Three variations of the one you picked: close, medium and bold. To fix a detail or try another angle.</p></div>
-      <div class="plate"><div class="g g3"><figure><div class="pp"><img src="/img/pol-var-cercana.webp" alt="Close variation: the hawkmoth turned, one wing more open" width="480" height="480" loading="lazy"></div><figcaption>Close</figcaption></figure><figure><div class="pp"><img src="/img/pol-var-media.webp" alt="Medium variation: the hawkmoth on a diagonal, its abdomen curved" width="480" height="480" loading="lazy"></div><figcaption>Medium</figcaption></figure><figure><div class="pp"><img src="/img/pol-var-atrevida.webp" alt="Bold variation: the hawkmoth in profile, on a diagonal" width="480" height="480" loading="lazy"></div><figcaption>Bold</figcaption></figure></div></div></li>
-    <li><span class="n">4</span><div class="st"><span class="label">Step 4 · Stencil</span><h3>Take the stencil</h3><p>Clean, single-weight linework, true to the drawing, at 2048 px. Open it in Procreate and add the shading your way.</p></div>
-      <div class="plate"><div class="g g2"><figure><div class="pp"><img src="/img/pol-diseno.webp" alt="The chosen design, shaded" width="800" height="800" loading="lazy"></div><figcaption>Design</figcaption></figure><figure><div class="pp"><img src="/img/pol-stencil.webp" alt="Stencil of the skull moth: outlines only, one line weight" width="800" height="800" loading="lazy"></div><figcaption>Stencil</figcaption></figure></div></div></li>
-    <li><span class="n">5</span><div class="st"><span class="label">Step 5 · On skin</span><h3>Show your client</h3><p>Upload a photo of the placement, position the design with your fingers and Inkdraft makes it look real. Your client sees it before the appointment.</p></div>
-      <div class="plate"><figure class="skinshot"><div class="pp"><img src="/img/pol-piel.webp" alt="The skull moth tattooed on a forearm, preview" width="720" height="1080" loading="lazy"></div><figcaption>Sample forearm generated with AI. In the studio, it's your client's photo.</figcaption></figure></div></li>
-  </ol>
+  <div class="head"><p class="label">How it works</p><h2>Five steps. You decide at every one.</h2><p class="real">A real brief, made with Inkdraft. Every image comes straight out of the app, untouched.</p></div>
+  <div class="how" role="region" aria-roledescription="carrusel" aria-label="How it works, step by step">
+    <div class="slides" tabindex="0">
+      <div class="slide" role="group" aria-roledescription="step" aria-label="1 of 5"><div class="st"><span class="n">1</span><span class="label">Step 1 · Brief</span><h3>Describe the request</h3><p>Write it the way your client said it: subject, placement, size and style. Add their references or a photo of the placement if you have them. References are read as taste, never copied.</p></div>
+        <div class="plate"><div class="ticket"><p class="q">“moth with skull”</p><dl><dt>Placement</dt><dd>Forearm</dd><dt>Size</dt><dd>15 cm</dd><dt>Style</dt><dd>Blackwork</dd></dl><p class="att">+ 1 client reference</p></div><small>Typed in a hurry, just like a real brief.</small></div></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="2 of 5"><div class="st"><span class="n">2</span><span class="label">Step 2 · Concepts</span><h3>Pick by eye</h3><p>Four different concepts, each one drawn. You choose by looking, not by reading.</p></div>
+        <div class="plate"><div class="g g4"><figure><div class="pp"><img src="/img/pol-concepto-1.webp" alt="Death's-head hawkmoth seen from the front, a skull on its thorax and black-edged wings" width="480" height="480" loading="lazy"></div><figcaption>Death's-head hawkmoth</figcaption></figure><figure><div class="pp"><img src="/img/pol-concepto-2.webp" alt="The hawkmoth resting on a lit, dripping candle" width="480" height="480" loading="lazy"></div><figcaption>Moth and candle</figcaption></figure><figure class="pick"><div class="pp"><img src="/img/pol-concepto-3.webp" alt="The hawkmoth over a black eclipse with a crown of rays" width="480" height="480" loading="lazy"></div><figcaption>Eclipse moth</figcaption></figure><figure><div class="pp"><img src="/img/pol-concepto-4.webp" alt="The hawkmoth with wings made of quartz crystals" width="480" height="480" loading="lazy"></div><figcaption>Crystal wings</figcaption></figure></div></div></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="3 of 5"><div class="st"><span class="n">3</span><span class="label">Step 3 · Refine</span><h3>Refine it in your words</h3><p>Write what you'd change in the one you picked and get four more, from closest to freest. Once per brief.</p></div>
+        <div class="plate"><div class="ask"><figure><div class="pp"><img src="/img/pol-concepto-3.webp" alt="The chosen concept: the eclipse moth" width="480" height="480" loading="lazy"></div></figure><p class="say">“No sun, just the moth. And upright.”</p></div><div class="g g4"><figure class="pick"><div class="pp"><img src="/img/pol-concepto-1.webp" alt="The death's-head hawkmoth alone, from the front and upright" width="480" height="480" loading="lazy"></div><figcaption>Death's-head hawkmoth</figcaption></figure><figure><div class="pp"><img src="/img/pol-var-cercana.webp" alt="The hawkmoth turned, one wing more open" width="480" height="480" loading="lazy"></div></figure><figure><div class="pp"><img src="/img/pol-var-media.webp" alt="The hawkmoth on a diagonal, its abdomen curved" width="480" height="480" loading="lazy"></div></figure><figure><div class="pp"><img src="/img/pol-var-atrevida.webp" alt="The hawkmoth in profile, on a diagonal" width="480" height="480" loading="lazy"></div></figure></div></div></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="4 of 5"><div class="st"><span class="n">4</span><span class="label">Step 4 · Stencil</span><h3>Take the stencil</h3><p>Single weight, true to the drawing and at real size. Open it in Procreate with the design and the stencil as layers.</p></div>
+        <div class="plate"><div class="g g2"><figure><div class="pp"><img src="/img/pol-diseno.webp" alt="The chosen design, shaded" width="800" height="800" loading="lazy"></div><figcaption>Design</figcaption></figure><figure><div class="pp"><img src="/img/pol-stencil.webp" alt="Stencil of the skull moth: outlines only, one line weight" width="800" height="800" loading="lazy"></div><figcaption>Stencil</figcaption></figure></div></div></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="5 of 5"><div class="st"><span class="n">5</span><span class="label">Step 5 · On skin</span><h3>Show your client</h3><p>Upload a photo of the placement, position the design with your fingers and Inkdraft makes it look real. Your client sees it before the appointment.</p></div>
+        <div class="plate"><figure class="skinshot"><div class="pp"><img src="/img/pol-piel.webp" alt="The skull moth tattooed on a forearm, preview" width="720" height="1080" loading="lazy"></div><figcaption>Sample forearm generated with AI. In the studio, it's your client's photo.</figcaption></figure></div></div>
+    </div>
+    <div class="how-nav"><div class="dots" role="group" aria-label="Steps"><button type="button" aria-label="Step 1: Brief"><span class="dl">1 Brief</span></button><button type="button" aria-label="Step 2: Concepts"><span class="dl">2 Concepts</span></button><button type="button" aria-label="Step 3: Refine"><span class="dl">3 Refine</span></button><button type="button" aria-label="Step 4: Stencil"><span class="dl">4 Stencil</span></button><button type="button" aria-label="Step 5: On skin"><span class="dl">5 On skin</span></button></div><div class="arrows"><button type="button" class="prev" aria-label="Previous step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="next" aria-label="Next step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
+  </div>
 </div></section>
 
 <section id="blackwork"><div class="wrap">
@@ -460,7 +487,7 @@ footer .brand img { width: 3rem; height: 3rem; }
 <section><div class="wrap">
   <div class="head"><p class="label">FAQ</p><h2>What people ask</h2></div>
   <div class="faq">
-    <details><summary>What is Inkdraft?</summary><p>Inkdraft is an AI tattoo design tool for tattoo artists. It turns your client's brief into four drawn concepts, variations of the one you pick and a single-weight stencil ready for Procreate, with an on-skin preview.</p></details>
+    <details><summary>What is Inkdraft?</summary><p>Inkdraft is an AI tattoo design tool for tattoo artists. It turns your client's brief into four drawn concepts, four more from the one you pick and a single-weight stencil ready for Procreate, with an on-skin preview.</p></details>
     <details><summary>Which tattoo styles does it support?</summary><p>Four: blackwork (antique engraving and solid black), traditional (modern color flash), neo-traditional (illustration with jewels and earthy color) and fine line. Want another one? Tell us when you claim your founder seat.</p></details>
     <details><summary>How much does it cost?</summary><p>Free trial with 3 designs, no card. Starter, €19 a month (10 designs); Pro, €39 a month (30 designs); Studio, €99 a month (100 designs, up to 5 artists). The 50 founder seats get the Pro plan at €19 a month for life.</p></details>
     <details><summary>Does it work with Procreate?</summary><p>Yes. The stencil exports ready to open in Procreate and as a PNG, so you can add shading and style your way.</p></details>
@@ -507,6 +534,42 @@ join.addEventListener("submit", async (e) => {
 });
 </script>
 
+<script>
+/* Cómo funciona: flechas, puntos y teclado sobre el carrusel (el deslizado lo hace el navegador con scroll-snap) */
+(function () {
+  document.querySelectorAll('.how').forEach(function (how) {
+    var track = how.querySelector('.slides'), slides = track.children, dots = how.querySelectorAll('.dots button');
+    var prev = how.querySelector('.prev'), next = how.querySelector('.next'), cur = 0, want = null;
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function at() { return want === null ? cur : want; }
+    function go(i) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      want = i;
+      track.scrollTo({ left: i * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' });
+      sync();
+    }
+    function sync() {
+      cur = Math.round(track.scrollLeft / track.clientWidth);
+      if (want !== null && Math.abs(track.scrollLeft - want * track.clientWidth) < 2) want = null;
+      var i = at();
+      dots.forEach(function (d, k) { if (k === i) d.setAttribute('aria-current', 'step'); else d.removeAttribute('aria-current'); });
+      for (var k = 0; k < slides.length; k++) slides[k].setAttribute('aria-hidden', k === i ? 'false' : 'true');
+      prev.disabled = i === 0; next.disabled = i === slides.length - 1;
+    }
+    track.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', function () { track.scrollLeft = at() * track.clientWidth; });
+    dots.forEach(function (d, k) { d.addEventListener('click', function () { go(k); }); });
+    prev.addEventListener('click', function () { go(at() - 1); });
+    next.addEventListener('click', function () { go(at() + 1); });
+    ['pointerdown', 'wheel'].forEach(function (ev) { track.addEventListener(ev, function () { want = null; }, { passive: true }); });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(at() + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(at() - 1); }
+    });
+    sync();
+  });
+})();
+</script>
 <script>
 document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', () => { try { sessionStorage.setItem('lang', a.dataset.lang); } catch (e) {} }));
 </script>

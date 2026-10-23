@@ -1,16 +1,16 @@
 # Inkdraft
 
-> Inkdraft is an AI tattoo design tool for tattoo artists. It turns a client's brief into four drawn concepts, variations of the chosen one and a clean single-weight stencil ready for Procreate, plus an on-skin preview to show the client, in blackwork, traditional, neo-traditional or fine line. The artist always finishes the tattoo: Inkdraft handles the unpaid part, the idea and the first sketch.
+> Inkdraft is an AI tattoo design tool for tattoo artists. It turns a client's brief into four drawn concepts, four more refined from the chosen one and a clean single-weight stencil ready for Procreate, plus an on-skin preview to show the client, in blackwork, traditional, neo-traditional or fine line. The artist always finishes the tattoo: Inkdraft handles the unpaid part, the idea and the first sketch.
 
 - Website: https://www.inkdraft.tattoo/ (English) · https://www.inkdraft.tattoo/es/ (Spanish)
 - Contact: hello@inkdraft.tattoo
 - Status: pre-sale. 50 founder seats at €19/month for life. Founders get beta access in early December 2026.
 
 ## How it works
-1. Brief: describe the client's request (subject, placement, size), optionally with up to 3 reference photos, read as taste and never copied.
+1. Brief: describe the client's request (subject, placement, size, style), optionally with up to 3 reference photos (read as taste, never copied) and a photo of the placement.
 2. Concepts: four different concepts, each with its own drawing. The artist picks by eye.
-3. Variations: three variations of the chosen concept (close, medium, bold).
-4. Stencil: single-weight linework, true to the drawing, at 2048 px, no shading. Opens in Procreate.
+3. Refine: the artist writes what to change in the chosen concept and gets four more, from closest to freest. Once per brief.
+4. Stencil: single-weight linework, true to the drawing, at real size, no shading. Opens in Procreate, also as layers (design + stencil).
 5. On skin: upload a photo of the placement, position the design and get a realistic preview for the client.
 
 ## Styles

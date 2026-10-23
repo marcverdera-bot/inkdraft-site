@@ -126,23 +126,34 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 @media (max-width: 560px) { .dm-rounds { grid-template-columns: minmax(0, 1fr); } .dm-rounds .r + .r { border-left: 0; padding-left: 0; } }
 
 
-/* Pasos: un encargo real hecho con la app, de punta a punta. Las imágenes son resultados sin retocar. */
-.steps2 { list-style: none; margin: 0; padding: 0; display: grid; }
-.steps2 li { display: grid; grid-template-columns: 3.6rem minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 1.2rem 2.5rem; align-items: center; padding-block: clamp(1.6rem, 4vw, 2.6rem); border-top: 1px solid var(--line); }
-.steps2 li:last-child { border-bottom: 1px solid var(--line); }
-.steps2 .n { width: 3.2rem; height: 3.2rem; border: 1px solid var(--bone); border-radius: 50%; display: grid; place-items: center; font: expanded 600 0.88rem/1 var(--caps); letter-spacing: 0.04em; }
-.steps2 .st { display: grid; gap: 0.35rem; min-width: 0; }
-.steps2 .st .label { font-size: 0.74rem; }
-.steps2 h3 { font-size: 1.4rem; }
-.steps2 p { color: var(--dim); max-width: 30rem; }
+/* Cómo funciona: carrusel, un paso por diapositiva. Un encargo real hecho con la app; las imágenes son resultados sin retocar. */
 .real { color: var(--dim); font-style: italic; }
+.how { display: grid; gap: 1.2rem; }
+.slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; outline-offset: -1px; }
+.slides::-webkit-scrollbar { display: none; }
+.slide { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 1.6rem clamp(2rem, 5vw, 4.5rem); align-items: center; padding: 0.6rem 0.4rem 1.6rem; }
+.slide .st { display: grid; gap: 0.6rem; align-content: center; min-width: 0; }
+.slide .n { width: 3.2rem; height: 3.2rem; margin-bottom: 0.4rem; border: 1px solid var(--bone); border-radius: 50%; display: grid; place-items: center; font: expanded 600 0.88rem/1 var(--caps); letter-spacing: 0.04em; }
+.slide .st .label { font-size: 0.74rem; }
+.slide h3 { font-size: clamp(1.4rem, 2.6vw, 1.85rem); line-height: 1.2; }
+.slide .st p { color: var(--dim); max-width: 27rem; }
+.how-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.dots { display: flex; flex-wrap: wrap; gap: 0.2rem; }
+.dots button { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0 0.6rem; background: none; border: 0; color: var(--dim); font: expanded 700 0.69rem/1 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; }
+.dots button::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 1px solid currentColor; flex: none; }
+.dots button:hover, .dots button[aria-current="step"] { color: var(--bone); }
+.dots button[aria-current="step"]::before { background: currentColor; }
+.arrows { display: flex; gap: 0.6rem; flex: none; }
+.arrows button { width: 2.9rem; height: 2.9rem; border-radius: 50%; border: 1px solid var(--bone); background: transparent; color: var(--bone); display: grid; place-items: center; cursor: pointer; padding: 0; }
+.arrows button:hover { background: var(--bone); color: var(--black); }
+.arrows button:disabled { opacity: 0.25; cursor: default; background: transparent; color: var(--bone); }
+.arrows svg { width: 1.1rem; height: 1.1rem; }
 /* Lámina: resultados de la app sobre papel */
 .plate { min-width: 0; display: grid; gap: 0.6rem; }
 .plate .g { display: grid; gap: 0.6rem; }
 .plate .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.plate .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .plate .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.plate figure { margin: 0; display: grid; gap: 0.4rem; min-width: 0; }
+.plate figure { margin: 0; display: grid; gap: 0.4rem; min-width: 0; align-content: start; }
 .plate .pp { position: relative; background: var(--paper); aspect-ratio: 1; border-radius: 3px; overflow: hidden; box-shadow: 0 24px 48px -28px #000; }
 .plate .pp img { display: block; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
 .plate figcaption { font: 400 0.84rem/1.3 var(--text); color: var(--dim); }
@@ -151,18 +162,31 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 .plate .pick figcaption::before { content: "✓ "; }
 .plate small { font: 400 0.84rem/1.4 var(--text); color: var(--dim); font-style: italic; }
 .ticket { background: var(--paper); color: var(--ink); border-radius: 3px; padding: clamp(1.1rem, 3vw, 1.6rem); display: grid; gap: 1rem; max-width: 28rem; box-shadow: 0 24px 48px -28px #000; }
-.steps2 .ticket .q { color: var(--ink); font: italic 400 clamp(1.25rem, 2.6vw, 1.6rem)/1.3 var(--text); }
+.ticket .q { color: var(--ink); font: italic 400 clamp(1.25rem, 2.6vw, 1.6rem)/1.3 var(--text); }
 .ticket dl { margin: 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 0.25rem 1.6rem; }
 .ticket dt { font: expanded 700 0.62rem/1.2 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-dim); }
 .ticket dd { margin: 0; font-size: 1rem; grid-row: 2; }
-.skinshot { justify-self: start; width: min(100%, 20rem); }
+.ticket .att { padding-top: 0.8rem; border-top: 1px solid var(--rule); font-size: 0.9rem; color: var(--ink-dim); }
+.ask { display: flex; align-items: center; gap: 1rem; }
+.ask figure { flex: 0 0 5.5rem; }
+.ask .say { background: var(--bone); color: var(--ink); border-radius: 16px; border-bottom-left-radius: 5px; padding: 0.6rem 0.9rem; font: italic 400 1.05rem/1.35 var(--text); max-width: 22rem; }
+.skinshot { justify-self: start; width: min(100%, 15rem); }
 .skinshot .pp { aspect-ratio: 2 / 3; background: #000; }
 .skinshot .pp img { mix-blend-mode: normal; }
+@media (max-width: 900px) {
+  .slide { grid-template-columns: minmax(0, 1fr); align-items: start; padding-top: 0.2rem; }
+  .slide .st { grid-template-columns: auto minmax(0, 1fr); column-gap: 1rem; align-items: center; }
+  .slide .n { grid-row: span 2; margin: 0; width: 2.8rem; height: 2.8rem; }
+  .slide .st p { grid-column: 1 / -1; max-width: 36rem; }
+}
 @media (max-width: 760px) {
-  .steps2 li { grid-template-columns: 3.2rem minmax(0, 1fr); align-items: start; }
-  .steps2 .plate { grid-column: 1 / -1; }
   .plate .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .skinshot { justify-self: center; width: min(100%, 18rem); }
+  .skinshot { justify-self: center; width: min(100%, 14rem); }
+}
+@media (max-width: 960px) {
+  .dots { gap: 0; }
+  .dots .dl { display: none; }
+  .dots button { padding: 0 0.55rem; }
 }
 /* Blackwork: galería principal */
 .style-name { font: 400 clamp(3rem, 8vw, 5rem)/0.9 var(--gothic); text-transform: none; letter-spacing: 0; }
@@ -282,7 +306,7 @@ footer .brand img { width: 3rem; height: 3rem; }
 <meta name="twitter:title" content="Inkdraft · Diseño de tatuajes con IA para tatuadores, del encargo al stencil">
 <meta name="twitter:description" content="Del encargo al stencil, en minutos: tatuajes con IA para tatuadores, en blackwork, tradicional, neotradicional y fineline. Stencil para Procreate.">
 <meta name="twitter:image" content="https://www.inkdraft.tattoo/img/og.jpg">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.inkdraft.tattoo/#org", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "logo": "https://www.inkdraft.tattoo/img/apple-touch-icon.png", "email": "hello@inkdraft.tattoo", "sameAs": ["https://www.instagram.com/inkdraft.tattoo/"]}, {"@type": "WebSite", "@id": "https://www.inkdraft.tattoo/#website", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "inLanguage": ["en", "es"], "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}}, {"@type": "SoftwareApplication", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/es/", "inLanguage": "es", "applicationCategory": "DesignApplication", "operatingSystem": "Web", "featureList": ["Cuatro conceptos dibujados a partir del encargo del cliente", "Variaciones del concepto elegido", "Stencil de un solo grosor a tamaño real para Procreate", "Vista previa sobre la piel", "Estilos blackwork, tradicional, neotradicional y fineline"], "description": "Del encargo al stencil, en minutos: tatuajes con IA para tatuadores, en blackwork, tradicional, neotradicional y fineline. Stencil para Procreate.", "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}, "image": "https://www.inkdraft.tattoo/img/og.jpg", "offers": [{"@type": "Offer", "name": "Prueba", "price": "0", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Inicio", "price": "19", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Estudio", "price": "99", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Plaza de fundador", "price": "19", "priceCurrency": "EUR", "availability": "https://schema.org/PreOrder"}]}, {"@type": "FAQPage", "inLanguage": "es", "mainEntity": [{"@type": "Question", "name": "¿Qué es Inkdraft?", "acceptedAnswer": {"@type": "Answer", "text": "Inkdraft es una herramienta de diseño de tatuajes con inteligencia artificial para tatuadores. Convierte el encargo de tu cliente en cuatro conceptos dibujados, variaciones del que elijas y un stencil de un solo grosor listo para Procreate, con vista previa sobre la piel."}}, {"@type": "Question", "name": "¿Qué estilos de tatuaje admite?", "acceptedAnswer": {"@type": "Answer", "text": "Cuatro: blackwork (grabado antiguo y negro macizo), tradicional (flash moderno a color), neotradicional (ilustración con joyas y color terroso) y fineline (línea fina). Si quieres otro, dínoslo al pedir tu plaza de fundador."}}, {"@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": {"@type": "Answer", "text": "Prueba gratis con 3 diseños, sin tarjeta. Inicio, 19 € al mes (10 diseños); Pro, 39 € al mes (30 diseños); Estudio, 99 € al mes (100 diseños, hasta 5 tatuadores). Las 50 plazas de fundador tienen el plan Pro a 19 € al mes para siempre."}}, {"@type": "Question", "name": "¿Funciona con Procreate?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. El stencil se exporta listo para abrir en Procreate y también en PNG, para que añadas el sombreado y el estilo a tu manera."}}, {"@type": "Question", "name": "¿Los diseños son míos?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Lo que generas es tuyo para tatuar, publicar y vender."}}, {"@type": "Question", "name": "¿Es inteligencia artificial?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, para generar ideas y conceptos. El criterio de diseño (composición, anatomía, qué funciona en la piel) lo ponemos nosotros. El acabado lo pones tú."}}, {"@type": "Question", "name": "¿Sirve para tatuar directamente?", "acceptedAnswer": {"@type": "Answer", "text": "El stencil está listo para Procreate. Recomendamos siempre tu repaso final: tamaño, zona y estilo son decisión tuya."}}, {"@type": "Question", "name": "¿Cuándo empiezo a usarlo?", "acceptedAnswer": {"@type": "Answer", "text": "Los fundadores entran en la beta a principios de diciembre de 2026. Mientras tanto, te enviamos diseños a mano para tus encargos reales."}}, {"@type": "Question", "name": "¿Puedo cancelar?", "acceptedAnswer": {"@type": "Answer", "text": "Cuando quieras. Si cancelas la plaza de fundador, pierdes el precio de por vida."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.inkdraft.tattoo/#org", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "logo": "https://www.inkdraft.tattoo/img/apple-touch-icon.png", "email": "hello@inkdraft.tattoo", "sameAs": ["https://www.instagram.com/inkdraft.tattoo/"]}, {"@type": "WebSite", "@id": "https://www.inkdraft.tattoo/#website", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "inLanguage": ["en", "es"], "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}}, {"@type": "SoftwareApplication", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/es/", "inLanguage": "es", "applicationCategory": "DesignApplication", "operatingSystem": "Web", "featureList": ["Cuatro conceptos dibujados a partir del encargo del cliente", "Afinar el concepto elegido con tus palabras: cuatro conceptos más", "Stencil de un solo grosor a tamaño real para Procreate", "Vista previa sobre la piel", "Estilos blackwork, tradicional, neotradicional y fineline"], "description": "Del encargo al stencil, en minutos: tatuajes con IA para tatuadores, en blackwork, tradicional, neotradicional y fineline. Stencil para Procreate.", "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}, "image": "https://www.inkdraft.tattoo/img/og.jpg", "offers": [{"@type": "Offer", "name": "Prueba", "price": "0", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Inicio", "price": "19", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Estudio", "price": "99", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Plaza de fundador", "price": "19", "priceCurrency": "EUR", "availability": "https://schema.org/PreOrder"}]}, {"@type": "FAQPage", "inLanguage": "es", "mainEntity": [{"@type": "Question", "name": "¿Qué es Inkdraft?", "acceptedAnswer": {"@type": "Answer", "text": "Inkdraft es una herramienta de diseño de tatuajes con inteligencia artificial para tatuadores. Convierte el encargo de tu cliente en cuatro conceptos dibujados, cuatro más a partir del que elijas y un stencil de un solo grosor listo para Procreate, con vista previa sobre la piel."}}, {"@type": "Question", "name": "¿Qué estilos de tatuaje admite?", "acceptedAnswer": {"@type": "Answer", "text": "Cuatro: blackwork (grabado antiguo y negro macizo), tradicional (flash moderno a color), neotradicional (ilustración con joyas y color terroso) y fineline (línea fina). Si quieres otro, dínoslo al pedir tu plaza de fundador."}}, {"@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": {"@type": "Answer", "text": "Prueba gratis con 3 diseños, sin tarjeta. Inicio, 19 € al mes (10 diseños); Pro, 39 € al mes (30 diseños); Estudio, 99 € al mes (100 diseños, hasta 5 tatuadores). Las 50 plazas de fundador tienen el plan Pro a 19 € al mes para siempre."}}, {"@type": "Question", "name": "¿Funciona con Procreate?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. El stencil se exporta listo para abrir en Procreate y también en PNG, para que añadas el sombreado y el estilo a tu manera."}}, {"@type": "Question", "name": "¿Los diseños son míos?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Lo que generas es tuyo para tatuar, publicar y vender."}}, {"@type": "Question", "name": "¿Es inteligencia artificial?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, para generar ideas y conceptos. El criterio de diseño (composición, anatomía, qué funciona en la piel) lo ponemos nosotros. El acabado lo pones tú."}}, {"@type": "Question", "name": "¿Sirve para tatuar directamente?", "acceptedAnswer": {"@type": "Answer", "text": "El stencil está listo para Procreate. Recomendamos siempre tu repaso final: tamaño, zona y estilo son decisión tuya."}}, {"@type": "Question", "name": "¿Cuándo empiezo a usarlo?", "acceptedAnswer": {"@type": "Answer", "text": "Los fundadores entran en la beta a principios de diciembre de 2026. Mientras tanto, te enviamos diseños a mano para tus encargos reales."}}, {"@type": "Question", "name": "¿Puedo cancelar?", "acceptedAnswer": {"@type": "Answer", "text": "Cuando quieras. Si cancelas la plaza de fundador, pierdes el precio de por vida."}}]}]}</script>
 </head>
 <body>
 <nav><div class="wrap">
@@ -313,19 +337,22 @@ footer .brand img { width: 3rem; height: 3rem; }
 </div></section>
 
 <section><div class="wrap">
-  <div class="head"><p class="label">Cómo funciona</p><h2>Cinco pasos. Tú decides en cada uno.</h2><p class="real">Un encargo real, hecho con Inkdraft de punta a punta. Las imágenes salen de la app, sin retocar.</p></div>
-  <ol class="steps2">
-    <li><span class="n">1</span><div class="st"><span class="label">Paso 1 · Encargo</span><h3>Cuéntale el encargo</h3><p>Escríbelo como te lo dice el cliente: tema, zona y tamaño. Si trae fotos de referencia, súbelas: Inkdraft las lee como gusto, nunca las copia.</p></div>
-      <div class="plate"><div class="ticket"><p class="q">“polilla con calavera”</p><dl><dt>Zona</dt><dd>Antebrazo</dd><dt>Tamaño</dt><dd>15 cm</dd><dt>Estilo</dt><dd>Blackwork</dd></dl></div><small>Tal cual lo escribió el tatuador.</small></div></li>
-    <li><span class="n">2</span><div class="st"><span class="label">Paso 2 · Conceptos</span><h3>Elige viendo</h3><p>Cuatro conceptos distintos, cada uno con su dibujo. Eliges con los ojos, no leyendo descripciones. ¿Ninguno te convence? Pide otra tanda.</p></div>
-      <div class="plate"><div class="g g4"><figure class="pick"><div class="pp"><img src="/img/pol-concepto-1.webp" alt="Esfinge de la calavera de frente, con la calavera en el tórax y las alas con borde negro" width="480" height="480" loading="lazy"></div><figcaption>Esfinge de la calavera</figcaption></figure><figure><div class="pp"><img src="/img/pol-concepto-2.webp" alt="La esfinge posada sobre una vela encendida que gotea" width="480" height="480" loading="lazy"></div><figcaption>Polilla y vela</figcaption></figure><figure><div class="pp"><img src="/img/pol-concepto-3.webp" alt="La esfinge sobre un eclipse negro con corona de rayos" width="480" height="480" loading="lazy"></div><figcaption>Polilla de luna eclipse</figcaption></figure><figure><div class="pp"><img src="/img/pol-concepto-4.webp" alt="La esfinge con las alas hechas de cristales de cuarzo" width="480" height="480" loading="lazy"></div><figcaption>Alas de cristal</figcaption></figure></div></div></li>
-    <li><span class="n">3</span><div class="st"><span class="label">Paso 3 · Variaciones</span><h3>Afínalo</h3><p>Tres variaciones del elegido: cercana, media y atrevida. Para corregir un detalle o probar otro ángulo.</p></div>
-      <div class="plate"><div class="g g3"><figure><div class="pp"><img src="/img/pol-var-cercana.webp" alt="Variación cercana: la esfinge girada, con un ala más abierta" width="480" height="480" loading="lazy"></div><figcaption>Cercana</figcaption></figure><figure><div class="pp"><img src="/img/pol-var-media.webp" alt="Variación media: la esfinge en diagonal, con el abdomen curvado" width="480" height="480" loading="lazy"></div><figcaption>Media</figcaption></figure><figure><div class="pp"><img src="/img/pol-var-atrevida.webp" alt="Variación atrevida: la esfinge de perfil, en diagonal" width="480" height="480" loading="lazy"></div><figcaption>Atrevida</figcaption></figure></div></div></li>
-    <li><span class="n">4</span><div class="st"><span class="label">Paso 4 · Stencil</span><h3>Llévate el stencil</h3><p>Línea limpia de un solo grosor, fiel al dibujo, a 2048 px. Ábrelo en Procreate y pon el sombreado a tu manera.</p></div>
-      <div class="plate"><div class="g g2"><figure><div class="pp"><img src="/img/pol-diseno.webp" alt="El diseño elegido, sombreado" width="800" height="800" loading="lazy"></div><figcaption>Diseño</figcaption></figure><figure><div class="pp"><img src="/img/pol-stencil.webp" alt="Stencil de la polilla calavera: solo contornos, un grosor" width="800" height="800" loading="lazy"></div><figcaption>Stencil</figcaption></figure></div></div></li>
-    <li><span class="n">5</span><div class="st"><span class="label">Paso 5 · En la piel</span><h3>Enséñaselo al cliente</h3><p>Sube una foto de la zona, coloca el diseño con los dedos e Inkdraft lo vuelve realista. El cliente lo ve antes de la cita.</p></div>
-      <div class="plate"><figure class="skinshot"><div class="pp"><img src="/img/pol-piel.webp" alt="La polilla calavera tatuada en un antebrazo, vista previa" width="720" height="1080" loading="lazy"></div><figcaption>Antebrazo de muestra generado con IA. En el estudio, la foto es la de tu cliente.</figcaption></figure></div></li>
-  </ol>
+  <div class="head"><p class="label">Cómo funciona</p><h2>Cinco pasos. Tú decides en cada uno.</h2><p class="real">Un encargo real, hecho con Inkdraft. Las imágenes salen de la app, sin retocar.</p></div>
+  <div class="how" role="region" aria-roledescription="carrusel" aria-label="Cómo funciona, paso a paso">
+    <div class="slides" tabindex="0">
+      <div class="slide" role="group" aria-roledescription="paso" aria-label="1 de 5"><div class="st"><span class="n">1</span><span class="label">Paso 1 · Encargo</span><h3>Cuéntale el encargo</h3><p>Escríbelo como te lo dice el cliente: tema, zona, tamaño y estilo. Si trae referencias o una foto de la zona, súbelas. Las referencias se leen como gusto, nunca se copian.</p></div>
+        <div class="plate"><div class="ticket"><p class="q">“polilla con calavera”</p><dl><dt>Zona</dt><dd>Antebrazo</dd><dt>Tamaño</dt><dd>15 cm</dd><dt>Estilo</dt><dd>Blackwork</dd></dl><p class="att">+ 1 referencia del cliente</p></div><small>Tal cual lo escribió el tatuador.</small></div></div>
+      <div class="slide" role="group" aria-roledescription="paso" aria-label="2 de 5"><div class="st"><span class="n">2</span><span class="label">Paso 2 · Conceptos</span><h3>Elige viendo</h3><p>Cuatro conceptos distintos, cada uno con su dibujo. Eliges con los ojos, no leyendo.</p></div>
+        <div class="plate"><div class="g g4"><figure><div class="pp"><img src="/img/pol-concepto-1.webp" alt="Esfinge de la calavera de frente, con la calavera en el tórax y las alas con borde negro" width="480" height="480" loading="lazy"></div><figcaption>Esfinge de la calavera</figcaption></figure><figure><div class="pp"><img src="/img/pol-concepto-2.webp" alt="La esfinge posada sobre una vela encendida que gotea" width="480" height="480" loading="lazy"></div><figcaption>Polilla y vela</figcaption></figure><figure class="pick"><div class="pp"><img src="/img/pol-concepto-3.webp" alt="La esfinge sobre un eclipse negro con corona de rayos" width="480" height="480" loading="lazy"></div><figcaption>Polilla de luna eclipse</figcaption></figure><figure><div class="pp"><img src="/img/pol-concepto-4.webp" alt="La esfinge con las alas hechas de cristales de cuarzo" width="480" height="480" loading="lazy"></div><figcaption>Alas de cristal</figcaption></figure></div></div></div>
+      <div class="slide" role="group" aria-roledescription="paso" aria-label="3 de 5"><div class="st"><span class="n">3</span><span class="label">Paso 3 · Afinar</span><h3>Afínalo con tus palabras</h3><p>Escribe qué cambiarías del elegido y salen cuatro más, del más fiel al más libre. Una vez por encargo.</p></div>
+        <div class="plate"><div class="ask"><figure><div class="pp"><img src="/img/pol-concepto-3.webp" alt="El concepto elegido: la polilla de luna eclipse" width="480" height="480" loading="lazy"></div></figure><p class="say">“Sin el sol, solo la polilla. Y en vertical.”</p></div><div class="g g4"><figure class="pick"><div class="pp"><img src="/img/pol-concepto-1.webp" alt="La esfinge de la calavera sola, de frente y en vertical" width="480" height="480" loading="lazy"></div><figcaption>Esfinge de la calavera</figcaption></figure><figure><div class="pp"><img src="/img/pol-var-cercana.webp" alt="La esfinge girada, con un ala más abierta" width="480" height="480" loading="lazy"></div></figure><figure><div class="pp"><img src="/img/pol-var-media.webp" alt="La esfinge en diagonal, con el abdomen curvado" width="480" height="480" loading="lazy"></div></figure><figure><div class="pp"><img src="/img/pol-var-atrevida.webp" alt="La esfinge de perfil, en diagonal" width="480" height="480" loading="lazy"></div></figure></div></div></div>
+      <div class="slide" role="group" aria-roledescription="paso" aria-label="4 de 5"><div class="st"><span class="n">4</span><span class="label">Paso 4 · Stencil</span><h3>Llévate el stencil</h3><p>Un solo grosor, fiel al dibujo y a tamaño real. Ábrelo en Procreate con el diseño y el stencil en capas.</p></div>
+        <div class="plate"><div class="g g2"><figure><div class="pp"><img src="/img/pol-diseno.webp" alt="El diseño elegido, sombreado" width="800" height="800" loading="lazy"></div><figcaption>Diseño</figcaption></figure><figure><div class="pp"><img src="/img/pol-stencil.webp" alt="Stencil de la polilla calavera: solo contornos, un grosor" width="800" height="800" loading="lazy"></div><figcaption>Stencil</figcaption></figure></div></div></div>
+      <div class="slide" role="group" aria-roledescription="paso" aria-label="5 de 5"><div class="st"><span class="n">5</span><span class="label">Paso 5 · En la piel</span><h3>Enséñaselo al cliente</h3><p>Sube una foto de la zona, coloca el diseño con los dedos e Inkdraft lo vuelve realista. El cliente lo ve antes de la cita.</p></div>
+        <div class="plate"><figure class="skinshot"><div class="pp"><img src="/img/pol-piel.webp" alt="La polilla calavera tatuada en un antebrazo, vista previa" width="720" height="1080" loading="lazy"></div><figcaption>Antebrazo de muestra generado con IA. En el estudio, la foto es la de tu cliente.</figcaption></figure></div></div>
+    </div>
+    <div class="how-nav"><div class="dots" role="group" aria-label="Pasos"><button type="button" aria-label="Paso 1: Encargo"><span class="dl">1 Encargo</span></button><button type="button" aria-label="Paso 2: Conceptos"><span class="dl">2 Conceptos</span></button><button type="button" aria-label="Paso 3: Afinar"><span class="dl">3 Afinar</span></button><button type="button" aria-label="Paso 4: Stencil"><span class="dl">4 Stencil</span></button><button type="button" aria-label="Paso 5: En la piel"><span class="dl">5 En la piel</span></button></div><div class="arrows"><button type="button" class="prev" aria-label="Paso anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="next" aria-label="Paso siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
+  </div>
 </div></section>
 
 <section id="blackwork"><div class="wrap">
@@ -455,7 +482,7 @@ footer .brand img { width: 3rem; height: 3rem; }
 <section><div class="wrap">
   <div class="head"><p class="label">Preguntas</p><h2>Lo que nos preguntan</h2></div>
   <div class="faq">
-    <details><summary>¿Qué es Inkdraft?</summary><p>Inkdraft es una herramienta de diseño de tatuajes con inteligencia artificial para tatuadores. Convierte el encargo de tu cliente en cuatro conceptos dibujados, variaciones del que elijas y un stencil de un solo grosor listo para Procreate, con vista previa sobre la piel.</p></details>
+    <details><summary>¿Qué es Inkdraft?</summary><p>Inkdraft es una herramienta de diseño de tatuajes con inteligencia artificial para tatuadores. Convierte el encargo de tu cliente en cuatro conceptos dibujados, cuatro más a partir del que elijas y un stencil de un solo grosor listo para Procreate, con vista previa sobre la piel.</p></details>
     <details><summary>¿Qué estilos de tatuaje admite?</summary><p>Cuatro: blackwork (grabado antiguo y negro macizo), tradicional (flash moderno a color), neotradicional (ilustración con joyas y color terroso) y fineline (línea fina). Si quieres otro, dínoslo al pedir tu plaza de fundador.</p></details>
     <details><summary>¿Cuánto cuesta?</summary><p>Prueba gratis con 3 diseños, sin tarjeta. Inicio, 19 € al mes (10 diseños); Pro, 39 € al mes (30 diseños); Estudio, 99 € al mes (100 diseños, hasta 5 tatuadores). Las 50 plazas de fundador tienen el plan Pro a 19 € al mes para siempre.</p></details>
     <details><summary>¿Funciona con Procreate?</summary><p>Sí. El stencil se exporta listo para abrir en Procreate y también en PNG, para que añadas el sombreado y el estilo a tu manera.</p></details>
@@ -502,6 +529,42 @@ join.addEventListener("submit", async (e) => {
 });
 </script>
 
+<script>
+/* Cómo funciona: flechas, puntos y teclado sobre el carrusel (el deslizado lo hace el navegador con scroll-snap) */
+(function () {
+  document.querySelectorAll('.how').forEach(function (how) {
+    var track = how.querySelector('.slides'), slides = track.children, dots = how.querySelectorAll('.dots button');
+    var prev = how.querySelector('.prev'), next = how.querySelector('.next'), cur = 0, want = null;
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function at() { return want === null ? cur : want; }
+    function go(i) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      want = i;
+      track.scrollTo({ left: i * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' });
+      sync();
+    }
+    function sync() {
+      cur = Math.round(track.scrollLeft / track.clientWidth);
+      if (want !== null && Math.abs(track.scrollLeft - want * track.clientWidth) < 2) want = null;
+      var i = at();
+      dots.forEach(function (d, k) { if (k === i) d.setAttribute('aria-current', 'step'); else d.removeAttribute('aria-current'); });
+      for (var k = 0; k < slides.length; k++) slides[k].setAttribute('aria-hidden', k === i ? 'false' : 'true');
+      prev.disabled = i === 0; next.disabled = i === slides.length - 1;
+    }
+    track.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', function () { track.scrollLeft = at() * track.clientWidth; });
+    dots.forEach(function (d, k) { d.addEventListener('click', function () { go(k); }); });
+    prev.addEventListener('click', function () { go(at() - 1); });
+    next.addEventListener('click', function () { go(at() + 1); });
+    ['pointerdown', 'wheel'].forEach(function (ev) { track.addEventListener(ev, function () { want = null; }, { passive: true }); });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(at() + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(at() - 1); }
+    });
+    sync();
+  });
+})();
+</script>
 <script>
 document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', () => { try { sessionStorage.setItem('lang', a.dataset.lang); } catch (e) {} }));
 </script>
