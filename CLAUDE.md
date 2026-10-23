@@ -57,3 +57,8 @@ Una sola dirección pública: `hello@inkdraft.tattoo`. Los dos emails del formul
 - Pasos: 1 Encargo (ficha + "1 referencia del cliente") → 2 Conceptos (elegido el 3, eclipse) → 3 Afinar (instrucción "Sin el sol, solo la polilla. Y en vertical." → `pol-concepto-1` + las tres `pol-var-*`) → 4 Stencil (tamaño real, capas para Procreate) → 5 En la piel.
 - **Ojo: el paso Afinar es un montaje** con imágenes reales de la app que no salieron de un afinado (las `pol-var-*` son variaciones antiguas del concepto 1). Sustituir por un afinado real del mismo encargo cuando Marc lo haga (mismos nombres o nuevos `pol-afinar-1..4.webp`).
 - FAQ, `featureList` y `llms.txt` ya hablan de afinar en vez de variaciones.
+
+## Hoja en blanco y estilos compactos (23 oct 2026, Marc)
+- El problema ya no es el mensaje directo con Laura (no todos los tatuadores pasan bocetos por mensaje; todos dibujan desde la hoja en blanco). Ahora: "“Una polilla con una calavera.” Y tú, otra tarde ante la hoja en blanco… y ninguna hora cobrada." con la foto `img/mesa-procreate.webp`: tatuador de espaldas en su mesa de dibujo con Procreate en blanco. Generada con IA (GPT Image en Figma, fichero "Inkdraft · landing (antebrazo IA)", nodo 4:2; original en `~/Claude/inkdraft-banco-estilos/landing-2026-10-23/mesa-procreate-original.png`). CSS del chat (`.dm`) borrado. Laura sigue en la notificación del paso 5 de Cómo funciona.
+- Los cuatro estilos van en una sola sección (`section.styles`), cada uno en un `article.style` que conserva su id (#blackwork, #tradicional…), dos estilos por fila en escritorio y uno en iPad y móvil, siempre con sus dos ejemplos lado a lado. "¿Otro estilo?" en una franja compacta debajo.
+- Orden de la página: hero → problema → estilos → Cómo funciona → …

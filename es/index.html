@@ -100,30 +100,10 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 .problem blockquote span { display: block; margin-top: 0.4rem; color: var(--dim); }
 .problem .wrap { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: center; column-gap: clamp(2rem, 5vw, 4.5rem); }
 .problem .pq { display: grid; gap: 1.6rem; align-content: center; min-width: 0; }
-.dm { justify-self: end; width: 100%; max-width: 38rem; background: var(--coal); border: 1px solid var(--line); border-radius: 20px; padding: 0.85rem 0.9rem 0.75rem; display: grid; gap: 0.45rem; box-shadow: 0 40px 70px -35px #000; transform: rotate(1deg); }
-.dm-head { display: flex; align-items: center; gap: 0.6rem; padding: 0 0.2rem 0.6rem; margin-bottom: 0.1rem; border-bottom: 1px solid var(--line); font-size: 0.92rem; line-height: 1.2; }
-.dm-head small { display: block; color: var(--dim); font-size: 0.74rem; }
-.dm-av { width: 2.1rem; height: 2.1rem; border-radius: 50%; background: #34302B; display: grid; place-items: center; font: 600 0.85rem/1 var(--text); color: var(--bone); flex: none; }
-.dm .b { max-width: 82%; padding: 0.5rem 0.75rem; border-radius: 16px; font-size: 0.9rem; line-height: 1.35; }
-.dm .in { justify-self: start; background: #27241F; border-bottom-left-radius: 5px; }
-.dm .out { justify-self: end; background: var(--bone); color: var(--ink); border-bottom-right-radius: 5px; }
-.dm .sk { padding: 0.45rem 0.45rem 0.4rem; max-width: 92%; }
-.dm .sk-t { display: block; padding: 0 0.3rem 0.4rem; font-size: 0.86rem; }
-.dm .sk-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.3rem; }
-.dm .sk figure { margin: 0; }
-.dm .sk img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 10px; background: var(--paper); }
-.dm .sk figcaption { padding: 0.2rem 0.2rem 0; font-size: 0.68rem; color: var(--ink-dim); }
-.dm-rounds { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 0.9rem; }
-.dm-rounds .r { display: grid; gap: 0.45rem; align-content: start; min-width: 0; }
-.dm-rounds .r + .r { border-left: 1px solid var(--line); padding-left: 0.9rem; }
-.dm .r .sk { max-width: 100%; }
-.dm .r .sk1 { max-width: 10rem; }
-.dm .sk1 img { aspect-ratio: 1; }
-.dm .t { justify-self: center; font-size: 0.7rem; color: var(--dim); padding-block: 0.15rem; }
-.dm-seen { justify-self: start; font-size: 0.72rem; color: var(--dim); padding-left: 0.3rem; }
-@media (max-width: 900px) { .problem .wrap { grid-template-columns: minmax(0, 1fr); } .dm { justify-self: center; transform: none; } }
+.desk { justify-self: end; width: 100%; max-width: 38rem; margin: 0; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; box-shadow: 0 40px 70px -35px #000; }
+.desk img { display: block; width: 100%; height: auto; }
+@media (max-width: 900px) { .problem .wrap { grid-template-columns: minmax(0, 1fr); } .desk { justify-self: center; } }
 @media (max-width: 560px) { .also .wip { aspect-ratio: auto; width: 100%; height: 4.5rem; } }
-@media (max-width: 560px) { .dm-rounds { grid-template-columns: minmax(0, 1fr); } .dm-rounds .r + .r { border-left: 0; padding-left: 0; } }
 
 
 /* Cómo funciona: carrusel, un paso por diapositiva. Un encargo real hecho con la app; las imágenes son resultados sin retocar.
@@ -401,6 +381,21 @@ footer .brand img { width: 3rem; height: 3rem; }
   .grid-black, .plans, .also { grid-template-columns: minmax(0, 1fr); }
   nav .btn { display: none; }
 }
+/* Estilos: dos por fila en escritorio, uno por fila en iPad y móvil (con sus dos ejemplos lado a lado) */
+.styles-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2.6rem, 5vw, 4rem) clamp(1.6rem, 4vw, 3.5rem); }
+.style { display: grid; gap: 1.1rem; align-content: start; min-width: 0; scroll-margin-top: 1rem; }
+.style .style-top { display: grid; gap: 0.45rem; }
+.style .style-name { font-size: clamp(2.5rem, 4.6vw, 3.5rem); }
+.style .style-top p { font-size: 0.95rem; max-width: 28rem; }
+.style .grid-black { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.7rem, 1.6vw, 1rem); }
+.style .card-row { flex-wrap: wrap; gap: 0.45rem 0.75rem; }
+.style .cap { font-size: 0.8rem; }
+.styles .also.one { margin-top: 0; max-width: 34rem; }
+.styles .also.one article { grid-template-rows: none; grid-template-columns: 5.5rem minmax(0, 1fr); }
+.styles .also.one .wip { aspect-ratio: auto; width: auto; height: auto; -webkit-mask: none; mask: none; }
+.styles .also.one .body { padding: 1rem 1.2rem; }
+.styles .also.one .gothic { font-size: 1.8rem; }
+@media (max-width: 900px) { .styles-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) { .card .frame img { transition: none; } }
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
@@ -437,10 +432,82 @@ footer .brand img { width: 3rem; height: 3rem; }
 <section class="problem"><div class="wrap">
   <div class="pq">
   <p class="label">El problema</p>
-  <blockquote>“Una polilla con una calavera.” Te pasas la tarde bocetando, tres versiones por DM… <span>y ninguna hora cobrada.</span></blockquote>
+  <blockquote>“Una polilla con una calavera.” Y tú, otra tarde ante la hoja en blanco… <span>y ninguna hora cobrada.</span></blockquote>
   <p style="color: var(--dim); max-width: 36rem">Inkdraft se encarga de la parte que no se paga: la idea y el primer boceto. El tiempo que ahorras vuelve a la máquina.</p>
   </div>
-  <div class="dm" role="img" aria-label="Conversación por mensaje directo: el tatuador manda tres bocetos, luego un cuarto, y la clienta sigue sin decidirse"><div class="dm-head"><span class="dm-av">L</span><div>Laura<small>Mensaje directo</small></div></div><div class="dm-rounds"><div class="r"><span class="t">Martes · 18:02</span><div class="b in">¡Hola! Quiero una polilla con una calavera, en el antebrazo.</div><div class="b out sk"><span class="sk-t">Te paso tres opciones:</span><div class="sk-row"><figure><img src="/img/pol-concepto-2.webp" alt="" width="480" height="480"><figcaption>v1</figcaption></figure><figure><img src="/img/pol-concepto-3.webp" alt="" width="480" height="480"><figcaption>v2</figcaption></figure><figure><img src="/img/pol-concepto-4.webp" alt="" width="480" height="480"><figcaption>v3</figcaption></figure></div></div><div class="b in">Me gusta la v2… ¿pero sin el sol, solo la polilla?</div></div><div class="r"><span class="t">Jueves · 22:15</span><div class="b out sk sk1"><span class="sk-t">¿Así?</span><figure><img src="/img/pol-concepto-1.webp" alt="" width="480" height="480"><figcaption>v4</figcaption></figure></div><div class="b in">Mmm, casi. Lo pienso y te digo.</div><span class="dm-seen">Visto · 23:47</span></div></div></div>
+  <figure class="desk"><img src="/img/mesa-procreate.webp" alt="Un tatuador, de espaldas, en su mesa de dibujo con Procreate abierto y el lienzo en blanco" width="1200" height="800" loading="lazy"></figure>
+</div></section>
+
+<section class="styles"><div class="wrap">
+  <div class="styles-grid">
+  <article class="style" id="blackwork">
+    <div class="style-top">
+      <h2 class="style-name">Blackwork</h2>
+      <p>Tatuaje blackwork: grabado antiguo, punteado y negro macizo. Pulsa para ver su stencil.</p>
+    </div>
+    <div class="grid-black">
+      <div class="card">
+        <div class="frame"><img class="con" src="/img/bw-1.webp" alt="Polilla esfinge con una calavera en el tórax, alas en punteado, blackwork" width="800" height="800" loading="lazy"><img class="sten" src="/img/bw-1-stencil.webp" alt="Stencil de la polilla con calavera" width="800" height="800" loading="lazy"></div>
+        <div class="card-row"><span class="cap">Polilla con calavera · antebrazo 15 cm</span><button class="toggle" type="button">Ver stencil</button></div>
+      </div>
+      <div class="card">
+        <div class="frame"><img class="con" src="/img/bw-2.webp" alt="Corazón anatómico atravesado por un bisturí, con llamas negras, blackwork" width="800" height="800" loading="lazy"><img class="sten" src="/img/bw-2-stencil.webp" alt="Stencil del corazón con bisturí" width="800" height="800" loading="lazy"></div>
+        <div class="card-row"><span class="cap">Corazón anatómico con bisturí · brazo 18 cm</span><button class="toggle" type="button">Ver stencil</button></div>
+      </div>
+    </div>
+  </article>
+  <article class="style" id="tradicional">
+    <div class="style-top">
+      <h2 class="style-name">Tradicional</h2>
+      <p>Tatuaje tradicional moderno: contorno limpio, sombra negra suave y color cálido. Pulsa para ver su stencil.</p>
+    </div>
+    <div class="grid-black">
+      <div class="card">
+        <div class="frame"><img class="con" src="/img/trad-1.webp" alt="Perfil de mujer de ojos cerrados envuelto por los pétalos de una rosa roja, tradicional moderno a color" width="800" height="800" loading="lazy"><img class="sten" src="/img/trad-1-stencil.webp" alt="Stencil de la mujer en la rosa" width="800" height="800" loading="lazy"></div>
+        <div class="card-row"><span class="cap">Mujer en la rosa · antebrazo 15 cm</span><button class="toggle" type="button">Ver stencil</button></div>
+      </div>
+      <div class="card">
+        <div class="frame"><img class="con" src="/img/trad-2.webp" alt="Velero en un medallón ovalado sobre un ancla con cuerda, con olas y sol, tradicional moderno a color" width="800" height="800" loading="lazy"><img class="sten" src="/img/trad-2-stencil.webp" alt="Stencil del barco en el medallón" width="800" height="800" loading="lazy"></div>
+        <div class="card-row"><span class="cap">Barco en medallón con ancla · brazo 15 cm</span><button class="toggle" type="button">Ver stencil</button></div>
+      </div>
+    </div>
+  </article>
+  <article class="style" id="neotradicional">
+    <div class="style-top">
+      <h2 class="style-name">Neotradicional</h2>
+      <p>Tatuaje neotradicional: contorno grueso, curvas art nouveau, joyas y color terroso. Pulsa para ver su stencil.</p>
+    </div>
+    <div class="grid-black">
+      <div class="card">
+        <div class="frame"><img class="con" src="/img/neo-1.webp" alt="Cara de mujer de párpados bajos dentro de un rombo de doble línea con cuentas y un colgante, neotradicional" width="800" height="800" loading="lazy"><img class="sten" src="/img/neo-1-stencil.webp" alt="Stencil de la mujer en el rombo" width="800" height="800" loading="lazy"></div>
+        <div class="card-row"><span class="cap">Mujer en rombo con colgante · antebrazo 16 cm</span><button class="toggle" type="button">Ver stencil</button></div>
+      </div>
+      <div class="card">
+        <div class="frame"><img class="con" src="/img/neo-2.webp" alt="Lobo gris de perfil con un cuarzo en punta y un abanico de hojas, neotradicional" width="800" height="800" loading="lazy"><img class="sten" src="/img/neo-2-stencil.webp" alt="Stencil del lobo con el cuarzo" width="800" height="800" loading="lazy"></div>
+        <div class="card-row"><span class="cap">Lobo con cuarzo y hojas · brazo 16 cm</span><button class="toggle" type="button">Ver stencil</button></div>
+      </div>
+    </div>
+  </article>
+  <article class="style" id="fineline">
+    <div class="style-top">
+      <h2 class="style-name">Fineline</h2>
+      <p>Tatuaje fineline: línea fina de una aguja, verdad botánica y piel libre. Pulsa para ver su stencil.</p>
+    </div>
+    <div class="grid-black">
+      <div class="card">
+        <div class="frame"><img class="con" src="/img/fine-1.webp" alt="Ramito de margarita y nenúfar atado con un lazo, línea fina" width="800" height="800" loading="lazy"><img class="sten" src="/img/fine-1-stencil.webp" alt="Stencil del ramito de margarita y nenúfar" width="800" height="800" loading="lazy"></div>
+        <div class="card-row"><span class="cap">Flores de nacimiento: margarita y nenúfar · costillas 12 cm</span><button class="toggle" type="button">Ver stencil</button></div>
+      </div>
+      <div class="card">
+        <div class="frame"><img class="con" src="/img/fine-2.webp" alt="Ramita de olivo con dos aceitunas, línea fina" width="800" height="800" loading="lazy"><img class="sten" src="/img/fine-2-stencil.webp" alt="Stencil de la ramita de olivo" width="800" height="800" loading="lazy"></div>
+        <div class="card-row"><span class="cap">Ramita de olivo · antebrazo 10 cm</span><button class="toggle" type="button">Ver stencil</button></div>
+      </div>
+    </div>
+  </article>
+  </div>
+  <div class="also one">
+    <article><div class="img wip" aria-hidden="true"><span>?</span></div><div class="body"><h3 class="gothic">¿Otro estilo?</h3><p>Dinos cuál quieres después. Lo que piden los fundadores va primero.</p><a class="more" href="#fundador">Pide tu estilo</a></div></article>
+  </div>
 </div></section>
 
 <section><div class="wrap">
@@ -459,77 +526,6 @@ footer .brand img { width: 3rem; height: 3rem; }
       <div class="slide" role="group" aria-roledescription="paso" aria-label="5 de 5"><div class="st"><span class="big rise" aria-hidden="true">5</span><h3 class="rise" style="--d:1">Enséñaselo al cliente</h3><p class="rise" style="--d:3">Sube una foto de la zona, coloca el diseño con los dedos e Inkdraft lo vuelve realista. El cliente lo ve antes de la cita.</p></div>
         <div class="stage"><div class="phone rise" style="--d:1"><img src="/img/pol-piel.webp" alt="La polilla calavera tatuada en un antebrazo, vista previa" width="720" height="1080" loading="lazy"><div class="notif rise" style="--d:8"><span class="av">L</span><b>Laura <span>ahora</span></b><span>¡Esa! ¿Cuándo tienes hueco?</span></div></div></div></div>
     </div>
-  </div>
-</div></section>
-
-<section id="blackwork"><div class="wrap">
-  <div class="style-top">
-    <h2 class="style-name">Blackwork</h2>
-    <p>Tatuaje blackwork: grabado antiguo, punteado y negro macizo. Pulsa para ver su stencil.</p>
-  </div>
-  <div class="grid-black">
-    <div class="card">
-      <div class="frame"><img class="con" src="/img/bw-1.webp" alt="Polilla esfinge con una calavera en el tórax, alas en punteado, blackwork" width="800" height="800" loading="lazy"><img class="sten" src="/img/bw-1-stencil.webp" alt="Stencil de la polilla con calavera" width="800" height="800" loading="lazy"></div>
-      <div class="card-row"><span class="cap">Polilla con calavera · antebrazo 15 cm</span><button class="toggle" type="button">Ver stencil</button></div>
-    </div>
-    <div class="card">
-      <div class="frame"><img class="con" src="/img/bw-2.webp" alt="Corazón anatómico atravesado por un bisturí, con llamas negras, blackwork" width="800" height="800" loading="lazy"><img class="sten" src="/img/bw-2-stencil.webp" alt="Stencil del corazón con bisturí" width="800" height="800" loading="lazy"></div>
-      <div class="card-row"><span class="cap">Corazón anatómico con bisturí · brazo 18 cm</span><button class="toggle" type="button">Ver stencil</button></div>
-    </div>
-  </div>
-</div></section>
-
-<section id="tradicional"><div class="wrap">
-  <div class="style-top">
-    <h2 class="style-name">Tradicional</h2>
-    <p>Tatuaje tradicional moderno: contorno limpio, sombra negra suave y color cálido. Pulsa para ver su stencil.</p>
-  </div>
-  <div class="grid-black">
-    <div class="card">
-      <div class="frame"><img class="con" src="/img/trad-1.webp" alt="Perfil de mujer de ojos cerrados envuelto por los pétalos de una rosa roja, tradicional moderno a color" width="800" height="800" loading="lazy"><img class="sten" src="/img/trad-1-stencil.webp" alt="Stencil de la mujer en la rosa" width="800" height="800" loading="lazy"></div>
-      <div class="card-row"><span class="cap">Mujer en la rosa · antebrazo 15 cm</span><button class="toggle" type="button">Ver stencil</button></div>
-    </div>
-    <div class="card">
-      <div class="frame"><img class="con" src="/img/trad-2.webp" alt="Velero en un medallón ovalado sobre un ancla con cuerda, con olas y sol, tradicional moderno a color" width="800" height="800" loading="lazy"><img class="sten" src="/img/trad-2-stencil.webp" alt="Stencil del barco en el medallón" width="800" height="800" loading="lazy"></div>
-      <div class="card-row"><span class="cap">Barco en medallón con ancla · brazo 15 cm</span><button class="toggle" type="button">Ver stencil</button></div>
-    </div>
-  </div>
-</div></section>
-
-<section id="neotradicional"><div class="wrap">
-  <div class="style-top">
-    <h2 class="style-name">Neotradicional</h2>
-    <p>Tatuaje neotradicional: contorno grueso, curvas art nouveau, joyas y color terroso. Pulsa para ver su stencil.</p>
-  </div>
-  <div class="grid-black">
-    <div class="card">
-      <div class="frame"><img class="con" src="/img/neo-1.webp" alt="Cara de mujer de párpados bajos dentro de un rombo de doble línea con cuentas y un colgante, neotradicional" width="800" height="800" loading="lazy"><img class="sten" src="/img/neo-1-stencil.webp" alt="Stencil de la mujer en el rombo" width="800" height="800" loading="lazy"></div>
-      <div class="card-row"><span class="cap">Mujer en rombo con colgante · antebrazo 16 cm</span><button class="toggle" type="button">Ver stencil</button></div>
-    </div>
-    <div class="card">
-      <div class="frame"><img class="con" src="/img/neo-2.webp" alt="Lobo gris de perfil con un cuarzo en punta y un abanico de hojas, neotradicional" width="800" height="800" loading="lazy"><img class="sten" src="/img/neo-2-stencil.webp" alt="Stencil del lobo con el cuarzo" width="800" height="800" loading="lazy"></div>
-      <div class="card-row"><span class="cap">Lobo con cuarzo y hojas · brazo 16 cm</span><button class="toggle" type="button">Ver stencil</button></div>
-    </div>
-  </div>
-</div></section>
-
-<section id="fineline"><div class="wrap">
-  <div class="style-top">
-    <h2 class="style-name">Fineline</h2>
-    <p>Tatuaje fineline: línea fina de una aguja, verdad botánica y piel libre. Pulsa para ver su stencil.</p>
-  </div>
-  <div class="grid-black">
-    <div class="card">
-      <div class="frame"><img class="con" src="/img/fine-1.webp" alt="Ramito de margarita y nenúfar atado con un lazo, línea fina" width="800" height="800" loading="lazy"><img class="sten" src="/img/fine-1-stencil.webp" alt="Stencil del ramito de margarita y nenúfar" width="800" height="800" loading="lazy"></div>
-      <div class="card-row"><span class="cap">Flores de nacimiento: margarita y nenúfar · costillas 12 cm</span><button class="toggle" type="button">Ver stencil</button></div>
-    </div>
-    <div class="card">
-      <div class="frame"><img class="con" src="/img/fine-2.webp" alt="Ramita de olivo con dos aceitunas, línea fina" width="800" height="800" loading="lazy"><img class="sten" src="/img/fine-2-stencil.webp" alt="Stencil de la ramita de olivo" width="800" height="800" loading="lazy"></div>
-      <div class="card-row"><span class="cap">Ramita de olivo · antebrazo 10 cm</span><button class="toggle" type="button">Ver stencil</button></div>
-    </div>
-  </div>
-  <div class="also one">
-    <article><div class="img wip" aria-hidden="true"><span>?</span></div><div class="body"><h3 class="gothic">¿Otro estilo?</h3><p>Dinos cuál quieres después. Lo que piden los fundadores va primero.</p><a class="more" href="#fundador">Pide tu estilo</a></div></article>
   </div>
 </div></section>
 
