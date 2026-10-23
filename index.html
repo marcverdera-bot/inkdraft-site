@@ -130,67 +130,138 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 @media (max-width: 560px) { .dm-rounds { grid-template-columns: minmax(0, 1fr); } .dm-rounds .r + .r { border-left: 0; padding-left: 0; } }
 
 
-/* Cómo funciona: carrusel, un paso por diapositiva. Un encargo real hecho con la app; las imágenes son resultados sin retocar. */
+/* Cómo funciona: carrusel, un paso por diapositiva. Un encargo real hecho con la app; las imágenes son resultados sin retocar.
+   Cada diapositiva entra animada al verse (.on); sin JS se ve todo quieto. */
+@property --x { syntax: "<percentage>"; inherits: true; initial-value: 50%; }
 .real { color: var(--dim); font-style: italic; }
-.how { display: grid; gap: 1.2rem; }
-.slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; outline-offset: -1px; }
-.slides::-webkit-scrollbar { display: none; }
-.slide { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 1.6rem clamp(2rem, 5vw, 4.5rem); align-items: center; padding: 0.6rem 0.4rem 1.6rem; }
-.slide .st { display: grid; gap: 0.6rem; align-content: center; min-width: 0; }
-.slide .n { width: 3.2rem; height: 3.2rem; margin-bottom: 0.4rem; border: 1px solid var(--bone); border-radius: 50%; display: grid; place-items: center; font: expanded 600 0.88rem/1 var(--caps); letter-spacing: 0.04em; }
-.slide .st .label { font-size: 0.74rem; }
-.slide h3 { font-size: clamp(1.4rem, 2.6vw, 1.85rem); line-height: 1.2; }
-.slide .st p { color: var(--dim); max-width: 27rem; }
-.how-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
-.dots { display: flex; flex-wrap: wrap; gap: 0.2rem; }
-.dots button { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0 0.6rem; background: none; border: 0; color: var(--dim); font: expanded 700 0.69rem/1 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; }
-.dots button::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 1px solid currentColor; flex: none; }
-.dots button:hover, .dots button[aria-current="step"] { color: var(--bone); }
-.dots button[aria-current="step"]::before { background: currentColor; }
-.arrows { display: flex; gap: 0.6rem; flex: none; }
-.arrows button { width: 2.9rem; height: 2.9rem; border-radius: 50%; border: 1px solid var(--bone); background: transparent; color: var(--bone); display: grid; place-items: center; cursor: pointer; padding: 0; }
+.how { position: relative; background: var(--coal); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; box-shadow: 0 60px 90px -60px #000; }
+.how-bar { display: flex; align-items: center; gap: clamp(0.8rem, 3vw, 2.4rem); padding: 0.9rem clamp(1rem, 3vw, 2.2rem); border-bottom: 1px solid var(--line); }
+.segs { flex: 1; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.5rem; min-width: 0; }
+.segs button { position: relative; display: flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0 0 0.35rem; background: none; border: 0; color: var(--dim); text-align: left; font: expanded 700 0.66rem/1.2 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; opacity: 0.55; transition: opacity 0.3s, color 0.3s; }
+.segs button::before, .segs button::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; }
+.segs button::before { right: 0; background: #34312D; }
+.segs button::after { width: 0; background: var(--bone); transition: width 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.segs button:hover { opacity: 0.85; }
+.segs button[data-s="done"] { opacity: 0.8; }
+.segs button[data-s="done"]::after, .segs button[data-s="now"]::after { width: 100%; }
+.segs button[data-s="now"] { color: var(--bone); opacity: 1; }
+.segs .sn { font-family: var(--gothic); font-size: 1.15rem; font-weight: 400; letter-spacing: 0; line-height: 1; }
+.arrows { display: flex; gap: 0.5rem; flex: none; }
+.arrows button { width: 2.9rem; height: 2.9rem; border-radius: 50%; border: 1px solid var(--bone); background: transparent; color: var(--bone); display: grid; place-items: center; cursor: pointer; padding: 0; transition: background 0.2s, color 0.2s, opacity 0.2s; }
 .arrows button:hover { background: var(--bone); color: var(--black); }
-.arrows button:disabled { opacity: 0.25; cursor: default; background: transparent; color: var(--bone); }
+.arrows button:disabled { opacity: 0.2; cursor: default; background: transparent; color: var(--bone); }
 .arrows svg { width: 1.1rem; height: 1.1rem; }
-/* Lámina: resultados de la app sobre papel */
-.plate { min-width: 0; display: grid; gap: 0.6rem; }
-.plate .g { display: grid; gap: 0.6rem; }
-.plate .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.plate .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.plate figure { margin: 0; display: grid; gap: 0.4rem; min-width: 0; align-content: start; }
-.plate .pp { position: relative; background: var(--paper); aspect-ratio: 1; border-radius: 3px; overflow: hidden; box-shadow: 0 24px 48px -28px #000; }
-.plate .pp img { display: block; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
-.plate figcaption { font: 400 0.84rem/1.3 var(--text); color: var(--dim); }
-.plate .pick .pp { outline: 2px solid var(--bone); outline-offset: 3px; }
-.plate .pick figcaption { color: var(--bone); }
-.plate .pick figcaption::before { content: "✓ "; }
-.plate small { font: 400 0.84rem/1.4 var(--text); color: var(--dim); font-style: italic; }
-.ticket { background: var(--paper); color: var(--ink); border-radius: 3px; padding: clamp(1.1rem, 3vw, 1.6rem); display: grid; gap: 1rem; max-width: 28rem; box-shadow: 0 24px 48px -28px #000; }
-.ticket .q { color: var(--ink); font: italic 400 clamp(1.25rem, 2.6vw, 1.6rem)/1.3 var(--text); }
-.ticket dl { margin: 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 0.25rem 1.6rem; }
-.ticket dt { font: expanded 700 0.62rem/1.2 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-dim); }
+.slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.slides:focus-visible { outline: 1px solid var(--bone); outline-offset: -4px; }
+.slides::-webkit-scrollbar { display: none; }
+.slide { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2rem clamp(2rem, 5vw, 4.5rem); align-items: center; min-height: 31rem; padding: clamp(1.4rem, 3.5vw, 2.6rem) clamp(1.2rem, 4vw, 3.2rem); }
+.slide .st { display: grid; gap: 0.8rem; align-content: center; min-width: 0; }
+.slide .big { font: 400 clamp(5rem, 9vw, 7.5rem)/0.78 var(--gothic); color: var(--bone); }
+.slide .st .label { font-size: 0.72rem; }
+.slide h3 { font: expanded 800 clamp(1.35rem, 2.5vw, 1.85rem)/1.1 var(--caps); letter-spacing: 0.02em; text-transform: uppercase; }
+.slide .st p { color: var(--dim); max-width: 25rem; font-size: 1.05rem; }
+/* Escenario de cada paso: foco de luz y rayos como el cartel del principio */
+.stage { position: relative; isolation: isolate; min-width: 0; display: grid; place-items: center; align-content: center; gap: 1rem; min-height: 25rem; }
+.stage::before { content: ""; position: absolute; inset: -14% -6%; z-index: -2; background: radial-gradient(closest-side, rgba(236, 231, 220, 0.1), transparent 80%); }
+.stage::after { content: ""; position: absolute; left: 50%; top: 50%; width: min(130%, 44rem); aspect-ratio: 1; translate: -50% -50%; z-index: -1; border-radius: 50%; background: repeating-conic-gradient(from 3deg, var(--bone) 0deg 0.6deg, transparent 0.6deg 6deg); -webkit-mask: radial-gradient(circle, transparent 22%, #000 32%, transparent 68%); mask: radial-gradient(circle, transparent 22%, #000 32%, transparent 68%); opacity: 0.09; }
+.how .pp { position: relative; background: var(--paper); aspect-ratio: 1; border-radius: 3px; overflow: hidden; box-shadow: 0 24px 40px -22px #000; }
+.how .pp img { display: block; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+.how figure { margin: 0; display: grid; gap: 0.45rem; min-width: 0; align-content: start; }
+.how figcaption { font: 400 0.8rem/1.3 var(--text); color: var(--dim); }
+.how .pick .pp { outline: 2px solid var(--bone); outline-offset: 3px; }
+.how .pick .pp::after { content: "✓"; position: absolute; top: 0.4rem; right: 0.4rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--ink); color: var(--bone); display: grid; place-items: center; font: 700 0.75rem/1 var(--text); }
+.how .pick figcaption { color: var(--bone); }
+/* Entrada: lo marcado con .rise sube y aparece en orden (--d) */
+.how.js .rise { opacity: 0; translate: 0 18px; transition: opacity 0.55s ease, translate 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: calc(var(--d, 0) * 90ms); }
+.how.js .on .rise { opacity: 1; translate: none; }
+/* 1 · Encargo: hoja de encargo que se escribe sola */
+.ticket { width: min(100%, 25rem); background: var(--paper); color: var(--ink); border-radius: 3px; padding: 1.5rem 1.5rem 1.2rem; display: grid; gap: 1.1rem; box-shadow: 0 34px 60px -30px #000; rotate: -1.5deg; position: relative; }
+.ticket::before { content: ""; position: absolute; left: 0; right: 0; top: -5px; height: 10px; background: radial-gradient(circle at 5px 5px, var(--coal) 3.2px, transparent 3.6px) 0 0 / 14px 10px repeat-x; }
+.ticket .tk { font: expanded 700 0.62rem/1.2 var(--caps); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-dim); display: flex; justify-content: space-between; }
+.ticket .q { font: italic 400 clamp(1.45rem, 3vw, 1.9rem)/1.25 var(--text); min-height: 1.25em; }
+.ticket dl { margin: 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 0.25rem 1.8rem; padding-top: 1rem; border-top: 1px dashed var(--rule); }
+.ticket dt { font: expanded 700 0.6rem/1.2 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-dim); }
 .ticket dd { margin: 0; font-size: 1rem; grid-row: 2; }
-.ticket .att { padding-top: 0.8rem; border-top: 1px solid var(--rule); font-size: 0.9rem; color: var(--ink-dim); }
+.ticket .att { justify-self: start; display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.7rem; border: 1px solid var(--rule); border-radius: 999px; font-size: 0.85rem; color: var(--ink-dim); }
+.ticket .att svg { width: 0.95rem; height: 0.95rem; }
+.how small.note { font: italic 400 0.82rem/1.4 var(--text); color: var(--dim); }
+.typing::after { content: ""; display: inline-block; width: 2px; height: 1em; margin-left: 2px; vertical-align: -0.12em; background: currentColor; animation: caret 0.9s steps(1) infinite; }
+@keyframes caret { 50% { opacity: 0; } }
+/* 2 · Conceptos: abanico; el elegido se levanta y los demás se apagan */
+.fan { width: 100%; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(0.6rem, 1.5vw, 1rem); }
+.fan figure { rotate: var(--r, 0deg); }
+.fan figure:nth-child(1) { --r: -3deg; } .fan figure:nth-child(2) { --r: -1deg; } .fan figure:nth-child(3) { --r: 1deg; } .fan figure:nth-child(4) { --r: 3deg; }
+.fan .pp { transition: opacity 0.6s ease 1.1s, scale 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 1.1s, translate 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 1.1s; }
+.how.js .on .fan figure:not(.pick) .pp { opacity: 0.4; }
+.how.js .on .fan .pick .pp { scale: 1.07; translate: 0 -10px; box-shadow: 0 40px 50px -24px #000; }
+/* 3 · Afinar: instrucción → cuatro más, del más fiel al más libre */
+.refine { width: 100%; display: grid; gap: 1rem; }
 .ask { display: flex; align-items: center; gap: 1rem; }
-.ask figure { flex: 0 0 5.5rem; }
-.ask .say { background: var(--bone); color: var(--ink); border-radius: 16px; border-bottom-left-radius: 5px; padding: 0.6rem 0.9rem; font: italic 400 1.05rem/1.35 var(--text); max-width: 22rem; }
-.skinshot { justify-self: start; width: min(100%, 15rem); }
-.skinshot .pp { aspect-ratio: 2 / 3; background: #000; }
-.skinshot .pp img { mix-blend-mode: normal; }
+.ask figure { flex: 0 0 5rem; }
+.ask .say { position: relative; background: var(--bone); color: var(--ink); border-radius: 18px; border-bottom-left-radius: 4px; padding: 0.7rem 1rem; font: italic 400 1.08rem/1.35 var(--text); max-width: 22rem; min-height: 2.9rem; box-shadow: 0 20px 40px -24px #000; }
+.down { display: flex; align-items: center; gap: 0.7rem; color: var(--dim); font: expanded 700 0.62rem/1 var(--caps); letter-spacing: 0.06em; text-transform: uppercase; padding-left: 2.2rem; }
+.down::before { content: ""; width: 1px; height: 1.6rem; background: linear-gradient(var(--line), var(--bone)); }
+.fan.flat figure { rotate: none; }
+.scale { display: flex; align-items: center; gap: 0.8rem; color: var(--dim); font: expanded 700 0.6rem/1 var(--caps); letter-spacing: 0.06em; text-transform: uppercase; }
+.scale i { flex: 1; height: 1px; background: linear-gradient(90deg, var(--bone), #34312D); position: relative; }
+.scale i::after { content: ""; position: absolute; right: -1px; top: -3px; border: 3.5px solid transparent; border-left: 6px solid #34312D; border-right: 0; }
+/* 4 · Stencil: el stencil barre sobre el diseño; capas como en Procreate */
+.shot { position: relative; width: min(100%, 24rem); }
+.compare { --x: 50%; position: relative; aspect-ratio: 1; background: var(--paper); border-radius: 3px; overflow: hidden; box-shadow: 0 34px 60px -30px #000; touch-action: pan-x pan-y; }
+.compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+.compare .b { clip-path: inset(0 0 0 var(--x)); background: var(--paper); mix-blend-mode: normal; }
+.compare .handle { position: absolute; top: 0; bottom: 0; left: var(--x); width: 2px; translate: -1px 0; background: var(--ink); }
+.compare .handle::after { content: "‹ ›"; position: absolute; top: 50%; left: 50%; translate: -50% -50%; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--ink); color: var(--bone); display: grid; place-items: center; font: 700 0.85rem/1 var(--text); letter-spacing: 0.1em; }
+.compare .tag { position: absolute; top: 0.6rem; padding: 0.35rem 0.5rem; border-radius: 2px; background: rgba(22, 20, 18, 0.82); color: var(--bone); font: expanded 700 0.58rem/1 var(--caps); letter-spacing: 0.06em; text-transform: uppercase; }
+.compare .t1 { left: 0.6rem; } .compare .t2 { right: 0.6rem; }
+.how.js .on .compare:not(.manual) { animation: wipe 7s ease-in-out 0.8s infinite; }
+@keyframes wipe { 0%, 100% { --x: 50%; } 25% { --x: 82%; } 75% { --x: 18%; } }
+.layers { position: absolute; right: -2.6rem; bottom: -1.6rem; width: 11.5rem; background: #1F1E1C; border: 1px solid #34312D; border-radius: 10px; padding: 0.5rem; display: grid; gap: 0.3rem; box-shadow: 0 30px 50px -20px #000; }
+.layers .lh { display: flex; justify-content: space-between; padding: 0.15rem 0.3rem 0.35rem; font: 600 0.78rem/1 var(--text); color: var(--bone); }
+.layers .lh span { color: var(--dim); }
+.layers .row { display: grid; grid-template-columns: 2.1rem minmax(0, 1fr) auto; align-items: center; gap: 0.55rem; padding: 0.3rem; border-radius: 6px; font: 400 0.78rem/1 var(--text); color: var(--bone); }
+.layers .row.act { background: rgba(236, 231, 220, 0.14); }
+.layers .row img, .layers .row .white { width: 2.1rem; height: 2.1rem; border-radius: 3px; background: var(--paper); object-fit: cover; display: block; }
+.layers .row .white { background: #fff; }
+.layers .row b { width: 0.95rem; height: 0.95rem; border-radius: 3px; background: var(--bone); color: var(--ink); display: grid; place-items: center; font: 700 0.6rem/1 var(--text); }
+.how .size { justify-self: start; font: expanded 700 0.62rem/1 var(--caps); letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim); display: flex; align-items: center; gap: 0.6rem; }
+.how .size::before { content: ""; width: 2.4rem; height: 7px; border: 1px solid var(--dim); border-top: 0; background: linear-gradient(90deg, transparent calc(50% - 0.5px), var(--dim) calc(50% - 0.5px), var(--dim) calc(50% + 0.5px), transparent calc(50% + 0.5px)) 0 100% / 100% 4px no-repeat; }
+/* 5 · En la piel: en el móvil, con la respuesta de la clienta */
+.phone { position: relative; width: clamp(12rem, 22vw, 14rem); aspect-ratio: 9 / 18.5; border: 7px solid #050505; border-radius: 2.4rem; background: #000; box-shadow: 0 0 0 1px #3A3733, 0 50px 80px -30px #000; overflow: hidden; rotate: 2deg; }
+.phone::before { content: ""; position: absolute; top: 0.55rem; left: 50%; translate: -50% 0; width: 32%; height: 1.15rem; border-radius: 999px; background: #000; z-index: 2; }
+.phone > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.phone .notif { position: absolute; z-index: 3; top: 2.3rem; left: 0.45rem; right: 0.45rem; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.15rem 0.55rem; align-items: center; padding: 0.55rem 0.65rem; border-radius: 1rem; background: rgba(38, 36, 33, 0.8); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); color: var(--bone); font: 400 0.74rem/1.3 var(--text); }
+.phone .notif .av { grid-row: span 2; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: #4A453F; display: grid; place-items: center; font: 600 0.8rem/1 var(--text); }
+.phone .notif b { font-weight: 600; display: flex; justify-content: space-between; }
+.phone .notif b span { font-weight: 400; color: var(--dim); font-size: 0.66rem; }
+.how.js .phone .notif.rise { translate: 0 -24px; }
+.how.js .on .phone .notif.rise { translate: none; }
+.how .cap { max-width: 20rem; text-align: center; font: 400 0.78rem/1.4 var(--text); color: var(--dim); }
+@media (prefers-reduced-motion: reduce) {
+  .how.js .rise, .how.js .phone .notif.rise { translate: none; transition: opacity 0.3s; }
+  .fan .pp { transition: none; }
+  .how.js .on .compare:not(.manual) { animation: none; }
+  .typing::after { animation: none; }
+}
 @media (max-width: 900px) {
-  .slide { grid-template-columns: minmax(0, 1fr); align-items: start; padding-top: 0.2rem; }
-  .slide .st { grid-template-columns: auto minmax(0, 1fr); column-gap: 1rem; align-items: center; }
-  .slide .n { grid-row: span 2; margin: 0; width: 2.8rem; height: 2.8rem; }
-  .slide .st p { grid-column: 1 / -1; max-width: 36rem; }
+  .slide { grid-template-columns: minmax(0, 1fr); align-items: start; align-content: start; min-height: 0; gap: 1.6rem; }
+  .slide .st { grid-template-columns: auto minmax(0, 1fr); gap: 0.35rem 1rem; align-items: end; }
+  .slide .big { grid-row: span 2; font-size: 4.6rem; padding-right: 0.2rem; }
+  .slide .st p { grid-column: 1 / -1; max-width: 36rem; margin-top: 0.4rem; }
+  .stage { min-height: 0; padding-block: 0.5rem 1rem; align-content: start; }
+  .how .size { margin-top: 1.6rem; }
+  .segs .dl { display: none; }
+  .segs button { justify-content: center; }
+  .layers { right: -0.6rem; bottom: -1.2rem; width: 10rem; }
 }
-@media (max-width: 760px) {
-  .plate .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .skinshot { justify-self: center; width: min(100%, 14rem); }
-}
-@media (max-width: 960px) {
-  .dots { gap: 0; }
-  .dots .dl { display: none; }
-  .dots button { padding: 0 0.55rem; }
+@media (max-width: 560px) {
+  .fan { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fan figure { rotate: none; }
+  .fan { row-gap: 1.1rem; }
+  .how.js .on .fan .pick .pp { scale: 1.03; translate: none; }
+  .shot { width: calc(100% - 1.6rem); justify-self: start; }
+  .ask figure { flex-basis: 4.2rem; }
+  .ticket { rotate: none; }
 }
 /* Blackwork: galería principal */
 .style-name { font: 400 clamp(3rem, 8vw, 5rem)/0.9 var(--gothic); text-transform: none; letter-spacing: 0; }
@@ -344,19 +415,19 @@ footer .brand img { width: 3rem; height: 3rem; }
 <section><div class="wrap">
   <div class="head"><p class="label">How it works</p><h2>Five steps. You decide at every one.</h2><p class="real">A real brief, made with Inkdraft. Every image comes straight out of the app, untouched.</p></div>
   <div class="how" role="region" aria-roledescription="carrusel" aria-label="How it works, step by step">
+    <div class="how-bar"><div class="segs" role="group" aria-label="Steps"><button type="button" aria-label="Step 1: Brief"><span class="sn">1</span><span class="dl">Brief</span></button><button type="button" aria-label="Step 2: Concepts"><span class="sn">2</span><span class="dl">Concepts</span></button><button type="button" aria-label="Step 3: Refine"><span class="sn">3</span><span class="dl">Refine</span></button><button type="button" aria-label="Step 4: Stencil"><span class="sn">4</span><span class="dl">Stencil</span></button><button type="button" aria-label="Step 5: On skin"><span class="sn">5</span><span class="dl">On skin</span></button></div><div class="arrows"><button type="button" class="prev" aria-label="Previous step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="next" aria-label="Next step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
     <div class="slides" tabindex="0">
-      <div class="slide" role="group" aria-roledescription="step" aria-label="1 of 5"><div class="st"><span class="n">1</span><span class="label">Step 1 · Brief</span><h3>Describe the request</h3><p>Write it the way your client said it: subject, placement, size and style. Add their references or a photo of the placement if you have them. References are read as taste, never copied.</p></div>
-        <div class="plate"><div class="ticket"><p class="q">“moth with skull”</p><dl><dt>Placement</dt><dd>Forearm</dd><dt>Size</dt><dd>15 cm</dd><dt>Style</dt><dd>Blackwork</dd></dl><p class="att">+ 1 client reference</p></div><small>Typed in a hurry, just like a real brief.</small></div></div>
-      <div class="slide" role="group" aria-roledescription="step" aria-label="2 of 5"><div class="st"><span class="n">2</span><span class="label">Step 2 · Concepts</span><h3>Pick by eye</h3><p>Four different concepts, each one drawn. You choose by looking, not by reading.</p></div>
-        <div class="plate"><div class="g g4"><figure><div class="pp"><img src="/img/pol-concepto-1.webp" alt="Death's-head hawkmoth seen from the front, a skull on its thorax and black-edged wings" width="480" height="480" loading="lazy"></div><figcaption>Death's-head hawkmoth</figcaption></figure><figure><div class="pp"><img src="/img/pol-concepto-2.webp" alt="The hawkmoth resting on a lit, dripping candle" width="480" height="480" loading="lazy"></div><figcaption>Moth and candle</figcaption></figure><figure class="pick"><div class="pp"><img src="/img/pol-concepto-3.webp" alt="The hawkmoth over a black eclipse with a crown of rays" width="480" height="480" loading="lazy"></div><figcaption>Eclipse moth</figcaption></figure><figure><div class="pp"><img src="/img/pol-concepto-4.webp" alt="The hawkmoth with wings made of quartz crystals" width="480" height="480" loading="lazy"></div><figcaption>Crystal wings</figcaption></figure></div></div></div>
-      <div class="slide" role="group" aria-roledescription="step" aria-label="3 of 5"><div class="st"><span class="n">3</span><span class="label">Step 3 · Refine</span><h3>Refine it in your words</h3><p>Write what you'd change in the one you picked and get four more, from closest to freest. Once per brief.</p></div>
-        <div class="plate"><div class="ask"><figure><div class="pp"><img src="/img/pol-concepto-3.webp" alt="The chosen concept: the eclipse moth" width="480" height="480" loading="lazy"></div></figure><p class="say">“No sun, just the moth. And upright.”</p></div><div class="g g4"><figure class="pick"><div class="pp"><img src="/img/pol-concepto-1.webp" alt="The death's-head hawkmoth alone, from the front and upright" width="480" height="480" loading="lazy"></div><figcaption>Death's-head hawkmoth</figcaption></figure><figure><div class="pp"><img src="/img/pol-var-cercana.webp" alt="The hawkmoth turned, one wing more open" width="480" height="480" loading="lazy"></div></figure><figure><div class="pp"><img src="/img/pol-var-media.webp" alt="The hawkmoth on a diagonal, its abdomen curved" width="480" height="480" loading="lazy"></div></figure><figure><div class="pp"><img src="/img/pol-var-atrevida.webp" alt="The hawkmoth in profile, on a diagonal" width="480" height="480" loading="lazy"></div></figure></div></div></div>
-      <div class="slide" role="group" aria-roledescription="step" aria-label="4 of 5"><div class="st"><span class="n">4</span><span class="label">Step 4 · Stencil</span><h3>Take the stencil</h3><p>Single weight, true to the drawing and at real size. Open it in Procreate with the design and the stencil as layers.</p></div>
-        <div class="plate"><div class="g g2"><figure><div class="pp"><img src="/img/pol-diseno.webp" alt="The chosen design, shaded" width="800" height="800" loading="lazy"></div><figcaption>Design</figcaption></figure><figure><div class="pp"><img src="/img/pol-stencil.webp" alt="Stencil of the skull moth: outlines only, one line weight" width="800" height="800" loading="lazy"></div><figcaption>Stencil</figcaption></figure></div></div></div>
-      <div class="slide" role="group" aria-roledescription="step" aria-label="5 of 5"><div class="st"><span class="n">5</span><span class="label">Step 5 · On skin</span><h3>Show your client</h3><p>Upload a photo of the placement, position the design with your fingers and Inkdraft makes it look real. Your client sees it before the appointment.</p></div>
-        <div class="plate"><figure class="skinshot"><div class="pp"><img src="/img/pol-piel.webp" alt="The skull moth tattooed on a forearm, preview" width="720" height="1080" loading="lazy"></div><figcaption>Sample forearm generated with AI. In the studio, it's your client's photo.</figcaption></figure></div></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="1 of 5"><div class="st"><span class="big rise" aria-hidden="true">1</span><span class="label rise" style="--d:1">Step 1 of 5 · Brief</span><h3 class="rise" style="--d:2">Describe the request</h3><p class="rise" style="--d:3">Write it the way your client said it: subject, placement, size and style. Add their references or a photo of the placement if you have them. References are read as taste, never copied.</p></div>
+        <div class="stage"><div class="ticket rise" style="--d:1"><p class="tk"><span>New brief</span><span>Blackwork</span></p><p class="q" data-type>“moth with skull”</p><dl><dt>Placement</dt><dd>Forearm</dd><dt>Size</dt><dd>15 cm</dd><dt>Style</dt><dd>Blackwork</dd></dl><p class="att"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 11.5l-8 8a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L9.7 17.2a1.7 1.7 0 0 1-2.4-2.4L15 7"/></svg>1 client reference</p></div><small class="note rise" style="--d:3">Typed in a hurry, just like a real brief.</small></div></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="2 of 5"><div class="st"><span class="big rise" aria-hidden="true">2</span><span class="label rise" style="--d:1">Step 2 of 5 · Concepts</span><h3 class="rise" style="--d:2">Pick by eye</h3><p class="rise" style="--d:3">Four different concepts, each one drawn. You choose by looking, not by reading.</p></div>
+        <div class="stage"><div class="fan"><figure class="rise" style="--d:1"><div class="pp"><img src="/img/pol-concepto-1.webp" alt="Death's-head hawkmoth seen from the front, a skull on its thorax and black-edged wings" width="480" height="480" loading="lazy"></div><figcaption>Death's-head hawkmoth</figcaption></figure><figure class="rise" style="--d:2"><div class="pp"><img src="/img/pol-concepto-2.webp" alt="The hawkmoth resting on a lit, dripping candle" width="480" height="480" loading="lazy"></div><figcaption>Moth and candle</figcaption></figure><figure class="rise pick" style="--d:3"><div class="pp"><img src="/img/pol-concepto-3.webp" alt="The hawkmoth over a black eclipse with a crown of rays" width="480" height="480" loading="lazy"></div><figcaption>Eclipse moth</figcaption></figure><figure class="rise" style="--d:4"><div class="pp"><img src="/img/pol-concepto-4.webp" alt="The hawkmoth with wings made of quartz crystals" width="480" height="480" loading="lazy"></div><figcaption>Crystal wings</figcaption></figure></div></div></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="3 of 5"><div class="st"><span class="big rise" aria-hidden="true">3</span><span class="label rise" style="--d:1">Step 3 of 5 · Refine</span><h3 class="rise" style="--d:2">Refine it in your words</h3><p class="rise" style="--d:3">Write what you'd change in the one you picked and get four more, from closest to freest. Once per brief.</p></div>
+        <div class="stage"><div class="refine"><div class="ask rise" style="--d:1"><figure class="pick"><div class="pp"><img src="/img/pol-concepto-3.webp" alt="The chosen concept: the eclipse moth" width="480" height="480" loading="lazy"></div></figure><p class="say" data-type>“No sun, just the moth. And upright.”</p></div><p class="down rise" style="--d:5">Four more concepts</p><div class="fan flat"><figure class="rise pick" style="--d:6"><div class="pp"><img src="/img/pol-concepto-1.webp" alt="The death's-head hawkmoth alone, from the front and upright" width="480" height="480" loading="lazy"></div><figcaption>Death's-head hawkmoth</figcaption></figure><figure class="rise" style="--d:7"><div class="pp"><img src="/img/pol-var-cercana.webp" alt="The hawkmoth turned, one wing more open" width="480" height="480" loading="lazy"></div></figure><figure class="rise" style="--d:8"><div class="pp"><img src="/img/pol-var-media.webp" alt="The hawkmoth on a diagonal, its abdomen curved" width="480" height="480" loading="lazy"></div></figure><figure class="rise" style="--d:9"><div class="pp"><img src="/img/pol-var-atrevida.webp" alt="The hawkmoth in profile, on a diagonal" width="480" height="480" loading="lazy"></div></figure></div><p class="scale rise" style="--d:10"><span>Closest</span><i></i><span>Freest</span></p></div></div></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="4 of 5"><div class="st"><span class="big rise" aria-hidden="true">4</span><span class="label rise" style="--d:1">Step 4 of 5 · Stencil</span><h3 class="rise" style="--d:2">Take the stencil</h3><p class="rise" style="--d:3">Single weight, true to the drawing and at real size. Open it in Procreate with the design and the stencil as layers.</p></div>
+        <div class="stage"><div class="shot rise" style="--d:1"><div class="compare"><img class="a" src="/img/pol-diseno.webp" alt="The chosen design, shaded" width="800" height="800" loading="lazy"><img class="b" src="/img/pol-stencil.webp" alt="Stencil of the skull moth: outlines only, one line weight" width="800" height="800" loading="lazy"><span class="handle" aria-hidden="true"></span><span class="tag t1">Design</span><span class="tag t2">Stencil</span></div><div class="layers rise" style="--d:5" role="img" aria-label="Layers for Procreate: stencil, design and background"><p class="lh">Layers<span>+</span></p><div class="row act"><img src="/img/pol-stencil.webp" alt="" width="800" height="800" loading="lazy"><span>Stencil</span><b>✓</b></div><div class="row"><img src="/img/pol-diseno.webp" alt="" width="800" height="800" loading="lazy"><span>Design</span><b>✓</b></div><div class="row"><span class="white"></span><span>Background</span><b>✓</b></div></div></div><p class="size rise" style="--d:7">Real size · 15 cm</p></div></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="5 of 5"><div class="st"><span class="big rise" aria-hidden="true">5</span><span class="label rise" style="--d:1">Step 5 of 5 · On skin</span><h3 class="rise" style="--d:2">Show your client</h3><p class="rise" style="--d:3">Upload a photo of the placement, position the design with your fingers and Inkdraft makes it look real. Your client sees it before the appointment.</p></div>
+        <div class="stage"><div class="phone rise" style="--d:1"><img src="/img/pol-piel.webp" alt="The skull moth tattooed on a forearm, preview" width="720" height="1080" loading="lazy"><div class="notif rise" style="--d:8"><span class="av">L</span><b>Laura <span>now</span></b><span>That one! When can you fit me in?</span></div></div><p class="cap rise" style="--d:4">Sample forearm generated with AI. In the studio, it's your client's photo.</p></div></div>
     </div>
-    <div class="how-nav"><div class="dots" role="group" aria-label="Steps"><button type="button" aria-label="Step 1: Brief"><span class="dl">1 Brief</span></button><button type="button" aria-label="Step 2: Concepts"><span class="dl">2 Concepts</span></button><button type="button" aria-label="Step 3: Refine"><span class="dl">3 Refine</span></button><button type="button" aria-label="Step 4: Stencil"><span class="dl">4 Stencil</span></button><button type="button" aria-label="Step 5: On skin"><span class="dl">5 On skin</span></button></div><div class="arrows"><button type="button" class="prev" aria-label="Previous step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="next" aria-label="Next step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
   </div>
 </div></section>
 
@@ -535,12 +606,14 @@ join.addEventListener("submit", async (e) => {
 </script>
 
 <script>
-/* Cómo funciona: flechas, puntos y teclado sobre el carrusel (el deslizado lo hace el navegador con scroll-snap) */
+/* Cómo funciona: barra de pasos, flechas y teclado sobre el carrusel (el deslizado lo hace el navegador con scroll-snap).
+   La diapositiva visible lleva .on y entra animada; el encargo y la instrucción se escriben solos. */
 (function () {
   document.querySelectorAll('.how').forEach(function (how) {
-    var track = how.querySelector('.slides'), slides = track.children, dots = how.querySelectorAll('.dots button');
-    var prev = how.querySelector('.prev'), next = how.querySelector('.next'), cur = 0, want = null;
+    var track = how.querySelector('.slides'), slides = track.children, segs = how.querySelectorAll('.segs button');
+    var prev = how.querySelector('.prev'), next = how.querySelector('.next'), cur = 0, want = null, seen = false, shown = -1, timers = [];
     var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    how.classList.add('js');
     function at() { return want === null ? cur : want; }
     function go(i) {
       i = Math.max(0, Math.min(slides.length - 1, i));
@@ -548,17 +621,39 @@ join.addEventListener("submit", async (e) => {
       track.scrollTo({ left: i * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' });
       sync();
     }
+    function type(el, delay) {
+      var full = el.dataset.full || (el.dataset.full = el.textContent);
+      if (reduce) { el.textContent = full; return; }
+      el.textContent = ''; el.classList.add('typing');
+      var n = 0;
+      timers.push(setTimeout(function step() {
+        el.textContent = full.slice(0, ++n);
+        if (n < full.length) timers.push(setTimeout(step, 38 + Math.random() * 50));
+        else timers.push(setTimeout(function () { el.classList.remove('typing'); }, 1400));
+      }, delay));
+    }
+    function show(i) {
+      if (i === shown || !seen) return;
+      shown = i;
+      timers.forEach(clearTimeout); timers = [];
+      for (var k = 0; k < slides.length; k++) slides[k].classList.toggle('on', k === i);
+      slides[i].querySelectorAll('[data-type]').forEach(function (el) { type(el, 450); });
+    }
     function sync() {
       cur = Math.round(track.scrollLeft / track.clientWidth);
       if (want !== null && Math.abs(track.scrollLeft - want * track.clientWidth) < 2) want = null;
       var i = at();
-      dots.forEach(function (d, k) { if (k === i) d.setAttribute('aria-current', 'step'); else d.removeAttribute('aria-current'); });
+      segs.forEach(function (d, k) {
+        d.dataset.s = k < i ? 'done' : k === i ? 'now' : 'todo';
+        if (k === i) d.setAttribute('aria-current', 'step'); else d.removeAttribute('aria-current');
+      });
       for (var k = 0; k < slides.length; k++) slides[k].setAttribute('aria-hidden', k === i ? 'false' : 'true');
       prev.disabled = i === 0; next.disabled = i === slides.length - 1;
+      if (want === null) show(cur);
     }
     track.addEventListener('scroll', sync, { passive: true });
     window.addEventListener('resize', function () { track.scrollLeft = at() * track.clientWidth; });
-    dots.forEach(function (d, k) { d.addEventListener('click', function () { go(k); }); });
+    segs.forEach(function (d, k) { d.addEventListener('click', function () { go(k); }); });
     prev.addEventListener('click', function () { go(at() - 1); });
     next.addEventListener('click', function () { go(at() + 1); });
     ['pointerdown', 'wheel'].forEach(function (ev) { track.addEventListener(ev, function () { want = null; }, { passive: true }); });
@@ -566,6 +661,22 @@ join.addEventListener("submit", async (e) => {
       if (e.key === 'ArrowRight') { e.preventDefault(); go(at() + 1); }
       if (e.key === 'ArrowLeft') { e.preventDefault(); go(at() - 1); }
     });
+    // Con ratón, el stencil sigue al cursor; con el dedo, se mueve solo (el dedo desliza el carrusel)
+    how.querySelectorAll('.compare').forEach(function (c) {
+      c.addEventListener('pointermove', function (e) {
+        if (e.pointerType !== 'mouse') return;
+        var r = c.getBoundingClientRect();
+        c.classList.add('manual');
+        c.style.setProperty('--x', Math.max(0, Math.min(100, (e.clientX - r.left) / r.width * 100)) + '%');
+      });
+      c.addEventListener('pointerleave', function () { c.classList.remove('manual'); c.style.removeProperty('--x'); });
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es, io) {
+        if (es[0].isIntersecting) { seen = true; io.disconnect(); sync(); }
+      }, { threshold: 0.35 }).observe(how);
+      setTimeout(function () { if (!seen) { seen = true; sync(); } }, 4000);
+    } else seen = true;
     sync();
   });
 })();
