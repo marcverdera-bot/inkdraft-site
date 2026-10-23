@@ -143,6 +143,8 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 .slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
 .slides:focus-visible { outline: 1px solid var(--bone); outline-offset: -4px; }
 .slides::-webkit-scrollbar { display: none; }
+/* Sin pantalla táctil (Mac con trackpad o ratón): el carrusel no se desliza solo; un gesto claramente lateral pasa de diapositiva (JS). Así el scroll vertical no lo mueve. */
+@media not (any-pointer: coarse) { .slides { overflow-x: hidden; } }
 .slide { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2rem clamp(2rem, 5vw, 4.5rem); align-items: center; min-height: 31rem; padding: clamp(1.4rem, 3.5vw, 2.6rem) clamp(1.2rem, 4vw, 3.2rem); }
 .slide .st { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 1.1rem clamp(1rem, 2vw, 1.6rem); align-content: center; min-width: 0; }
 .slide .big { font: 400 clamp(5rem, 9vw, 7.5rem)/0.78 var(--gothic); color: var(--bone); }
@@ -515,7 +517,7 @@ footer .brand img { width: 3rem; height: 3rem; }
       <div class="slide" role="group" aria-roledescription="step" aria-label="4 of 5"><div class="st"><span class="big rise" aria-hidden="true">4</span><h3 class="rise" style="--d:1">Take the stencil</h3><p class="rise" style="--d:3">Single weight, true to the drawing and at real size. Open it in Procreate with the design and the stencil as layers.</p></div>
         <div class="stage"><div class="shot rise" style="--d:1"><div class="compare"><img class="a" src="/img/af-diseno.webp" alt="The chosen design, shaded" width="800" height="800"><img class="b" src="/img/af-stencil.webp" alt="Stencil of the skull-thorax moth: outlines only, one line weight" width="800" height="800"><span class="handle" aria-hidden="true"></span><span class="tag t1">Design</span><span class="tag t2">Stencil</span></div><div class="layers rise" style="--d:5" role="img" aria-label="Layers for Procreate: stencil, design and background"><p class="lh">Layers<span>+</span></p><div class="row act"><img src="/img/af-stencil.webp" alt="" width="800" height="800"><span>Stencil</span><b>✓</b></div><div class="row"><img src="/img/af-diseno.webp" alt="" width="800" height="800"><span>Design</span><b>✓</b></div><div class="row"><span class="white"></span><span>Background</span><b>✓</b></div></div></div><p class="size rise" style="--d:7">Real size · 12 cm</p></div></div>
       <div class="slide" role="group" aria-roledescription="step" aria-label="5 of 5"><div class="st"><span class="big rise" aria-hidden="true">5</span><h3 class="rise" style="--d:1">Show your client</h3><p class="rise" style="--d:3">Upload a photo of the placement, position the design with your fingers and Inkdraft makes it look real. Your client sees it before the appointment.</p></div>
-        <div class="stage"><div class="phone rise" style="--d:1"><img src="/img/pol-piel.webp" alt="The skull moth tattooed on a forearm, preview" width="720" height="1080"><div class="notif rise" style="--d:8"><span class="av">L</span><b>Laura <span>now</span></b><span>That one! When can you fit me in?</span></div></div></div></div>
+        <div class="stage"><div class="phone rise" style="--d:1"><img src="/img/af-piel.webp" alt="The skull moth tattooed on a forearm, preview" width="720" height="1080"><div class="notif rise" style="--d:8"><span class="av">L</span><b>Laura <span>now</span></b><span>That one! When can you fit me in?</span></div></div></div></div>
     </div>
   </div>
 </div></section>
@@ -675,7 +677,16 @@ join.addEventListener("submit", async (e) => {
     segs.forEach(function (d, k) { d.addEventListener('click', function () { go(k); }); });
     prev.addEventListener('click', function () { go(at() - 1); });
     next.addEventListener('click', function () { go(at() + 1); });
-    ['pointerdown', 'wheel'].forEach(function (ev) { track.addEventListener(ev, function () { want = null; }, { passive: true }); });
+    track.addEventListener('pointerdown', function () { want = null; }, { passive: true });
+    // Trackpad: solo un gesto claramente lateral cambia de diapositiva, uno por gesto; el vertical sigue bajando la página
+    var wheelLock = 0;
+    track.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) * 1.5) return;
+      e.preventDefault();
+      if (Math.abs(e.deltaX) < 8 || Date.now() < wheelLock) { wheelLock = Math.max(wheelLock, Date.now() + 250); return; }
+      wheelLock = Date.now() + 800;
+      go(at() + (e.deltaX > 0 ? 1 : -1));
+    }, { passive: false });
     track.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowRight') { e.preventDefault(); go(at() + 1); }
       if (e.key === 'ArrowLeft') { e.preventDefault(); go(at() - 1); }
