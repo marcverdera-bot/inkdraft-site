@@ -63,6 +63,10 @@ a { color: inherit; }
 .preview { border-bottom: 1px solid var(--line); font: expanded 600 0.65rem/1.4 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; color: var(--dim); }
 .preview .wrap { padding-block: 0.5rem; }
 
+/* Barra principal fija arriba al bajar; el idioma está en el pie (el navegador ya abre la página en su idioma) */
+body > nav { position: sticky; top: 0; z-index: 50; background: rgba(10, 10, 10, 0.82); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+html { scroll-padding-top: 5rem; }
+footer .lang { margin-top: 0.4rem; }
 nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.1rem; }
 .brand { display: inline-flex; align-items: baseline; gap: 0; font: 400 1.9rem/1 var(--gothic); text-decoration: none; }
 .brand .drop { height: 0.8em; width: auto; margin: 0 0.14em -0.02em 0; flex: none; }
@@ -429,7 +433,7 @@ footer .brand img { width: 3rem; height: 3rem; }
 <body>
 <nav><div class="wrap">
   <a class="brand" href="#top"><svg class="drop" viewBox="0 0 200 270" aria-hidden="true"><path d="M100 8 C 103 70 150 150 150 214 A 50 50 0 0 1 50 214 C 50 150 97 70 100 8 Z" fill="currentColor"/></svg>Inkdraft</a>
-  <div class="navr"><a class="enter" href="https://app.inkdraft.tattoo">Entrar</a><nav class="lang" aria-label="Language"><a href="/" hreflang="en" lang="en" data-lang="en">EN</a><span aria-hidden="true">·</span><a href="/es/" hreflang="es" lang="es" data-lang="es" aria-current="page">ES</a></nav><a class="btn line" href="#fundador">Reserva tu plaza</a></div>
+  <div class="navr"><a class="enter" href="https://app.inkdraft.tattoo">Entrar</a><a class="btn line" href="#fundador">Reserva tu plaza</a></div>
 </div></nav>
 
 <header class="hero" id="top"><div class="wrap">
@@ -591,6 +595,7 @@ footer .brand img { width: 3rem; height: 3rem; }
 <footer><div class="wrap">
   <a class="brand" href="#top"><svg class="drop" viewBox="0 0 200 270" aria-hidden="true"><path d="M100 8 C 103 70 150 150 150 214 A 50 50 0 0 1 50 214 C 50 150 97 70 100 8 Z" fill="currentColor"/></svg>Inkdraft</a>
   <p>hello@inkdraft.tattoo · <a href="https://www.instagram.com/inkdraft.tattoo/" rel="me noopener" target="_blank">@inkdraft.tattoo</a></p>
+  <nav class="lang" aria-label="Language"><a href="/" hreflang="en" lang="en" data-lang="en">EN</a><span aria-hidden="true">·</span><a href="/es/" hreflang="es" lang="es" data-lang="es" aria-current="page">ES</a></nav>
 </div></footer>
 
 <script>
@@ -723,7 +728,7 @@ document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', ()
     var el = id === '#top' ? document.documentElement : document.getElementById(id.slice(1));
     if (!el) return;
     e.preventDefault();
-    var start = window.scrollY, target = id === '#top' ? 0 : el.getBoundingClientRect().top + start - 16;
+    var start = window.scrollY, target = id === '#top' ? 0 : el.getBoundingClientRect().top + start - (document.querySelector('body > nav')?.offsetHeight || 0) - 16;
     var dist = target - start, dur = Math.min(800, 450 + Math.abs(dist) * 0.06);
     if (reduce || Math.abs(dist) < 2) { window.scrollTo(0, target); }
     else {
