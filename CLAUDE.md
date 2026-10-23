@@ -79,3 +79,8 @@ Una sola dirección pública: `hello@inkdraft.tattoo`. Los dos emails del formul
 ## Barra fija e idioma al pie (23 oct 2026, Marc)
 - La barra principal (`body > nav`) queda fija arriba al bajar (sticky, con el mismo fondo que la página para que no se vea franja sobre el hero; la línea inferior solo aparece al bajar, clase `scrolled`). Los enlaces internos dejan sitio para ella (`scroll-padding-top` y el desplazamiento suave resta su alto).
 - EN · ES ya no está en la barra, solo en el pie: el navegador abre la página en su idioma (script del principio de `index.html`).
+
+
+## Formulario de fundador con los seis estilos (23 oct 2026, Marc)
+- El estilo es un desplegable (`select name="style"`) con Blackwork, Tradicional, Neotradicional, Fineline, Ornamental, Vintage Stamp y Otro (valores `blackwork`, `traditional`, `neotraditional`, `fineline`, `ornamental`, `stamp`, `otro`, los mismos ids que la app). Sustituye a los botones Blackwork / Fineline / Otro; las notas anteriores que dicen "sigue con Blackwork / Fineline / Otro" quedan sustituidas.
+- `api/fundador.js` acepta los siete valores. En Supabase, la restricción de la columna `style` hay que ampliarla a mano una vez (SQL al final de `supabase/founder_requests.sql`). Mientras no se haga, si la tabla rechaza un estilo nuevo la solicitud se guarda sin estilo y el aviso a Marc lo lleva igual.

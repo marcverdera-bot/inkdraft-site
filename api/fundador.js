@@ -11,7 +11,7 @@ const REPLY_TO = "hello@inkdraft.tattoo";
 const NOTIFY = "hello@inkdraft.tattoo";
 // Y sale de otra dirección: si saliera de hello@, Gmail lo tomaría por propio y respondería a hello@, no al tatuador.
 const NOTIFY_FROM = "Inkdraft avisos <avisos@inkdraft.tattoo>";
-const STYLES = ["blackwork", "fineline", "otro"];
+const STYLES = ["blackwork", "traditional", "neotraditional", "fineline", "ornamental", "stamp", "otro"];
 
 const TEXT = {
   es: {
@@ -34,7 +34,11 @@ async function save(row) {
   // Las claves nuevas (sb_secret_…) van solo en "apikey"; las antiguas (JWT) también en Authorization.
   const headers = { apikey: key, "content-type": "application/json", prefer: "return=minimal", ...(key.startsWith("sb_") ? {} : { authorization: `Bearer ${key}` }) };
   const res = await fetch(`${url.replace(/\/$/, "")}/rest/v1/founder_requests`, { method: "POST", headers, body: JSON.stringify(row) });
-  if (!res.ok) throw new Error(`Supabase ${res.status}: ${await res.text()}`);
+  if (res.ok) return;
+  const text = await res.text();
+  // Si la tabla aún no admite un estilo nuevo (restricción "check"), se guarda sin estilo: el aviso a Marc lo lleva igual.
+  if (row.style && /23514|check constraint/i.test(text)) return save({ ...row, style: null });
+  throw new Error(`Supabase ${res.status}: ${text}`);
 }
 
 async function send(mail) {
