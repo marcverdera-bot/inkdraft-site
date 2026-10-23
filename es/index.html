@@ -412,6 +412,9 @@ footer .brand img { width: 3rem; height: 3rem; }
 .style-mini { display: grid; gap: 0.5rem; align-content: start; min-width: 0; scroll-margin-top: 1rem; }
 .style-mini .frame { position: relative; background: var(--paper); aspect-ratio: 1; overflow: hidden; -webkit-mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 66%, transparent 100%); mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 66%, transparent 100%); }
 .style-mini .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+/* Dibujos que llenan su imagen (Fineline, Vintage Stamp): más pequeños dentro de la casilla para que respiren */
+.style-mini .frame img.air { inset: 13%; width: 74%; height: 74%; }
+.style-mini .frame img.air-s { inset: 6%; width: 88%; height: 88%; }
 .style-mini .style-name { font-size: clamp(1.5rem, 2.3vw, 2rem); }
 .style-ask { aspect-ratio: 1; display: grid; place-items: center; padding: 1rem; border: 1px dashed #4A4640; background: repeating-linear-gradient(135deg, var(--black) 0 8px, var(--coal) 8px 16px); color: var(--bone); text-decoration: none; text-align: center; font: expanded 700 0.72rem/1.4 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; transition: border-color 0.2s; }
 .style-ask:hover { border-color: var(--bone); }
@@ -500,9 +503,9 @@ footer .brand img { width: 3rem; height: 3rem; }
   </div>
   <div class="styles-more">
     <article class="style-mini" id="tradicional"><div class="frame"><img src="/img/trad-1.webp" alt="Perfil de mujer de ojos cerrados envuelto por los pétalos de una rosa roja, tradicional moderno a color" width="800" height="800" loading="lazy"></div><h2 class="style-name">Tradicional</h2></article>
-    <article class="style-mini" id="fineline"><div class="frame"><img src="/img/fine-3.webp" alt="Flor de cinco pétalos en línea fina con marcas ornamentales en su eje: puntos y rayitas arriba, hojitas negras y una estrella abajo" width="800" height="800" loading="lazy"></div><h2 class="style-name">Fineline</h2></article>
+    <article class="style-mini" id="fineline"><div class="frame"><img class="air air-s" src="/img/fine-3.webp" alt="Flor de cinco pétalos en línea fina con marcas ornamentales en su eje: puntos y rayitas arriba, hojitas negras y una estrella abajo" width="800" height="800" loading="lazy"></div><h2 class="style-name">Fineline</h2></article>
     <article class="style-mini" id="ornamental"><div class="frame"><img src="/img/orn-1.webp" alt="Signo folk de protección: rombo doble con un punto en el centro, cruz arriba, puntos a los lados y dos volutas abajo, en línea negra de un solo grosor" width="800" height="800" loading="lazy"></div><h2 class="style-name">Ornamental</h2></article>
-    <article class="style-mini" id="vintage-stamp"><div class="frame"><img src="/img/stamp-1.webp" alt="Ramo de tres tulipanes macizos en negro con hojas largas dentro de un óvalo en punta de doble línea, estilo sello antiguo" width="800" height="800" loading="lazy"></div><h2 class="style-name">Vintage Stamp</h2></article>
+    <article class="style-mini" id="vintage-stamp"><div class="frame"><img class="air" src="/img/stamp-1.webp" alt="Ramo de tres tulipanes macizos en negro con hojas largas dentro de un óvalo en punta de doble línea, estilo sello antiguo" width="800" height="800" loading="lazy"></div><h2 class="style-name">Vintage Stamp</h2></article>
     <a class="style-ask" href="#fundador"><span>+</span>Pide tu estilo</a>
   </div>
 </div></section>
