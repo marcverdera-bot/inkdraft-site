@@ -77,17 +77,11 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 /* Hero: cartel centrado */
 .hero .wrap { display: grid; justify-items: center; text-align: center; gap: 1rem; padding-block: clamp(1rem, 3vh, 2rem) clamp(3rem, 7vw, 5rem); }
 .wordmark { font: 400 clamp(3.4rem, min(12vw, 11vh), 7.5rem)/0.9 var(--gothic); }
-.burst { position: relative; width: min(28rem, 100%, 46vh); margin-block: -0.5rem; aspect-ratio: 1; display: grid; place-items: center; isolation: isolate;
-  background: radial-gradient(circle at 50% 50%, rgba(236, 231, 220, 0.22) 0%, transparent 52%); }
-.burst::before { content: ""; position: absolute; inset: 0; border-radius: 50%;
-  background: repeating-conic-gradient(from 3deg, var(--bone) 0deg 0.9deg, transparent 0.9deg 5.2deg);
-  -webkit-mask: radial-gradient(circle, transparent 26%, #000 30%, #000 44%, transparent 71%); mask: radial-gradient(circle, transparent 26%, #000 30%, #000 44%, transparent 71%); opacity: 0.85; }
-.burst::after { content: ""; position: absolute; inset: 0; border-radius: 50%;
-  background: repeating-conic-gradient(from 0deg, var(--bone) 0deg 0.5deg, transparent 0.5deg 11deg);
-  -webkit-mask: radial-gradient(circle, transparent 28%, #000 32%, transparent 64%); mask: radial-gradient(circle, transparent 28%, #000 32%, transparent 64%); opacity: 0.5; }
-/* Símbolo del producto: la polilla echa a volar desde la nota del encargo, de boceto a diseño acabado (grabado generado con IA) */
-.burst .sheet { position: relative; z-index: 1; width: 54%; aspect-ratio: 2 / 3; margin: 0; border-radius: 3px; overflow: hidden; box-shadow: 0 30px 60px -18px #000; }
-.burst .sheet img { width: 100%; height: 100%; display: block; }
+/* Símbolo del producto: la polilla echa a volar desde la nota del encargo, de boceto (izquierda) a diseño acabado (derecha).
+   Grabado generado con IA, pasado a negativo: líneas en hueso sobre fondo transparente, sin recuadro. */
+.hero-art { position: relative; isolation: isolate; width: min(100%, 60rem, 68vh); aspect-ratio: 1400 / 933; margin: -0.5rem 0 0; }
+.hero-art::before { content: ""; position: absolute; inset: -10% -6%; z-index: -1; background: radial-gradient(ellipse 50% 48% at 58% 42%, rgba(236, 231, 220, 0.09), transparent 72%); }
+.hero-art img { display: block; width: 100%; height: 100%; }
 .hero h1 { font-size: clamp(1.25rem, 3.1vw, 2rem); max-width: 30ch; }
 .hero .lede { color: var(--dim); max-width: 36rem; font-size: 1.1rem; }
 .hero .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 0.6rem; }
@@ -425,7 +419,7 @@ footer .brand img { width: 3rem; height: 3rem; }
 <header class="hero" id="top"><div class="wrap">
   <p class="label">Tattoo design for tattoo artists</p>
   <p class="wordmark" aria-hidden="true">Inkdraft</p>
-  <div class="burst"><figure class="sheet"><img src="/img/hero-polilla.webp" alt="Engraving of a skull moth taking flight from a crumpled note: sketchy pencil lines below, a finished design above" width="800" height="1200" fetchpriority="high"></figure></div>
+  <figure class="hero-art"><img src="/img/hero-polilla.webp" alt="White-on-black engraving: a skull moth takes flight from a crumpled note; sketchy on the left, a finished design on the right" width="1400" height="933" fetchpriority="high"></figure>
   <h1>From client brief to stencil, in minutes</h1>
   <p class="lede">Inkdraft turns what your client asks for into ideas, drawn concepts and a stencil ready for Procreate. You choose. You finish it.</p>
   <div class="cta">
