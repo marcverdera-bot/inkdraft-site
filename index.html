@@ -78,15 +78,36 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 .hero .wrap { display: grid; justify-items: center; text-align: center; gap: 1rem; padding-block: clamp(1rem, 3vh, 2rem) clamp(3rem, 7vw, 5rem); }
 .wordmark { font: 400 clamp(3.4rem, min(12vw, 11vh), 7.5rem)/0.9 var(--gothic); }
 .burst { position: relative; width: min(28rem, 100%, 46vh); margin-block: -0.5rem; aspect-ratio: 1; display: grid; place-items: center; isolation: isolate;
-  background: radial-gradient(ellipse 27% 45% at 50% 52%, var(--paper) 0%, var(--paper) 72%, transparent 100%), radial-gradient(circle at 50% 48%, rgba(236, 231, 220, 0.2) 0%, transparent 48%); }
+  background: radial-gradient(circle at 50% 50%, rgba(236, 231, 220, 0.22) 0%, transparent 52%); }
 .burst::before { content: ""; position: absolute; inset: 0; border-radius: 50%;
   background: repeating-conic-gradient(from 3deg, var(--bone) 0deg 0.9deg, transparent 0.9deg 5.2deg);
   -webkit-mask: radial-gradient(circle, transparent 26%, #000 30%, #000 44%, transparent 71%); mask: radial-gradient(circle, transparent 26%, #000 30%, #000 44%, transparent 71%); opacity: 0.85; }
 .burst::after { content: ""; position: absolute; inset: 0; border-radius: 50%;
   background: repeating-conic-gradient(from 0deg, var(--bone) 0deg 0.5deg, transparent 0.5deg 11deg);
   -webkit-mask: radial-gradient(circle, transparent 28%, #000 32%, transparent 64%); mask: radial-gradient(circle, transparent 28%, #000 32%, transparent 64%); opacity: 0.5; }
-.burst .sheet { position: relative; z-index: 1; width: 36%; aspect-ratio: 561 / 1128; }
-.burst .sheet img { width: 100%; height: 100%; display: block; }
+/* El proceso en una lámina: encargo → diseño → stencil. Una línea barre la hoja y lo convierte (10 s en bucle, solo CSS).
+   Las imágenes son las de la app, sin retocar. Con "reducir movimiento" se queda quieto en el diseño. */
+.burst::before { animation: m-rays 10s linear infinite; }
+.morph { position: relative; z-index: 1; width: 60%; aspect-ratio: 1; container-type: inline-size; background: var(--paper); border-radius: 3px; overflow: hidden; box-shadow: 0 30px 60px -18px #000, 0 0 0 1px rgba(22, 20, 18, 0.25); }
+.morph .ly { position: absolute; inset: 0; }
+.morph .ly img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+.morph .tag { position: absolute; z-index: 1; top: 5cqw; left: 5cqw; padding: 1.6cqw 2.4cqw; border-radius: 2px; background: var(--ink); color: var(--bone); font: expanded 700 3.6cqw/1 var(--caps); letter-spacing: 0.06em; text-transform: uppercase; }
+.morph .brief { display: grid; align-content: center; justify-items: start; gap: 4cqw; padding: 10cqw; color: var(--ink); text-align: left; animation: m-brief 10s linear infinite; }
+.morph .brief .q { font: italic 400 11cqw/1.15 var(--text); }
+.morph .brief .meta { font: expanded 700 3.8cqw/1.3 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-dim); padding-top: 4cqw; border-top: 1px dashed var(--rule); }
+.morph .design { animation: m-design 10s linear infinite; }
+.morph .sten { animation: m-sten 10s linear infinite; }
+.morph .scan { position: absolute; left: 0; right: 0; top: 0; height: 3px; margin-top: -1px; background: var(--ink); box-shadow: 0 1px 0 rgba(236, 231, 220, 0.9); animation: m-scan 10s linear infinite; }
+.morph .scan::before { content: ""; position: absolute; left: 0; right: 0; bottom: 3px; height: 26cqw; background: linear-gradient(to top, rgba(22, 20, 18, 0.2), transparent); }
+@keyframes m-brief { 0% { opacity: 0; clip-path: inset(0 0 0 0); } 4%, 24% { opacity: 1; clip-path: inset(0 0 0 0); } 32%, 100% { opacity: 1; clip-path: inset(100% 0 0 0); } }
+@keyframes m-design { 0%, 24% { clip-path: inset(0 0 100% 0); } 32%, 58% { clip-path: inset(0 0 0 0); } 66%, 100% { clip-path: inset(100% 0 0 0); } }
+@keyframes m-sten { 0%, 58% { opacity: 1; clip-path: inset(0 0 100% 0); } 66%, 92% { opacity: 1; clip-path: inset(0 0 0 0); } 97% { opacity: 0; clip-path: inset(0 0 0 0); } 100% { opacity: 0; clip-path: inset(0 0 100% 0); } }
+@keyframes m-scan { 0%, 24% { top: 0; opacity: 0; } 24.5% { opacity: 1; } 32% { top: 100%; opacity: 1; } 33%, 58% { top: 100%; opacity: 0; } 58.1% { top: 0; opacity: 0; } 58.6% { opacity: 1; } 66% { top: 100%; opacity: 1; } 67%, 100% { top: 100%; opacity: 0; } }
+@keyframes m-rays { 0%, 22%, 38%, 56%, 72%, 100% { scale: 1; } 30%, 64% { scale: 1.05; } }
+@media (prefers-reduced-motion: reduce) {
+  .burst::before, .morph .ly, .morph .scan { animation: none; }
+  .morph .brief, .morph .sten, .morph .scan { display: none; }
+}
 .hero h1 { font-size: clamp(1.25rem, 3.1vw, 2rem); max-width: 30ch; }
 .hero .lede { color: var(--dim); max-width: 36rem; font-size: 1.1rem; }
 .hero .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 0.6rem; }
@@ -424,7 +445,7 @@ footer .brand img { width: 3rem; height: 3rem; }
 <header class="hero" id="top"><div class="wrap">
   <p class="label">Tattoo design for tattoo artists</p>
   <p class="wordmark" aria-hidden="true">Inkdraft</p>
-  <div class="burst"><div class="sheet"><img src="/img/bombilla.png" alt="Engraved Victorian light bulb with a drop of ink hanging from the filament and acanthus scrolls at the base"></div></div>
+  <div class="burst"><div class="morph" role="img" aria-label="From brief to stencil: the written brief, “moth with skull”, turns into the design and the design into its stencil"><div class="ly brief"><span class="tag">Brief</span><p class="q">“moth with skull”</p><p class="meta">Forearm · 15 cm · Blackwork</p></div><div class="ly design"><img src="/img/pol-diseno.webp" alt="" width="800" height="800" fetchpriority="high"><span class="tag">Design</span></div><div class="ly sten"><img src="/img/pol-stencil.webp" alt="" width="800" height="800"><span class="tag">Stencil</span></div><span class="scan"></span></div></div>
   <h1>From client brief to stencil, in minutes</h1>
   <p class="lede">Inkdraft turns what your client asks for into ideas, drawn concepts and a stencil ready for Procreate. You choose. You finish it.</p>
   <div class="cta">
