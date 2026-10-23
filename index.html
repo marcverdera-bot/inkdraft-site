@@ -67,6 +67,12 @@ a { color: inherit; }
 .preview { border-bottom: 1px solid var(--line); font: expanded 600 0.65rem/1.4 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; color: var(--dim); }
 .preview .wrap { padding-block: 0.5rem; }
 
+/* Barra principal fija arriba al bajar; el idioma está en el pie (el navegador ya abre la página en su idioma) */
+/* Mismo fondo que la página (gradiente fijo + grano), así no se ve una franja sobre el hero; la línea de abajo solo aparece al bajar */
+body > nav { position: sticky; top: 0; z-index: 50; background: var(--grain), radial-gradient(ellipse at 50% 20%, #1A1918 0%, var(--black) 65%) fixed, var(--black); border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+body > nav.scrolled { border-bottom-color: var(--line); }
+html { scroll-padding-top: 5rem; }
+footer .lang { margin-top: 0.4rem; }
 nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.1rem; }
 .brand { display: inline-flex; align-items: baseline; gap: 0; font: 400 1.9rem/1 var(--gothic); text-decoration: none; }
 .brand .drop { height: 0.8em; width: auto; margin: 0 0.14em -0.02em 0; flex: none; }
@@ -106,14 +112,14 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 /* Problema */
 .problem blockquote { margin: 0; max-width: 52rem; font: expanded 800 clamp(1.3rem, 3vw, 2.2rem)/1.12 var(--caps); text-wrap: balance; }
 .problem blockquote span { display: block; margin-top: 0.4rem; color: var(--dim); }
-.problem .wrap { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); align-items: center; column-gap: clamp(2rem, 5vw, 4.5rem); }
+.problem .wrap { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: center; column-gap: clamp(2rem, 5vw, 4.5rem); }
 .problem .pq { display: grid; gap: 1.6rem; align-content: center; min-width: 0; }
-/* Foto de la mesa a la izquierda, fundida con el fondo como la del principio (lighten + bordes con máscara), sin recuadro */
-.desk { order: -1; justify-self: start; width: 100%; max-width: 40rem; margin: 0; mix-blend-mode: lighten;
+/* Foto de la mesa a la derecha, fundida con el fondo como la del principio (lighten + bordes con máscara), sin recuadro */
+.desk { justify-self: end; width: 100%; max-width: 40rem; margin: 0; mix-blend-mode: lighten;
   -webkit-mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent), linear-gradient(180deg, transparent, #000 10%, #000 88%, transparent); -webkit-mask-composite: source-in;
   mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent), linear-gradient(180deg, transparent, #000 10%, #000 88%, transparent); mask-composite: intersect; }
 .desk img { display: block; width: 100%; height: auto; filter: brightness(1.25) contrast(1.05); }
-@media (max-width: 900px) { .problem .wrap { grid-template-columns: minmax(0, 1fr); } .desk { order: 0; justify-self: center; } }
+@media (max-width: 900px) { .problem .wrap { grid-template-columns: minmax(0, 1fr); } .desk { justify-self: center; } }
 @media (max-width: 560px) { .also .wip { aspect-ratio: auto; width: 100%; height: 4.5rem; } }
 
 
@@ -410,6 +416,9 @@ footer .brand img { width: 3rem; height: 3rem; }
 .style-mini { display: grid; gap: 0.5rem; align-content: start; min-width: 0; scroll-margin-top: 1rem; }
 .style-mini .frame { position: relative; background: var(--paper); aspect-ratio: 1; overflow: hidden; -webkit-mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 66%, transparent 100%); mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 66%, transparent 100%); }
 .style-mini .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+/* Dibujos que llenan su imagen (Fineline, Vintage Stamp): más pequeños dentro de la casilla para que respiren */
+.style-mini .frame img.air { inset: 13%; width: 74%; height: 74%; }
+.style-mini .frame img.air-s { inset: 6%; width: 88%; height: 88%; }
 .style-mini .style-name { font-size: clamp(1.5rem, 2.3vw, 2rem); }
 .style-ask { aspect-ratio: 1; display: grid; place-items: center; padding: 1rem; border: 1px dashed #4A4640; background: repeating-linear-gradient(135deg, var(--black) 0 8px, var(--coal) 8px 16px); color: var(--bone); text-decoration: none; text-align: center; font: expanded 700 0.72rem/1.4 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; transition: border-color 0.2s; }
 .style-ask:hover { border-color: var(--bone); }
@@ -434,7 +443,7 @@ footer .brand img { width: 3rem; height: 3rem; }
 <body>
 <nav><div class="wrap">
   <a class="brand" href="#top"><svg class="drop" viewBox="0 0 200 270" aria-hidden="true"><path d="M100 8 C 103 70 150 150 150 214 A 50 50 0 0 1 50 214 C 50 150 97 70 100 8 Z" fill="currentColor"/></svg>Inkdraft</a>
-  <div class="navr"><a class="enter" href="https://app.inkdraft.tattoo">Log in</a><nav class="lang" aria-label="Language"><a href="/" hreflang="en" lang="en" data-lang="en" aria-current="page">EN</a><span aria-hidden="true">·</span><a href="/es/" hreflang="es" lang="es" data-lang="es">ES</a></nav><a class="btn line" href="#founder">Claim your seat</a></div>
+  <div class="navr"><a class="enter" href="https://app.inkdraft.tattoo">Log in</a><a class="btn line" href="#founder">Claim your seat</a></div>
 </div></nav>
 
 <header class="hero" id="top"><div class="wrap">
@@ -499,9 +508,9 @@ footer .brand img { width: 3rem; height: 3rem; }
   </div>
   <div class="styles-more">
     <article class="style-mini" id="traditional"><div class="frame"><img src="/img/trad-1.webp" alt="Profile of a woman with closed eyes wrapped in the petals of a red rose, modern traditional in color" width="800" height="800" loading="lazy"></div><h2 class="style-name">Traditional</h2></article>
-    <article class="style-mini" id="fineline"><div class="frame"><img src="/img/fine-3.webp" alt="Five-petal flower in fine line with ornamental marks along its axis: dots and dashes above, small black leaves and a star below" width="800" height="800" loading="lazy"></div><h2 class="style-name">Fine line</h2></article>
+    <article class="style-mini" id="fineline"><div class="frame"><img class="air air-s" src="/img/fine-3.webp" alt="Five-petal flower in fine line with ornamental marks along its axis: dots and dashes above, small black leaves and a star below" width="800" height="800" loading="lazy"></div><h2 class="style-name">Fine line</h2></article>
     <article class="style-mini" id="ornamental"><div class="frame"><img src="/img/orn-1.webp" alt="Folk protection sign: a double diamond with a dot in the center, a cross on top, dots at the sides and two scrolls below, in single-weight black line" width="800" height="800" loading="lazy"></div><h2 class="style-name">Ornamental</h2></article>
-    <article class="style-mini" id="vintage-stamp"><div class="frame"><img src="/img/stamp-1.webp" alt="Bouquet of three solid black tulips with long leaves inside a pointed double-line oval, vintage stamp style" width="800" height="800" loading="lazy"></div><h2 class="style-name">Vintage Stamp</h2></article>
+    <article class="style-mini" id="vintage-stamp"><div class="frame"><img class="air" src="/img/stamp-1.webp" alt="Bouquet of three solid black tulips with long leaves inside a pointed double-line oval, vintage stamp style" width="800" height="800" loading="lazy"></div><h2 class="style-name">Vintage Stamp</h2></article>
     <a class="style-ask" href="#founder"><span>+</span>Ask for your style</a>
   </div>
 </div></section>
@@ -596,6 +605,7 @@ footer .brand img { width: 3rem; height: 3rem; }
 <footer><div class="wrap">
   <a class="brand" href="#top"><svg class="drop" viewBox="0 0 200 270" aria-hidden="true"><path d="M100 8 C 103 70 150 150 150 214 A 50 50 0 0 1 50 214 C 50 150 97 70 100 8 Z" fill="currentColor"/></svg>Inkdraft</a>
   <p>hello@inkdraft.tattoo · <a href="https://www.instagram.com/inkdraft.tattoo/" rel="me noopener" target="_blank">@inkdraft.tattoo</a></p>
+  <nav class="lang" aria-label="Language"><a href="/" hreflang="en" lang="en" data-lang="en" aria-current="page">EN</a><span aria-hidden="true">·</span><a href="/es/" hreflang="es" lang="es" data-lang="es">ES</a></nav>
 </div></footer>
 
 <script>
@@ -715,6 +725,9 @@ join.addEventListener("submit", async (e) => {
 })();
 </script>
 <script>
+(function () { var n = document.querySelector('body > nav'); if (!n) return; var f = function () { n.classList.toggle('scrolled', window.scrollY > 8); }; window.addEventListener('scroll', f, { passive: true }); f(); })();
+</script>
+<script>
 document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', () => { try { sessionStorage.setItem('lang', a.dataset.lang); } catch (e) {} }));
 </script>
 <script>
@@ -728,7 +741,7 @@ document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', ()
     var el = id === '#top' ? document.documentElement : document.getElementById(id.slice(1));
     if (!el) return;
     e.preventDefault();
-    var start = window.scrollY, target = id === '#top' ? 0 : el.getBoundingClientRect().top + start - 16;
+    var start = window.scrollY, target = id === '#top' ? 0 : el.getBoundingClientRect().top + start - (document.querySelector('body > nav')?.offsetHeight || 0) - 16;
     var dist = target - start, dur = Math.min(800, 450 + Math.abs(dist) * 0.06);
     if (reduce || Math.abs(dist) < 2) { window.scrollTo(0, target); }
     else {
