@@ -136,16 +136,20 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 .real { color: var(--dim); font-style: italic; }
 .how { position: relative; background: var(--coal); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; box-shadow: 0 60px 90px -60px #000; }
 .how-bar { display: flex; align-items: center; gap: clamp(0.8rem, 3vw, 2.4rem); padding: 0.9rem clamp(1rem, 3vw, 2.2rem); border-bottom: 1px solid var(--line); }
-.segs { flex: 1; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.5rem; min-width: 0; }
-.segs button { position: relative; display: flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0 0 0.35rem; background: none; border: 0; color: var(--dim); text-align: left; font: expanded 700 0.66rem/1.2 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; opacity: 0.55; transition: opacity 0.3s, color 0.3s; }
-.segs button::before, .segs button::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; }
-.segs button::before { right: 0; background: #34312D; }
-.segs button::after { width: 0; background: var(--bone); transition: width 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
-.segs button:hover { opacity: 0.85; }
-.segs button[data-s="done"] { opacity: 0.8; }
-.segs button[data-s="done"]::after, .segs button[data-s="now"]::after { width: 100%; }
-.segs button[data-s="now"] { color: var(--bone); opacity: 1; }
-.segs .sn { font-family: var(--gothic); font-size: 1.15rem; font-weight: 400; letter-spacing: 0; line-height: 1; }
+.segs { flex: 1; display: flex; align-items: center; min-width: 0; }
+.segs button { flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 0.6rem; min-height: 44px; padding: 0; background: none; border: 0; color: var(--dim); text-align: left; font: expanded 700 0.66rem/1.2 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; transition: color 0.3s; }
+.segs button:last-child { flex: none; padding-right: 0.4rem; }
+.segs .sn { flex: none; width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 1px solid #4A4640; background: var(--coal); display: grid; place-items: center; font: 400 1.15rem/1 var(--gothic); letter-spacing: 0; color: var(--dim); transition: background 0.35s, color 0.35s, border-color 0.35s, box-shadow 0.35s; }
+.segs .dl { flex: none; white-space: nowrap; }
+.segs .ln { flex: 1; min-width: 0.8rem; height: 1px; margin-right: 0.6rem; background: #34312D; position: relative; overflow: hidden; }
+.segs .ln::after { content: ""; position: absolute; inset: 0; background: var(--bone); transform: scaleX(0); transform-origin: left; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.segs button:hover { color: var(--bone); }
+.segs button:hover .sn { border-color: var(--bone); color: var(--bone); }
+.segs button[data-s="done"] { color: var(--bone); }
+.segs button[data-s="done"] .sn { border-color: var(--bone); color: var(--bone); }
+.segs button[data-s="done"] .ln::after { transform: none; }
+.segs button[data-s="now"] { color: var(--bone); }
+.segs button[data-s="now"] .sn { background: var(--bone); border-color: var(--bone); color: var(--ink); box-shadow: 0 0 0 5px rgba(236, 231, 220, 0.12); }
 .arrows { display: flex; gap: 0.5rem; flex: none; }
 .arrows button { width: 2.9rem; height: 2.9rem; border-radius: 50%; border: 1px solid var(--bone); background: transparent; color: var(--bone); display: grid; place-items: center; cursor: pointer; padding: 0; transition: background 0.2s, color 0.2s, opacity 0.2s; }
 .arrows button:hover { background: var(--bone); color: var(--black); }
@@ -155,11 +159,10 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 .slides:focus-visible { outline: 1px solid var(--bone); outline-offset: -4px; }
 .slides::-webkit-scrollbar { display: none; }
 .slide { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2rem clamp(2rem, 5vw, 4.5rem); align-items: center; min-height: 31rem; padding: clamp(1.4rem, 3.5vw, 2.6rem) clamp(1.2rem, 4vw, 3.2rem); }
-.slide .st { display: grid; gap: 0.8rem; align-content: center; min-width: 0; }
+.slide .st { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 1.1rem clamp(1rem, 2vw, 1.6rem); align-content: center; min-width: 0; }
 .slide .big { font: 400 clamp(5rem, 9vw, 7.5rem)/0.78 var(--gothic); color: var(--bone); }
-.slide .st .label { font-size: 0.72rem; }
 .slide h3 { font: expanded 800 clamp(1.35rem, 2.5vw, 1.85rem)/1.1 var(--caps); letter-spacing: 0.02em; text-transform: uppercase; }
-.slide .st p { color: var(--dim); max-width: 25rem; font-size: 1.05rem; }
+.slide .st p { grid-column: 1 / -1; color: var(--dim); max-width: 26rem; font-size: 1.05rem; }
 /* Escenario de cada paso: foco de luz y rayos como el cartel del principio */
 .stage { position: relative; isolation: isolate; min-width: 0; display: grid; place-items: center; align-content: center; gap: 1rem; min-height: 25rem; }
 .stage::before { content: ""; position: absolute; inset: -14% -6%; z-index: -2; background: radial-gradient(closest-side, rgba(236, 231, 220, 0.1), transparent 80%); }
@@ -174,16 +177,23 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 /* Entrada: lo marcado con .rise sube y aparece en orden (--d) */
 .how.js .rise { opacity: 0; translate: 0 18px; transition: opacity 0.55s ease, translate 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: calc(var(--d, 0) * 90ms); }
 .how.js .on .rise { opacity: 1; translate: none; }
-/* 1 · Encargo: hoja de encargo que se escribe sola */
-.ticket { width: min(100%, 25rem); background: var(--paper); color: var(--ink); border-radius: 3px; padding: 1.5rem 1.5rem 1.2rem; display: grid; gap: 1.1rem; box-shadow: 0 34px 60px -30px #000; rotate: -1.5deg; position: relative; }
-.ticket::before { content: ""; position: absolute; left: 0; right: 0; top: -5px; height: 10px; background: radial-gradient(circle at 5px 5px, var(--coal) 3.2px, transparent 3.6px) 0 0 / 14px 10px repeat-x; }
-.ticket .tk { font: expanded 700 0.62rem/1.2 var(--caps); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-dim); display: flex; justify-content: space-between; }
-.ticket .q { font: italic 400 clamp(1.45rem, 3vw, 1.9rem)/1.25 var(--text); min-height: 1.25em; }
-.ticket dl { margin: 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 0.25rem 1.8rem; padding-top: 1rem; border-top: 1px dashed var(--rule); }
-.ticket dt { font: expanded 700 0.6rem/1.2 var(--caps); letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-dim); }
-.ticket dd { margin: 0; font-size: 1rem; grid-row: 2; }
-.ticket .att { justify-self: start; display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.7rem; border: 1px solid var(--rule); border-radius: 999px; font-size: 0.85rem; color: var(--ink-dim); }
-.ticket .att svg { width: 0.95rem; height: 0.95rem; }
+/* 1 · Encargo: el formulario de la app, con sus campos y su aspecto; el encargo se escribe solo */
+.af { width: min(100%, 31rem); display: grid; gap: 0.9rem; background: #161514; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem; box-shadow: 0 40px 70px -30px #000; font-size: 0.92rem; line-height: 1.4; text-align: left; }
+.af .f { display: grid; gap: 0.35rem; min-width: 0; }
+.af .l { font: expanded 700 0.6rem/1.2 var(--caps); letter-spacing: 0.04em; text-transform: uppercase; color: var(--dim); }
+.af .box { background: var(--black); border: 1px solid var(--line); border-radius: 8px; padding: 0.55rem 0.75rem; color: var(--bone); min-width: 0; }
+.af .sel { padding-right: 2.2rem; background: var(--black) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23B4AFA5' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat right 0.8rem center / 11px 7px; }
+.af .sty { display: grid; gap: 1px; }
+.af .sty b { font: 400 1.3rem/1.1 var(--gothic); }
+.af .sty span { color: var(--dim); font-size: 0.78rem; }
+.af .main { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 0.8rem; }
+.af .ta { min-height: 6.4rem; font-size: 1rem; outline: 2px solid var(--dim); outline-offset: 1px; }
+.af .side { display: grid; gap: 0.8rem; align-content: start; }
+.af .att { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.af .chip { display: inline-flex; align-items: center; gap: 0.45rem; height: 2.15rem; padding: 0 0.85rem; border: 1px solid var(--line); border-radius: 999px; font-size: 0.8rem; white-space: nowrap; }
+.af .chip svg { width: 1rem; height: 1rem; color: var(--dim); flex: none; }
+.af .chip em { font-style: normal; color: var(--dim); font-size: 0.72rem; }
+.af .go { justify-self: start; background: var(--bone); color: var(--ink); border-radius: 8px; padding: 0.75rem 1.05rem; font: expanded 700 0.66rem/1 var(--caps); letter-spacing: 0.04em; text-transform: uppercase; }
 .how small.note { font: italic 400 0.82rem/1.4 var(--text); color: var(--dim); }
 .typing::after { content: ""; display: inline-block; width: 2px; height: 1em; margin-left: 2px; vertical-align: -0.12em; background: currentColor; animation: caret 0.9s steps(1) infinite; }
 @keyframes caret { 50% { opacity: 0; } }
@@ -236,7 +246,6 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 .phone .notif b span { font-weight: 400; color: var(--dim); font-size: 0.66rem; }
 .how.js .phone .notif.rise { translate: 0 -24px; }
 .how.js .on .phone .notif.rise { translate: none; }
-.how .cap { max-width: 20rem; text-align: center; font: 400 0.78rem/1.4 var(--text); color: var(--dim); }
 @media (prefers-reduced-motion: reduce) {
   .how.js .rise, .how.js .phone .notif.rise { translate: none; transition: opacity 0.3s; }
   .fan .pp { transition: none; }
@@ -245,13 +254,12 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 }
 @media (max-width: 900px) {
   .slide { grid-template-columns: minmax(0, 1fr); align-items: start; align-content: start; min-height: 0; gap: 1.6rem; }
-  .slide .st { grid-template-columns: auto minmax(0, 1fr); gap: 0.35rem 1rem; align-items: end; }
-  .slide .big { grid-row: span 2; font-size: 4.6rem; padding-right: 0.2rem; }
-  .slide .st p { grid-column: 1 / -1; max-width: 36rem; margin-top: 0.4rem; }
+  .slide .st { gap: 0.9rem 1rem; }
+  .slide .big { font-size: 4.2rem; }
+  .slide .st p { max-width: 36rem; }
   .stage { min-height: 0; padding-block: 0.5rem 1rem; align-content: start; }
   .how .size { margin-top: 1.6rem; }
   .segs .dl { display: none; }
-  .segs button { justify-content: center; }
   .layers { right: -0.6rem; bottom: -1.2rem; width: 10rem; }
 }
 @media (max-width: 560px) {
@@ -261,7 +269,13 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
   .how.js .on .fan .pick .pp { scale: 1.03; translate: none; }
   .shot { width: calc(100% - 1.6rem); justify-self: start; }
   .ask figure { flex-basis: 4.2rem; }
-  .ticket { rotate: none; }
+  .af .main { grid-template-columns: minmax(0, 1fr); }
+  .af .side { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .af .ta { min-height: 4.4rem; }
+  .af { padding: 0.9rem; gap: 0.75rem; }
+  .af .chip { padding: 0 0.6rem; font-size: 0.74rem; gap: 0.35rem; }
+  .af .att { flex-wrap: nowrap; gap: 0.4rem; }
+  .how small.note { display: none; }
 }
 /* Blackwork: galería principal */
 .style-name { font: 400 clamp(3rem, 8vw, 5rem)/0.9 var(--gothic); text-transform: none; letter-spacing: 0; }
@@ -415,18 +429,18 @@ footer .brand img { width: 3rem; height: 3rem; }
 <section><div class="wrap">
   <div class="head"><p class="label">How it works</p><h2>Five steps. You decide at every one.</h2><p class="real">A real brief, made with Inkdraft. Every image comes straight out of the app, untouched.</p></div>
   <div class="how" role="region" aria-roledescription="carrusel" aria-label="How it works, step by step">
-    <div class="how-bar"><div class="segs" role="group" aria-label="Steps"><button type="button" aria-label="Step 1: Brief"><span class="sn">1</span><span class="dl">Brief</span></button><button type="button" aria-label="Step 2: Concepts"><span class="sn">2</span><span class="dl">Concepts</span></button><button type="button" aria-label="Step 3: Refine"><span class="sn">3</span><span class="dl">Refine</span></button><button type="button" aria-label="Step 4: Stencil"><span class="sn">4</span><span class="dl">Stencil</span></button><button type="button" aria-label="Step 5: On skin"><span class="sn">5</span><span class="dl">On skin</span></button></div><div class="arrows"><button type="button" class="prev" aria-label="Previous step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="next" aria-label="Next step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
+    <div class="how-bar"><div class="segs" role="group" aria-label="Steps"><button type="button" aria-label="Step 1: Brief"><span class="sn">1</span><span class="dl">Brief</span><i class="ln"></i></button><button type="button" aria-label="Step 2: Concepts"><span class="sn">2</span><span class="dl">Concepts</span><i class="ln"></i></button><button type="button" aria-label="Step 3: Refine"><span class="sn">3</span><span class="dl">Refine</span><i class="ln"></i></button><button type="button" aria-label="Step 4: Stencil"><span class="sn">4</span><span class="dl">Stencil</span><i class="ln"></i></button><button type="button" aria-label="Step 5: On skin"><span class="sn">5</span><span class="dl">On skin</span></button></div><div class="arrows"><button type="button" class="prev" aria-label="Previous step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="next" aria-label="Next step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
     <div class="slides" tabindex="0">
-      <div class="slide" role="group" aria-roledescription="step" aria-label="1 of 5"><div class="st"><span class="big rise" aria-hidden="true">1</span><span class="label rise" style="--d:1">Step 1 of 5 · Brief</span><h3 class="rise" style="--d:2">Describe the request</h3><p class="rise" style="--d:3">Write it the way your client said it: subject, placement, size and style. Add their references or a photo of the placement if you have them. References are read as taste, never copied.</p></div>
-        <div class="stage"><div class="ticket rise" style="--d:1"><p class="tk"><span>New brief</span><span>Blackwork</span></p><p class="q" data-type>“moth with skull”</p><dl><dt>Placement</dt><dd>Forearm</dd><dt>Size</dt><dd>15 cm</dd><dt>Style</dt><dd>Blackwork</dd></dl><p class="att"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 11.5l-8 8a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L9.7 17.2a1.7 1.7 0 0 1-2.4-2.4L15 7"/></svg>1 client reference</p></div><small class="note rise" style="--d:3">Typed in a hurry, just like a real brief.</small></div></div>
-      <div class="slide" role="group" aria-roledescription="step" aria-label="2 of 5"><div class="st"><span class="big rise" aria-hidden="true">2</span><span class="label rise" style="--d:1">Step 2 of 5 · Concepts</span><h3 class="rise" style="--d:2">Pick by eye</h3><p class="rise" style="--d:3">Four different concepts, each one drawn. You choose by looking, not by reading.</p></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="1 of 5"><div class="st"><span class="big rise" aria-hidden="true">1</span><h3 class="rise" style="--d:1">Describe the request</h3><p class="rise" style="--d:3">Write it the way your client said it: subject, placement, size and style. Add their references or a photo of the placement if you have them. References are read as taste, never copied.</p></div>
+        <div class="stage"><div class="af rise" style="--d:1" role="img" aria-label="Inkdraft form: Blackwork style, brief “moth with skull”, forearm, 15 cm and one client reference"><div class="f"><span class="l">Style</span><div class="box sel sty"><b>Blackwork</b><span>Antique engraving: solid black and stippling.</span></div></div><div class="main"><div class="f"><span class="l">Client brief</span><div class="box ta"><span data-type>moth with skull</span></div></div><div class="side"><div class="f"><span class="l">Body area</span><div class="box sel">Forearm</div></div><div class="f"><span class="l">Size (cm)</span><div class="box">15</div></div></div></div><div class="att"><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="14" height="14" rx="2"/><path d="M3 7v12a2 2 0 0 0 2 2h12M21 13l-4-4-7 7"/></svg>References<em>1/3</em></span><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4Z"/><circle cx="12" cy="13" r="3.5"/></svg>Photo of the area</span></div><span class="go">See 4 concepts</span></div><small class="note rise" style="--d:3">Typed in a hurry, just like a real brief.</small></div></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="2 of 5"><div class="st"><span class="big rise" aria-hidden="true">2</span><h3 class="rise" style="--d:1">Pick by eye</h3><p class="rise" style="--d:3">Four different concepts, each one drawn. You choose by looking, not by reading.</p></div>
         <div class="stage"><div class="fan"><figure class="rise" style="--d:1"><div class="pp"><img src="/img/pol-concepto-1.webp" alt="Death's-head hawkmoth seen from the front, a skull on its thorax and black-edged wings" width="480" height="480" loading="lazy"></div><figcaption>Death's-head hawkmoth</figcaption></figure><figure class="rise" style="--d:2"><div class="pp"><img src="/img/pol-concepto-2.webp" alt="The hawkmoth resting on a lit, dripping candle" width="480" height="480" loading="lazy"></div><figcaption>Moth and candle</figcaption></figure><figure class="rise pick" style="--d:3"><div class="pp"><img src="/img/pol-concepto-3.webp" alt="The hawkmoth over a black eclipse with a crown of rays" width="480" height="480" loading="lazy"></div><figcaption>Eclipse moth</figcaption></figure><figure class="rise" style="--d:4"><div class="pp"><img src="/img/pol-concepto-4.webp" alt="The hawkmoth with wings made of quartz crystals" width="480" height="480" loading="lazy"></div><figcaption>Crystal wings</figcaption></figure></div></div></div>
-      <div class="slide" role="group" aria-roledescription="step" aria-label="3 of 5"><div class="st"><span class="big rise" aria-hidden="true">3</span><span class="label rise" style="--d:1">Step 3 of 5 · Refine</span><h3 class="rise" style="--d:2">Refine it in your words</h3><p class="rise" style="--d:3">Write what you'd change in the one you picked and get four more, from closest to freest. Once per brief.</p></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="3 of 5"><div class="st"><span class="big rise" aria-hidden="true">3</span><h3 class="rise" style="--d:1">Refine it in your words</h3><p class="rise" style="--d:3">Write what you'd change in the one you picked and get four more, from closest to freest. Once per brief.</p></div>
         <div class="stage"><div class="refine"><div class="ask rise" style="--d:1"><figure class="pick"><div class="pp"><img src="/img/pol-concepto-3.webp" alt="The chosen concept: the eclipse moth" width="480" height="480" loading="lazy"></div></figure><p class="say" data-type>“No sun, just the moth. And upright.”</p></div><p class="down rise" style="--d:5">Four more concepts</p><div class="fan flat"><figure class="rise pick" style="--d:6"><div class="pp"><img src="/img/pol-concepto-1.webp" alt="The death's-head hawkmoth alone, from the front and upright" width="480" height="480" loading="lazy"></div><figcaption>Death's-head hawkmoth</figcaption></figure><figure class="rise" style="--d:7"><div class="pp"><img src="/img/pol-var-cercana.webp" alt="The hawkmoth turned, one wing more open" width="480" height="480" loading="lazy"></div></figure><figure class="rise" style="--d:8"><div class="pp"><img src="/img/pol-var-media.webp" alt="The hawkmoth on a diagonal, its abdomen curved" width="480" height="480" loading="lazy"></div></figure><figure class="rise" style="--d:9"><div class="pp"><img src="/img/pol-var-atrevida.webp" alt="The hawkmoth in profile, on a diagonal" width="480" height="480" loading="lazy"></div></figure></div><p class="scale rise" style="--d:10"><span>Closest</span><i></i><span>Freest</span></p></div></div></div>
-      <div class="slide" role="group" aria-roledescription="step" aria-label="4 of 5"><div class="st"><span class="big rise" aria-hidden="true">4</span><span class="label rise" style="--d:1">Step 4 of 5 · Stencil</span><h3 class="rise" style="--d:2">Take the stencil</h3><p class="rise" style="--d:3">Single weight, true to the drawing and at real size. Open it in Procreate with the design and the stencil as layers.</p></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="4 of 5"><div class="st"><span class="big rise" aria-hidden="true">4</span><h3 class="rise" style="--d:1">Take the stencil</h3><p class="rise" style="--d:3">Single weight, true to the drawing and at real size. Open it in Procreate with the design and the stencil as layers.</p></div>
         <div class="stage"><div class="shot rise" style="--d:1"><div class="compare"><img class="a" src="/img/pol-diseno.webp" alt="The chosen design, shaded" width="800" height="800" loading="lazy"><img class="b" src="/img/pol-stencil.webp" alt="Stencil of the skull moth: outlines only, one line weight" width="800" height="800" loading="lazy"><span class="handle" aria-hidden="true"></span><span class="tag t1">Design</span><span class="tag t2">Stencil</span></div><div class="layers rise" style="--d:5" role="img" aria-label="Layers for Procreate: stencil, design and background"><p class="lh">Layers<span>+</span></p><div class="row act"><img src="/img/pol-stencil.webp" alt="" width="800" height="800" loading="lazy"><span>Stencil</span><b>✓</b></div><div class="row"><img src="/img/pol-diseno.webp" alt="" width="800" height="800" loading="lazy"><span>Design</span><b>✓</b></div><div class="row"><span class="white"></span><span>Background</span><b>✓</b></div></div></div><p class="size rise" style="--d:7">Real size · 15 cm</p></div></div>
-      <div class="slide" role="group" aria-roledescription="step" aria-label="5 of 5"><div class="st"><span class="big rise" aria-hidden="true">5</span><span class="label rise" style="--d:1">Step 5 of 5 · On skin</span><h3 class="rise" style="--d:2">Show your client</h3><p class="rise" style="--d:3">Upload a photo of the placement, position the design with your fingers and Inkdraft makes it look real. Your client sees it before the appointment.</p></div>
-        <div class="stage"><div class="phone rise" style="--d:1"><img src="/img/pol-piel.webp" alt="The skull moth tattooed on a forearm, preview" width="720" height="1080" loading="lazy"><div class="notif rise" style="--d:8"><span class="av">L</span><b>Laura <span>now</span></b><span>That one! When can you fit me in?</span></div></div><p class="cap rise" style="--d:4">Sample forearm generated with AI. In the studio, it's your client's photo.</p></div></div>
+      <div class="slide" role="group" aria-roledescription="step" aria-label="5 of 5"><div class="st"><span class="big rise" aria-hidden="true">5</span><h3 class="rise" style="--d:1">Show your client</h3><p class="rise" style="--d:3">Upload a photo of the placement, position the design with your fingers and Inkdraft makes it look real. Your client sees it before the appointment.</p></div>
+        <div class="stage"><div class="phone rise" style="--d:1"><img src="/img/pol-piel.webp" alt="The skull moth tattooed on a forearm, preview" width="720" height="1080" loading="lazy"><div class="notif rise" style="--d:8"><span class="av">L</span><b>Laura <span>now</span></b><span>That one! When can you fit me in?</span></div></div></div></div>
     </div>
   </div>
 </div></section>
