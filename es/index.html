@@ -73,12 +73,12 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 /* Hero: cartel centrado */
 .hero .wrap { display: grid; justify-items: center; text-align: center; gap: 1rem; padding-block: clamp(1rem, 3vh, 2rem) clamp(3rem, 7vw, 5rem); }
 .wordmark { font: 400 clamp(3.4rem, min(12vw, 11vh), 7.5rem)/0.9 var(--gothic); }
-/* Símbolo del producto: la nota del encargo entra en el iPad (Procreate, boceto) y la polilla sale volando ya acabada.
-   Grabado generado con IA sobre papel, con mucho margen: el papel se funde con el fondo en un óvalo (máscara), sin recuadro. En el móvil se agranda y se recortan los márgenes. */
-.hero-art { width: min(100%, 80rem, 96vh); aspect-ratio: 1600 / 765; margin: -1.5rem 0 -1rem;
-  -webkit-mask: radial-gradient(ellipse closest-side at 50% 50%, #000 52%, transparent 100%); mask: radial-gradient(ellipse closest-side at 50% 50%, #000 52%, transparent 100%); }
-@media (max-width: 600px) { .hero-art { scale: 1.5; margin-block: 0.6rem 0.4rem; } .hero { overflow-x: clip; } .hero .wordmark { position: relative; z-index: 1; } }
+/* Símbolo del producto: en el iPad con Procreate, la polilla pasa de boceto a diseño acabado con un barrido de luz.
+   Grabado generado con IA sobre papel, con margen añadido; el papel se funde con el fondo en un círculo (máscara), sin recuadro. */
+.hero-art { width: min(100%, 30rem, 47vh); aspect-ratio: 1; margin: -1rem 0 -1.2rem;
+  -webkit-mask: radial-gradient(circle closest-side at 50% 50%, #000 62%, transparent 100%); mask: radial-gradient(circle closest-side at 50% 50%, #000 62%, transparent 100%); }
 .hero-art img { display: block; width: 100%; height: 100%; }
+@media (max-width: 600px) { .hero-art { scale: 1.2; margin-block: 0 0.2rem; } .hero { overflow-x: clip; } .hero .wordmark { position: relative; z-index: 1; } }
 .hero h1 { font-size: clamp(1.25rem, 3.1vw, 2rem); max-width: 30ch; }
 .hero .lede { color: var(--dim); max-width: 36rem; font-size: 1.1rem; }
 .hero .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 0.6rem; }
@@ -415,7 +415,7 @@ footer .brand img { width: 3rem; height: 3rem; }
 <header class="hero" id="top"><div class="wrap">
   <p class="label">Diseño de tatuaje para tatuadores</p>
   <p class="wordmark" aria-hidden="true">Inkdraft</p>
-  <figure class="hero-art"><img src="/img/hero-polilla.webp" alt="Grabado: el encargo, una nota arrugada, entra en un iPad con Procreate, donde la polilla calavera es un boceto, y sale volando convertida en un diseño acabado" width="1600" height="765" fetchpriority="high"></figure>
+  <figure class="hero-art"><img src="/img/hero-polilla.webp" alt="Grabado: un iPad con Procreate y el Apple Pencil; en la pantalla, una polilla calavera es boceto a un lado y diseño acabado al otro, separados por un barrido de luz" width="1200" height="1200" fetchpriority="high"></figure>
   <h1>Del encargo al stencil, en minutos</h1>
   <p class="lede">Inkdraft convierte lo que te pide tu cliente en ideas, conceptos dibujados y un stencil listo para Procreate. Tú eliges. Tú lo terminas.</p>
   <div class="cta">
