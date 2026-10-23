@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Inkdraft · Diseño de tatuajes con IA para tatuadores, del encargo al stencil</title>
-<meta name="description" content="Del encargo al stencil, en minutos: tatuajes con IA para tatuadores, en blackwork, tradicional, neotradicional y fineline. Stencil para Procreate.">
+<meta name="description" content="Del encargo al stencil, en minutos: tatuajes con IA para tatuadores, en blackwork, tradicional, neotradicional, fineline y más. Stencil para Procreate.">
 <meta property="og:title" content="Inkdraft · Diseño de tatuajes con IA para tatuadores, del encargo al stencil">
-<meta property="og:description" content="Del encargo al stencil, en minutos: tatuajes con IA para tatuadores, en blackwork, tradicional, neotradicional y fineline. Stencil para Procreate.">
+<meta property="og:description" content="Del encargo al stencil, en minutos: tatuajes con IA para tatuadores, en blackwork, tradicional, neotradicional, fineline y más. Stencil para Procreate.">
 <meta property="og:image" content="https://www.inkdraft.tattoo/img/og.jpg">
 <meta property="og:url" content="https://www.inkdraft.tattoo/es/">
 <meta property="og:locale" content="es_ES">
@@ -400,6 +400,15 @@ footer .brand img { width: 3rem; height: 3rem; }
 .styles .also.one .body { padding: 1rem 1.2rem; }
 .styles .also.one .gothic { font-size: 1.8rem; }
 @media (max-width: 900px) { .styles-grid { grid-template-columns: minmax(0, 1fr); } }
+/* Los otros estilos, en pequeño: ficha con miniatura a la izquierda y texto a la derecha, dos por fila en el ordenador y una en el móvil */
+.styles-more { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem clamp(1.6rem, 4vw, 3.5rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line); }
+.style-mini { display: grid; grid-template-columns: clamp(6.5rem, 12vw, 8.5rem) minmax(0, 1fr); grid-template-rows: auto auto 1fr; column-gap: 1.1rem; row-gap: 0.25rem; align-items: start; min-width: 0; scroll-margin-top: 1rem; }
+.style-mini .frame { grid-row: 1 / -1; position: relative; background: var(--paper); aspect-ratio: 1; overflow: hidden; -webkit-mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 66%, transparent 100%); mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 66%, transparent 100%); }
+.style-mini .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+.style-mini .style-name { font-size: clamp(1.7rem, 2.6vw, 2.1rem); }
+.style-mini p { color: var(--dim); font-size: 0.88rem; line-height: 1.45; }
+.style-mini .cap { font-size: 0.76rem; }
+@media (max-width: 640px) { .styles-more { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) { .card .frame img { transition: none; } }
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
@@ -410,9 +419,9 @@ footer .brand img { width: 3rem; height: 3rem; }
 <meta property="og:site_name" content="Inkdraft">
 <meta property="og:locale:alternate" content="en_US">
 <meta name="twitter:title" content="Inkdraft · Diseño de tatuajes con IA para tatuadores, del encargo al stencil">
-<meta name="twitter:description" content="Del encargo al stencil, en minutos: tatuajes con IA para tatuadores, en blackwork, tradicional, neotradicional y fineline. Stencil para Procreate.">
+<meta name="twitter:description" content="Del encargo al stencil, en minutos: tatuajes con IA para tatuadores, en blackwork, tradicional, neotradicional, fineline y más. Stencil para Procreate.">
 <meta name="twitter:image" content="https://www.inkdraft.tattoo/img/og.jpg">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.inkdraft.tattoo/#org", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "logo": "https://www.inkdraft.tattoo/img/apple-touch-icon.png", "email": "hello@inkdraft.tattoo", "sameAs": ["https://www.instagram.com/inkdraft.tattoo/"]}, {"@type": "WebSite", "@id": "https://www.inkdraft.tattoo/#website", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "inLanguage": ["en", "es"], "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}}, {"@type": "SoftwareApplication", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/es/", "inLanguage": "es", "applicationCategory": "DesignApplication", "operatingSystem": "Web", "featureList": ["Cuatro conceptos dibujados a partir del encargo del cliente", "Afinar el concepto elegido con tus palabras: cuatro conceptos más", "Stencil de un solo grosor a tamaño real para Procreate", "Vista previa sobre la piel", "Estilos blackwork, tradicional, neotradicional y fineline"], "description": "Del encargo al stencil, en minutos: tatuajes con IA para tatuadores, en blackwork, tradicional, neotradicional y fineline. Stencil para Procreate.", "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}, "image": "https://www.inkdraft.tattoo/img/og.jpg", "offers": [{"@type": "Offer", "name": "Prueba", "price": "0", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Inicio", "price": "19", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Estudio", "price": "99", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Plaza de fundador", "price": "19", "priceCurrency": "EUR", "availability": "https://schema.org/PreOrder"}]}, {"@type": "FAQPage", "inLanguage": "es", "mainEntity": [{"@type": "Question", "name": "¿Qué es Inkdraft?", "acceptedAnswer": {"@type": "Answer", "text": "Inkdraft es una herramienta de diseño de tatuajes con inteligencia artificial para tatuadores. Convierte el encargo de tu cliente en cuatro conceptos dibujados, cuatro más a partir del que elijas y un stencil de un solo grosor listo para Procreate, con vista previa sobre la piel."}}, {"@type": "Question", "name": "¿Qué estilos de tatuaje admite?", "acceptedAnswer": {"@type": "Answer", "text": "Cuatro: blackwork (grabado antiguo y negro macizo), tradicional (flash moderno a color), neotradicional (ilustración con joyas y color terroso) y fineline (línea fina). Si quieres otro, dínoslo al pedir tu plaza de fundador."}}, {"@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": {"@type": "Answer", "text": "Prueba gratis con 3 diseños, sin tarjeta. Inicio, 19 € al mes (10 diseños); Pro, 39 € al mes (30 diseños); Estudio, 99 € al mes (100 diseños, hasta 5 tatuadores). Las 50 plazas de fundador tienen el plan Pro a 19 € al mes para siempre."}}, {"@type": "Question", "name": "¿Funciona con Procreate?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. El stencil se exporta listo para abrir en Procreate y también en PNG, para que añadas el sombreado y el estilo a tu manera."}}, {"@type": "Question", "name": "¿Los diseños son míos?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Lo que generas es tuyo para tatuar, publicar y vender."}}, {"@type": "Question", "name": "¿Es inteligencia artificial?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, para generar ideas y conceptos. El criterio de diseño (composición, anatomía, qué funciona en la piel) lo ponemos nosotros. El acabado lo pones tú."}}, {"@type": "Question", "name": "¿Sirve para tatuar directamente?", "acceptedAnswer": {"@type": "Answer", "text": "El stencil está listo para Procreate. Recomendamos siempre tu repaso final: tamaño, zona y estilo son decisión tuya."}}, {"@type": "Question", "name": "¿Cuándo empiezo a usarlo?", "acceptedAnswer": {"@type": "Answer", "text": "Los fundadores entran en la beta a principios de diciembre de 2026. Mientras tanto, te enviamos diseños a mano para tus encargos reales."}}, {"@type": "Question", "name": "¿Puedo cancelar?", "acceptedAnswer": {"@type": "Answer", "text": "Cuando quieras. Si cancelas la plaza de fundador, pierdes el precio de por vida."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.inkdraft.tattoo/#org", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "logo": "https://www.inkdraft.tattoo/img/apple-touch-icon.png", "email": "hello@inkdraft.tattoo", "sameAs": ["https://www.instagram.com/inkdraft.tattoo/"]}, {"@type": "WebSite", "@id": "https://www.inkdraft.tattoo/#website", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "inLanguage": ["en", "es"], "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}}, {"@type": "SoftwareApplication", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/es/", "inLanguage": "es", "applicationCategory": "DesignApplication", "operatingSystem": "Web", "featureList": ["Cuatro conceptos dibujados a partir del encargo del cliente", "Afinar el concepto elegido con tus palabras: cuatro conceptos más", "Stencil de un solo grosor a tamaño real para Procreate", "Vista previa sobre la piel", "Estilos blackwork, tradicional, neotradicional, fineline, ornamental y vintage stamp"], "description": "Del encargo al stencil, en minutos: tatuajes con IA para tatuadores, en blackwork, tradicional, neotradicional, fineline y más. Stencil para Procreate.", "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}, "image": "https://www.inkdraft.tattoo/img/og.jpg", "offers": [{"@type": "Offer", "name": "Prueba", "price": "0", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Inicio", "price": "19", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Estudio", "price": "99", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Plaza de fundador", "price": "19", "priceCurrency": "EUR", "availability": "https://schema.org/PreOrder"}]}, {"@type": "FAQPage", "inLanguage": "es", "mainEntity": [{"@type": "Question", "name": "¿Qué es Inkdraft?", "acceptedAnswer": {"@type": "Answer", "text": "Inkdraft es una herramienta de diseño de tatuajes con inteligencia artificial para tatuadores. Convierte el encargo de tu cliente en cuatro conceptos dibujados, cuatro más a partir del que elijas y un stencil de un solo grosor listo para Procreate, con vista previa sobre la piel."}}, {"@type": "Question", "name": "¿Qué estilos de tatuaje admite?", "acceptedAnswer": {"@type": "Answer", "text": "Seis: blackwork (grabado antiguo y negro macizo), tradicional (flash moderno a color), neotradicional (ilustración con joyas y color terroso), fineline (línea fina), ornamental (signos folk de bordado) y vintage stamp (sello antiguo con marco). Si quieres otro, dínoslo al pedir tu plaza de fundador."}}, {"@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": {"@type": "Answer", "text": "Prueba gratis con 3 diseños, sin tarjeta. Inicio, 19 € al mes (10 diseños); Pro, 39 € al mes (30 diseños); Estudio, 99 € al mes (100 diseños, hasta 5 tatuadores). Las 50 plazas de fundador tienen el plan Pro a 19 € al mes para siempre."}}, {"@type": "Question", "name": "¿Funciona con Procreate?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. El stencil se exporta listo para abrir en Procreate y también en PNG, para que añadas el sombreado y el estilo a tu manera."}}, {"@type": "Question", "name": "¿Los diseños son míos?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Lo que generas es tuyo para tatuar, publicar y vender."}}, {"@type": "Question", "name": "¿Es inteligencia artificial?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, para generar ideas y conceptos. El criterio de diseño (composición, anatomía, qué funciona en la piel) lo ponemos nosotros. El acabado lo pones tú."}}, {"@type": "Question", "name": "¿Sirve para tatuar directamente?", "acceptedAnswer": {"@type": "Answer", "text": "El stencil está listo para Procreate. Recomendamos siempre tu repaso final: tamaño, zona y estilo son decisión tuya."}}, {"@type": "Question", "name": "¿Cuándo empiezo a usarlo?", "acceptedAnswer": {"@type": "Answer", "text": "Los fundadores entran en la beta a principios de diciembre de 2026. Mientras tanto, te enviamos diseños a mano para tus encargos reales."}}, {"@type": "Question", "name": "¿Puedo cancelar?", "acceptedAnswer": {"@type": "Answer", "text": "Cuando quieras. Si cancelas la plaza de fundador, pierdes el precio de por vida."}}]}]}</script>
 </head>
 <body>
 <nav><div class="wrap">
@@ -462,22 +471,6 @@ footer .brand img { width: 3rem; height: 3rem; }
       </div>
     </div>
   </article>
-  <article class="style" id="tradicional">
-    <div class="style-top">
-      <h2 class="style-name">Tradicional</h2>
-      <p>Tatuaje tradicional moderno: contorno limpio, sombra negra suave y color cálido. Pulsa para ver su stencil.</p>
-    </div>
-    <div class="grid-black">
-      <div class="card">
-        <div class="frame"><img class="con" src="/img/trad-1.webp" alt="Perfil de mujer de ojos cerrados envuelto por los pétalos de una rosa roja, tradicional moderno a color" width="800" height="800" loading="lazy"><img class="sten" src="/img/trad-1-stencil.webp" alt="Stencil de la mujer en la rosa" width="800" height="800" loading="lazy"></div>
-        <div class="card-row"><span class="cap">Mujer en la rosa · antebrazo 15 cm</span><button class="toggle" type="button">Ver stencil</button></div>
-      </div>
-      <div class="card">
-        <div class="frame"><img class="con" src="/img/trad-2.webp" alt="Velero en un medallón ovalado sobre un ancla con cuerda, con olas y sol, tradicional moderno a color" width="800" height="800" loading="lazy"><img class="sten" src="/img/trad-2-stencil.webp" alt="Stencil del barco en el medallón" width="800" height="800" loading="lazy"></div>
-        <div class="card-row"><span class="cap">Barco en medallón con ancla · brazo 15 cm</span><button class="toggle" type="button">Ver stencil</button></div>
-      </div>
-    </div>
-  </article>
   <article class="style" id="neotradicional">
     <div class="style-top">
       <h2 class="style-name">Neotradicional</h2>
@@ -494,22 +487,12 @@ footer .brand img { width: 3rem; height: 3rem; }
       </div>
     </div>
   </article>
-  <article class="style" id="fineline">
-    <div class="style-top">
-      <h2 class="style-name">Fineline</h2>
-      <p>Tatuaje fineline: línea fina de una aguja, verdad botánica y piel libre. Pulsa para ver su stencil.</p>
-    </div>
-    <div class="grid-black">
-      <div class="card">
-        <div class="frame"><img class="con" src="/img/fine-1.webp" alt="Ramito de margarita y nenúfar atado con un lazo, línea fina" width="800" height="800" loading="lazy"><img class="sten" src="/img/fine-1-stencil.webp" alt="Stencil del ramito de margarita y nenúfar" width="800" height="800" loading="lazy"></div>
-        <div class="card-row"><span class="cap">Flores de nacimiento: margarita y nenúfar · costillas 12 cm</span><button class="toggle" type="button">Ver stencil</button></div>
-      </div>
-      <div class="card">
-        <div class="frame"><img class="con" src="/img/fine-2.webp" alt="Ramita de olivo con dos aceitunas, línea fina" width="800" height="800" loading="lazy"><img class="sten" src="/img/fine-2-stencil.webp" alt="Stencil de la ramita de olivo" width="800" height="800" loading="lazy"></div>
-        <div class="card-row"><span class="cap">Ramita de olivo · antebrazo 10 cm</span><button class="toggle" type="button">Ver stencil</button></div>
-      </div>
-    </div>
-  </article>
+  </div>
+  <div class="styles-more">
+    <article class="style-mini" id="tradicional"><div class="frame"><img src="/img/trad-1.webp" alt="Perfil de mujer de ojos cerrados envuelto por los pétalos de una rosa roja, tradicional moderno a color" width="800" height="800" loading="lazy"></div><h2 class="style-name">Tradicional</h2><p>Tatuaje tradicional moderno: contorno limpio, sombra negra suave y color cálido.</p><span class="cap">Mujer en la rosa · antebrazo 15 cm</span></article>
+    <article class="style-mini" id="fineline"><div class="frame"><img src="/img/fine-1.webp" alt="Ramito de margarita y nenúfar atado con un lazo, línea fina" width="800" height="800" loading="lazy"></div><h2 class="style-name">Fineline</h2><p>Tatuaje fineline: línea fina de una aguja, verdad botánica y piel libre.</p><span class="cap">Flores de nacimiento · costillas 12 cm</span></article>
+    <article class="style-mini" id="ornamental"><div class="frame"><img src="/img/orn-1.webp" alt="Signo folk de volutas en espejo con una cruz arriba, un rombo en el centro y dos hojas abajo, en línea negra de un solo grosor" width="800" height="800" loading="lazy"></div><h2 class="style-name">Ornamental</h2><p>Tatuaje ornamental: signos folk de bordado en negro, todos con el mismo grosor de línea.</p><span class="cap">Volutas en flor · antebrazo 12 cm</span></article>
+    <article class="style-mini" id="vintage-stamp"><div class="frame"><img src="/img/stamp-1.webp" alt="Rosa maciza en negro con tallo y hojas dentro de un óvalo festoneado de doble línea, estilo sello antiguo" width="800" height="800" loading="lazy"></div><h2 class="style-name">Vintage Stamp</h2><p>Tatuaje estilo sello antiguo: marco de doble línea y una flor maciza en negro.</p><span class="cap">Rosa en óvalo · antebrazo 8 cm</span></article>
   </div>
   <div class="also one">
     <article><div class="img wip" aria-hidden="true"><span>?</span></div><div class="body"><h3 class="gothic">¿Otro estilo?</h3><p>Dinos cuál quieres después. Lo que piden los fundadores va primero.</p><a class="more" href="#fundador">Pide tu estilo</a></div></article>
@@ -592,7 +575,7 @@ footer .brand img { width: 3rem; height: 3rem; }
   <div class="head"><p class="label">Preguntas</p><h2>Lo que nos preguntan</h2></div>
   <div class="faq">
     <details><summary>¿Qué es Inkdraft?</summary><p>Inkdraft es una herramienta de diseño de tatuajes con inteligencia artificial para tatuadores. Convierte el encargo de tu cliente en cuatro conceptos dibujados, cuatro más a partir del que elijas y un stencil de un solo grosor listo para Procreate, con vista previa sobre la piel.</p></details>
-    <details><summary>¿Qué estilos de tatuaje admite?</summary><p>Cuatro: blackwork (grabado antiguo y negro macizo), tradicional (flash moderno a color), neotradicional (ilustración con joyas y color terroso) y fineline (línea fina). Si quieres otro, dínoslo al pedir tu plaza de fundador.</p></details>
+    <details><summary>¿Qué estilos de tatuaje admite?</summary><p>Seis: blackwork (grabado antiguo y negro macizo), tradicional (flash moderno a color), neotradicional (ilustración con joyas y color terroso), fineline (línea fina), ornamental (signos folk de bordado) y vintage stamp (sello antiguo con marco). Si quieres otro, dínoslo al pedir tu plaza de fundador.</p></details>
     <details><summary>¿Cuánto cuesta?</summary><p>Prueba gratis con 3 diseños, sin tarjeta. Inicio, 19 € al mes (10 diseños); Pro, 39 € al mes (30 diseños); Estudio, 99 € al mes (100 diseños, hasta 5 tatuadores). Las 50 plazas de fundador tienen el plan Pro a 19 € al mes para siempre.</p></details>
     <details><summary>¿Funciona con Procreate?</summary><p>Sí. El stencil se exporta listo para abrir en Procreate y también en PNG, para que añadas el sombreado y el estilo a tu manera.</p></details>
     <details><summary>¿Los diseños son míos?</summary><p>Sí. Lo que generas es tuyo para tatuar, publicar y vender.</p></details>

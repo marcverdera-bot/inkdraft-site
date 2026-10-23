@@ -11,17 +11,13 @@
     <image:image><image:loc>https://www.inkdraft.tattoo/img/bw-2.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/bw-2-stencil.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/trad-1.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/trad-1-stencil.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/trad-2.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/trad-2-stencil.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/neo-1.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/neo-1-stencil.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/neo-2.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/neo-2-stencil.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/fine-1.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/fine-1-stencil.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/fine-2.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/fine-2-stencil.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.inkdraft.tattoo/img/orn-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.inkdraft.tattoo/img/stamp-1.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.inkdraft.tattoo/es/</loc>
@@ -32,10 +28,10 @@
     <image:image><image:loc>https://www.inkdraft.tattoo/img/bw-1.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/bw-2.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/trad-1.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/trad-2.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/neo-1.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/neo-2.webp</image:loc></image:image>
     <image:image><image:loc>https://www.inkdraft.tattoo/img/fine-1.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.inkdraft.tattoo/img/fine-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.inkdraft.tattoo/img/orn-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.inkdraft.tattoo/img/stamp-1.webp</image:loc></image:image>
   </url>
 </urlset>

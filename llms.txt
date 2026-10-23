@@ -1,6 +1,6 @@
 # Inkdraft
 
-> Inkdraft is an AI tattoo design tool for tattoo artists. It turns a client's brief into four drawn concepts, four more refined from the chosen one and a clean single-weight stencil ready for Procreate, plus an on-skin preview to show the client, in blackwork, traditional, neo-traditional or fine line. The artist always finishes the tattoo: Inkdraft handles the unpaid part, the idea and the first sketch.
+> Inkdraft is an AI tattoo design tool for tattoo artists. It turns a client's brief into four drawn concepts, four more refined from the chosen one and a clean single-weight stencil ready for Procreate, plus an on-skin preview to show the client, in blackwork, traditional, neo-traditional, fine line, ornamental or vintage stamp. The artist always finishes the tattoo: Inkdraft handles the unpaid part, the idea and the first sketch.
 
 - Website: https://www.inkdraft.tattoo/ (English) · https://www.inkdraft.tattoo/es/ (Spanish)
 - Contact: hello@inkdraft.tattoo
@@ -18,6 +18,8 @@
 - Traditional: modern traditional color flash with a finer hand, clean outline, smooth black shading, warm palette of vermilion, mustard and teal. The stencil also traces the border of every color.
 - Neo-traditional: illustration with a bold, varied outline, art nouveau curves, jewels and leaves, muted earthy palette.
 - Fine line: single-needle line, botanical truth, plenty of bare skin. Lettering is not drawn yet: the design leaves room for it and the artist sets real type in Procreate.
+- Ornamental: folk embroidery signs in solid black, built on a fixed grid so every line has the same weight.
+- Vintage stamp: a closed double-line frame around one solid black flower, like an old rubber stamp.
 - Founders can ask for other styles.
 
 ## Pricing (EUR, monthly)

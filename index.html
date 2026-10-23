@@ -9,9 +9,9 @@
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Inkdraft · AI tattoo design tool for tattoo artists, from brief to stencil</title>
-<meta name="description" content="From client brief to stencil, in minutes: AI tattoo design for artists, in blackwork, traditional, neo-traditional and fine line. Stencil for Procreate.">
+<meta name="description" content="From client brief to stencil, in minutes: AI tattoo design for artists, in blackwork, traditional, neo-traditional, fine line and more. Stencil for Procreate.">
 <meta property="og:title" content="Inkdraft · AI tattoo design tool for tattoo artists, from brief to stencil">
-<meta property="og:description" content="From client brief to stencil, in minutes: AI tattoo design for artists, in blackwork, traditional, neo-traditional and fine line. Stencil for Procreate.">
+<meta property="og:description" content="From client brief to stencil, in minutes: AI tattoo design for artists, in blackwork, traditional, neo-traditional, fine line and more. Stencil for Procreate.">
 <meta property="og:image" content="https://www.inkdraft.tattoo/img/og.jpg">
 <meta property="og:url" content="https://www.inkdraft.tattoo/">
 <meta name="twitter:card" content="summary_large_image">
@@ -404,6 +404,15 @@ footer .brand img { width: 3rem; height: 3rem; }
 .styles .also.one .body { padding: 1rem 1.2rem; }
 .styles .also.one .gothic { font-size: 1.8rem; }
 @media (max-width: 900px) { .styles-grid { grid-template-columns: minmax(0, 1fr); } }
+/* Los otros estilos, en pequeño: ficha con miniatura a la izquierda y texto a la derecha, dos por fila en el ordenador y una en el móvil */
+.styles-more { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem clamp(1.6rem, 4vw, 3.5rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line); }
+.style-mini { display: grid; grid-template-columns: clamp(6.5rem, 12vw, 8.5rem) minmax(0, 1fr); grid-template-rows: auto auto 1fr; column-gap: 1.1rem; row-gap: 0.25rem; align-items: start; min-width: 0; scroll-margin-top: 1rem; }
+.style-mini .frame { grid-row: 1 / -1; position: relative; background: var(--paper); aspect-ratio: 1; overflow: hidden; -webkit-mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 66%, transparent 100%); mask: radial-gradient(ellipse 72% 70% at 50% 50%, #000 66%, transparent 100%); }
+.style-mini .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+.style-mini .style-name { font-size: clamp(1.7rem, 2.6vw, 2.1rem); }
+.style-mini p { color: var(--dim); font-size: 0.88rem; line-height: 1.45; }
+.style-mini .cap { font-size: 0.76rem; }
+@media (max-width: 640px) { .styles-more { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) { .card .frame img { transition: none; } }
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
@@ -415,9 +424,9 @@ footer .brand img { width: 3rem; height: 3rem; }
 <meta property="og:site_name" content="Inkdraft">
 <meta property="og:locale:alternate" content="es_ES">
 <meta name="twitter:title" content="Inkdraft · AI tattoo design tool for tattoo artists, from brief to stencil">
-<meta name="twitter:description" content="From client brief to stencil, in minutes: AI tattoo design for artists, in blackwork, traditional, neo-traditional and fine line. Stencil for Procreate.">
+<meta name="twitter:description" content="From client brief to stencil, in minutes: AI tattoo design for artists, in blackwork, traditional, neo-traditional, fine line and more. Stencil for Procreate.">
 <meta name="twitter:image" content="https://www.inkdraft.tattoo/img/og.jpg">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.inkdraft.tattoo/#org", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "logo": "https://www.inkdraft.tattoo/img/apple-touch-icon.png", "email": "hello@inkdraft.tattoo", "sameAs": ["https://www.instagram.com/inkdraft.tattoo/"]}, {"@type": "WebSite", "@id": "https://www.inkdraft.tattoo/#website", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "inLanguage": ["en", "es"], "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}}, {"@type": "SoftwareApplication", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "inLanguage": "en", "applicationCategory": "DesignApplication", "operatingSystem": "Web", "featureList": ["Four drawn concepts from the client's brief", "Refine the chosen concept in your own words: four more concepts", "Single-weight stencil at real size for Procreate", "On-skin preview", "Blackwork, traditional, neo-traditional and fine line styles"], "description": "From client brief to stencil, in minutes: AI tattoo design for artists, in blackwork, traditional, neo-traditional and fine line. Stencil for Procreate.", "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}, "image": "https://www.inkdraft.tattoo/img/og.jpg", "offers": [{"@type": "Offer", "name": "Trial", "price": "0", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Starter", "price": "19", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Studio", "price": "99", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Founder seat", "price": "19", "priceCurrency": "EUR", "availability": "https://schema.org/PreOrder"}]}, {"@type": "FAQPage", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "What is Inkdraft?", "acceptedAnswer": {"@type": "Answer", "text": "Inkdraft is an AI tattoo design tool for tattoo artists. It turns your client's brief into four drawn concepts, four more from the one you pick and a single-weight stencil ready for Procreate, with an on-skin preview."}}, {"@type": "Question", "name": "Which tattoo styles does it support?", "acceptedAnswer": {"@type": "Answer", "text": "Four: blackwork (antique engraving and solid black), traditional (modern color flash), neo-traditional (illustration with jewels and earthy color) and fine line. Want another one? Tell us when you claim your founder seat."}}, {"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Free trial with 3 designs, no card. Starter, €19 a month (10 designs); Pro, €39 a month (30 designs); Studio, €99 a month (100 designs, up to 5 artists). The 50 founder seats get the Pro plan at €19 a month for life."}}, {"@type": "Question", "name": "Does it work with Procreate?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The stencil exports ready to open in Procreate and as a PNG, so you can add shading and style your way."}}, {"@type": "Question", "name": "Do I own the designs?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. What you generate is yours to tattoo, post and sell."}}, {"@type": "Question", "name": "Is it AI?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for generating ideas and concepts. The design judgement (composition, anatomy, what works on skin) comes from us. The finish comes from you."}}, {"@type": "Question", "name": "Can I tattoo straight from it?", "acceptedAnswer": {"@type": "Answer", "text": "The stencil is ready for Procreate. We always recommend your own final pass: size, placement and style are your call."}}, {"@type": "Question", "name": "When can I start using it?", "acceptedAnswer": {"@type": "Answer", "text": "Founders get into the beta in early December 2026. Until then, we send you hand-drawn designs for your real client requests."}}, {"@type": "Question", "name": "Can I cancel?", "acceptedAnswer": {"@type": "Answer", "text": "Any time. If you cancel a founder seat, you lose the lifetime price."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.inkdraft.tattoo/#org", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "logo": "https://www.inkdraft.tattoo/img/apple-touch-icon.png", "email": "hello@inkdraft.tattoo", "sameAs": ["https://www.instagram.com/inkdraft.tattoo/"]}, {"@type": "WebSite", "@id": "https://www.inkdraft.tattoo/#website", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "inLanguage": ["en", "es"], "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}}, {"@type": "SoftwareApplication", "name": "Inkdraft", "url": "https://www.inkdraft.tattoo/", "inLanguage": "en", "applicationCategory": "DesignApplication", "operatingSystem": "Web", "featureList": ["Four drawn concepts from the client's brief", "Refine the chosen concept in your own words: four more concepts", "Single-weight stencil at real size for Procreate", "On-skin preview", "Blackwork, traditional, neo-traditional and fine line styles"], "description": "From client brief to stencil, in minutes: AI tattoo design for artists, in blackwork, traditional, neo-traditional, fine line and more. Stencil for Procreate.", "publisher": {"@id": "https://www.inkdraft.tattoo/#org"}, "image": "https://www.inkdraft.tattoo/img/og.jpg", "offers": [{"@type": "Offer", "name": "Trial", "price": "0", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Starter", "price": "19", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Pro", "price": "39", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Studio", "price": "99", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "Founder seat", "price": "19", "priceCurrency": "EUR", "availability": "https://schema.org/PreOrder"}]}, {"@type": "FAQPage", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "What is Inkdraft?", "acceptedAnswer": {"@type": "Answer", "text": "Inkdraft is an AI tattoo design tool for tattoo artists. It turns your client's brief into four drawn concepts, four more from the one you pick and a single-weight stencil ready for Procreate, with an on-skin preview."}}, {"@type": "Question", "name": "Which tattoo styles does it support?", "acceptedAnswer": {"@type": "Answer", "text": "Six: blackwork (antique engraving and solid black), traditional (modern color flash), neo-traditional (illustration with jewels and earthy color), fine line, ornamental (folk embroidery signs) and vintage stamp (old stamp with a frame). Want another one? Tell us when you claim your founder seat."}}, {"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Free trial with 3 designs, no card. Starter, €19 a month (10 designs); Pro, €39 a month (30 designs); Studio, €99 a month (100 designs, up to 5 artists). The 50 founder seats get the Pro plan at €19 a month for life."}}, {"@type": "Question", "name": "Does it work with Procreate?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The stencil exports ready to open in Procreate and as a PNG, so you can add shading and style your way."}}, {"@type": "Question", "name": "Do I own the designs?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. What you generate is yours to tattoo, post and sell."}}, {"@type": "Question", "name": "Is it AI?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for generating ideas and concepts. The design judgement (composition, anatomy, what works on skin) comes from us. The finish comes from you."}}, {"@type": "Question", "name": "Can I tattoo straight from it?", "acceptedAnswer": {"@type": "Answer", "text": "The stencil is ready for Procreate. We always recommend your own final pass: size, placement and style are your call."}}, {"@type": "Question", "name": "When can I start using it?", "acceptedAnswer": {"@type": "Answer", "text": "Founders get into the beta in early December 2026. Until then, we send you hand-drawn designs for your real client requests."}}, {"@type": "Question", "name": "Can I cancel?", "acceptedAnswer": {"@type": "Answer", "text": "Any time. If you cancel a founder seat, you lose the lifetime price."}}]}]}</script>
 </head>
 <body>
 <nav><div class="wrap">
@@ -467,22 +476,6 @@ footer .brand img { width: 3rem; height: 3rem; }
       </div>
     </div>
   </article>
-  <article class="style" id="traditional">
-    <div class="style-top">
-      <h2 class="style-name">Traditional</h2>
-      <p>Modern traditional tattoo: clean outline, smooth black shading and warm color. Tap to see the stencil.</p>
-    </div>
-    <div class="grid-black">
-      <div class="card">
-        <div class="frame"><img class="con" src="/img/trad-1.webp" alt="Profile of a woman with closed eyes wrapped in the petals of a red rose, modern traditional in color" width="800" height="800" loading="lazy"><img class="sten" src="/img/trad-1-stencil.webp" alt="Woman in the rose stencil" width="800" height="800" loading="lazy"></div>
-        <div class="card-row"><span class="cap">Woman in the rose · forearm 15 cm</span><button class="toggle" type="button">See stencil</button></div>
-      </div>
-      <div class="card">
-        <div class="frame"><img class="con" src="/img/trad-2.webp" alt="Sailing ship in an oval medallion over a roped anchor, with waves and sun, modern traditional in color" width="800" height="800" loading="lazy"><img class="sten" src="/img/trad-2-stencil.webp" alt="Ship in the medallion stencil" width="800" height="800" loading="lazy"></div>
-        <div class="card-row"><span class="cap">Ship in a medallion with anchor · upper arm 15 cm</span><button class="toggle" type="button">See stencil</button></div>
-      </div>
-    </div>
-  </article>
   <article class="style" id="neo-traditional">
     <div class="style-top">
       <h2 class="style-name">Neo-traditional</h2>
@@ -499,22 +492,12 @@ footer .brand img { width: 3rem; height: 3rem; }
       </div>
     </div>
   </article>
-  <article class="style" id="fineline">
-    <div class="style-top">
-      <h2 class="style-name">Fineline</h2>
-      <p>Fine line tattoo: single-needle line, botanical truth and bare skin. Tap to see the stencil.</p>
-    </div>
-    <div class="grid-black">
-      <div class="card">
-        <div class="frame"><img class="con" src="/img/fine-1.webp" alt="Small bouquet of a daisy and a water lily tied with a bow, fine line" width="800" height="800" loading="lazy"><img class="sten" src="/img/fine-1-stencil.webp" alt="Daisy and water lily stencil" width="800" height="800" loading="lazy"></div>
-        <div class="card-row"><span class="cap">Birth flowers: daisy and water lily · ribs 12 cm</span><button class="toggle" type="button">See stencil</button></div>
-      </div>
-      <div class="card">
-        <div class="frame"><img class="con" src="/img/fine-2.webp" alt="Olive sprig with two olives, fine line" width="800" height="800" loading="lazy"><img class="sten" src="/img/fine-2-stencil.webp" alt="Olive sprig stencil" width="800" height="800" loading="lazy"></div>
-        <div class="card-row"><span class="cap">Olive sprig · forearm 10 cm</span><button class="toggle" type="button">See stencil</button></div>
-      </div>
-    </div>
-  </article>
+  </div>
+  <div class="styles-more">
+    <article class="style-mini" id="traditional"><div class="frame"><img src="/img/trad-1.webp" alt="Profile of a woman with closed eyes wrapped in the petals of a red rose, modern traditional in color" width="800" height="800" loading="lazy"></div><h2 class="style-name">Traditional</h2><p>Modern traditional tattoo: clean outline, smooth black shading and warm color.</p><span class="cap">Woman in the rose · forearm 15 cm</span></article>
+    <article class="style-mini" id="fineline"><div class="frame"><img src="/img/fine-1.webp" alt="Small bouquet of a daisy and a water lily tied with a bow, fine line" width="800" height="800" loading="lazy"></div><h2 class="style-name">Fine line</h2><p>Fine line tattoo: single-needle line, botanical truth and plenty of bare skin.</p><span class="cap">Birth flowers · ribs 12 cm</span></article>
+    <article class="style-mini" id="ornamental"><div class="frame"><img src="/img/orn-1.webp" alt="Folk sign of mirrored scrolls with a cross on top, a diamond in the center and two leaves below, in single-weight black line" width="800" height="800" loading="lazy"></div><h2 class="style-name">Ornamental</h2><p>Ornamental tattoo: folk embroidery signs in black, all in one line weight.</p><span class="cap">Scrolls in bloom · forearm 12 cm</span></article>
+    <article class="style-mini" id="vintage-stamp"><div class="frame"><img src="/img/stamp-1.webp" alt="Solid black rose with stem and leaves inside a scalloped double-line oval, vintage stamp style" width="800" height="800" loading="lazy"></div><h2 class="style-name">Vintage Stamp</h2><p>Vintage stamp tattoo: a double-line frame around one solid black flower.</p><span class="cap">Rose in an oval · forearm 8 cm</span></article>
   </div>
   <div class="also one">
     <article><div class="img wip" aria-hidden="true"><span>?</span></div><div class="body"><h3 class="gothic">Another style?</h3><p>Tell us which one you want next. What founders ask for comes first.</p><a class="more" href="#founder">Ask for your style</a></div></article>
@@ -597,7 +580,7 @@ footer .brand img { width: 3rem; height: 3rem; }
   <div class="head"><p class="label">FAQ</p><h2>What people ask</h2></div>
   <div class="faq">
     <details><summary>What is Inkdraft?</summary><p>Inkdraft is an AI tattoo design tool for tattoo artists. It turns your client's brief into four drawn concepts, four more from the one you pick and a single-weight stencil ready for Procreate, with an on-skin preview.</p></details>
-    <details><summary>Which tattoo styles does it support?</summary><p>Four: blackwork (antique engraving and solid black), traditional (modern color flash), neo-traditional (illustration with jewels and earthy color) and fine line. Want another one? Tell us when you claim your founder seat.</p></details>
+    <details><summary>Which tattoo styles does it support?</summary><p>Six: blackwork (antique engraving and solid black), traditional (modern color flash), neo-traditional (illustration with jewels and earthy color), fine line, ornamental (folk embroidery signs) and vintage stamp (old stamp with a frame). Want another one? Tell us when you claim your founder seat.</p></details>
     <details><summary>How much does it cost?</summary><p>Free trial with 3 designs, no card. Starter, €19 a month (10 designs); Pro, €39 a month (30 designs); Studio, €99 a month (100 designs, up to 5 artists). The 50 founder seats get the Pro plan at €19 a month for life.</p></details>
     <details><summary>Does it work with Procreate?</summary><p>Yes. The stencil exports ready to open in Procreate and as a PNG, so you can add shading and style your way.</p></details>
     <details><summary>Do I own the designs?</summary><p>Yes. What you generate is yours to tattoo, post and sell.</p></details>
