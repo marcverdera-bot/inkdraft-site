@@ -151,6 +151,7 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
 .arrows button:hover { background: var(--bone); color: var(--black); }
 .arrows button:disabled { opacity: 0.2; cursor: default; background: transparent; color: var(--bone); }
 .arrows svg { width: 1.1rem; height: 1.1rem; }
+.arrows .count { display: none; font: expanded 700 0.72rem/1 var(--caps); letter-spacing: 0.06em; color: var(--dim); font-variant-numeric: tabular-nums; }
 .slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
 .slides:focus-visible { outline: 1px solid var(--bone); outline-offset: -4px; }
 .slides::-webkit-scrollbar { display: none; }
@@ -254,17 +255,38 @@ section > .wrap { padding-block: clamp(3rem, 7vw, 5.5rem); display: grid; gap: 2
   .slide .big { font-size: 4.2rem; }
   .slide .st p { max-width: 36rem; }
   .stage { min-height: 0; padding-block: 0.5rem 1rem; align-content: start; }
-  .how .size { margin-top: 1.6rem; }
   .segs .dl { display: none; }
-  .layers { right: -0.6rem; bottom: -1.2rem; width: 10rem; }
+  /* Capas debajo del stencil, en una fila: encima tapaban la mitad del stencil */
+  .layers { position: static; width: auto; margin-top: 0.8rem; grid-template-columns: auto repeat(3, minmax(0, 1fr)); align-items: center; gap: 0.3rem; padding: 0.4rem; }
+  .layers .lh { padding: 0 0.5rem 0 0.4rem; }
+  .layers .lh span { display: none; }
+  .layers .row { grid-template-columns: 1.7rem minmax(0, 1fr); gap: 0.4rem; padding: 0.25rem; font-size: 0.72rem; }
+  .layers .row img, .layers .row .white { width: 1.7rem; height: 1.7rem; }
+  .layers .row b { display: none; }
+}
+/* Móvil: arriba solo una barra de progreso fina (5 tramos); abajo, flechas y contador al alcance del pulgar */
+@media (max-width: 600px) {
+  .how { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "segs" "slides" "arrows"; }
+  .how-bar { display: contents; }
+  .segs { grid-area: segs; gap: 0.35rem; padding: 0.6rem 1.2rem 0; }
+  .segs button, .segs button:last-child { flex: 1 1 0; min-height: 30px; padding: 0; position: relative; }
+  .segs .sn, .segs .dl, .segs .ln { display: none; }
+  .segs button::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 3px; translate: 0 -50%; border-radius: 2px; background: #34312D; transition: background 0.3s; }
+  .segs button[data-s="done"]::before, .segs button[data-s="now"]::before { background: var(--bone); }
+  .slides { grid-area: slides; }
+  .arrows { grid-area: arrows; justify-content: space-between; align-items: center; padding: 0.8rem 1.2rem 1rem; border-top: 1px solid var(--line); }
+  .arrows .count { display: block; }
 }
 @media (max-width: 560px) {
   .fan { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .fan figure { rotate: none; }
   .fan { row-gap: 1.1rem; }
   .how.js .on .fan .pick .pp { scale: 1.03; translate: none; }
-  .shot { width: calc(100% - 1.6rem); justify-self: start; }
   .ask figure { flex-basis: 4.2rem; }
+  .fan.flat { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.45rem; }
+  .fan.flat figcaption { display: none; }
+  .fan.flat .pick .pp::after, .ask .pick .pp::after { display: none; }
+  .refine { gap: 0.8rem; }
   .af .main { grid-template-columns: minmax(0, 1fr); }
   .af .side { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .af .ta { min-height: 4.4rem; }
@@ -424,7 +446,7 @@ footer .brand img { width: 3rem; height: 3rem; }
 <section><div class="wrap">
   <div class="head"><p class="label">Cómo funciona</p><h2>Cinco pasos. Tú decides en cada uno.</h2><p class="real">Un encargo real, hecho con Inkdraft. Las imágenes salen de la app, sin retocar.</p></div>
   <div class="how" role="region" aria-roledescription="carrusel" aria-label="Cómo funciona, paso a paso">
-    <div class="how-bar"><div class="segs" role="group" aria-label="Pasos"><button type="button" aria-label="Paso 1: Encargo"><span class="sn">1</span><span class="dl">Encargo</span><i class="ln"></i></button><button type="button" aria-label="Paso 2: Conceptos"><span class="sn">2</span><span class="dl">Conceptos</span><i class="ln"></i></button><button type="button" aria-label="Paso 3: Afinar"><span class="sn">3</span><span class="dl">Afinar</span><i class="ln"></i></button><button type="button" aria-label="Paso 4: Stencil"><span class="sn">4</span><span class="dl">Stencil</span><i class="ln"></i></button><button type="button" aria-label="Paso 5: En la piel"><span class="sn">5</span><span class="dl">En la piel</span></button></div><div class="arrows"><button type="button" class="prev" aria-label="Paso anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="next" aria-label="Paso siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
+    <div class="how-bar"><div class="segs" role="group" aria-label="Pasos"><button type="button" aria-label="Paso 1: Encargo"><span class="sn">1</span><span class="dl">Encargo</span><i class="ln"></i></button><button type="button" aria-label="Paso 2: Conceptos"><span class="sn">2</span><span class="dl">Conceptos</span><i class="ln"></i></button><button type="button" aria-label="Paso 3: Afinar"><span class="sn">3</span><span class="dl">Afinar</span><i class="ln"></i></button><button type="button" aria-label="Paso 4: Stencil"><span class="sn">4</span><span class="dl">Stencil</span><i class="ln"></i></button><button type="button" aria-label="Paso 5: En la piel"><span class="sn">5</span><span class="dl">En la piel</span></button></div><div class="arrows"><button type="button" class="prev" aria-label="Paso anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><span class="count" aria-hidden="true">1 / 5</span><button type="button" class="next" aria-label="Paso siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
     <div class="slides" tabindex="0">
       <div class="slide" role="group" aria-roledescription="paso" aria-label="1 de 5"><div class="st"><span class="big rise" aria-hidden="true">1</span><h3 class="rise" style="--d:1">Cuéntale el encargo</h3><p class="rise" style="--d:3">Escríbelo como te lo dice el cliente: tema, zona, tamaño y estilo. Si trae referencias o una foto de la zona, súbelas. Las referencias se leen como gusto, nunca se copian.</p></div>
         <div class="stage"><div class="af rise" style="--d:1" role="img" aria-label="Formulario de Inkdraft: estilo Blackwork, encargo «polilla con calavera», antebrazo, 15 cm y una referencia del cliente"><div class="f"><span class="l">Estilo</span><div class="box sel sty"><b>Blackwork</b><span>Grabado antiguo: negro macizo y punteado.</span></div></div><div class="main"><div class="f"><span class="l">Encargo del cliente</span><div class="box ta"><span data-type>polilla con calavera</span></div></div><div class="side"><div class="f"><span class="l">Zona del cuerpo</span><div class="box sel">Antebrazo</div></div><div class="f"><span class="l">Tamaño (cm)</span><div class="box">15</div></div></div></div><div class="att"><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="14" height="14" rx="2"/><path d="M3 7v12a2 2 0 0 0 2 2h12M21 13l-4-4-7 7"/></svg>Referencias<em>1/3</em></span><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4Z"/><circle cx="12" cy="13" r="3.5"/></svg>Foto de la zona</span></div><span class="go">Ver 4 conceptos</span></div><small class="note rise" style="--d:3">Tal cual lo escribió el tatuador.</small></div></div>
@@ -620,7 +642,7 @@ join.addEventListener("submit", async (e) => {
 (function () {
   document.querySelectorAll('.how').forEach(function (how) {
     var track = how.querySelector('.slides'), slides = track.children, segs = how.querySelectorAll('.segs button');
-    var prev = how.querySelector('.prev'), next = how.querySelector('.next'), cur = 0, want = null, seen = false, shown = -1, timers = [];
+    var prev = how.querySelector('.prev'), next = how.querySelector('.next'), count = how.querySelector('.count'), cur = 0, want = null, seen = false, shown = -1, timers = [];
     var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
     how.classList.add('js');
     function at() { return want === null ? cur : want; }
@@ -658,6 +680,7 @@ join.addEventListener("submit", async (e) => {
       });
       for (var k = 0; k < slides.length; k++) slides[k].setAttribute('aria-hidden', k === i ? 'false' : 'true');
       prev.disabled = i === 0; next.disabled = i === slides.length - 1;
+      if (count) count.textContent = (i + 1) + ' / ' + slides.length;
       if (want === null) show(cur);
     }
     track.addEventListener('scroll', sync, { passive: true });
